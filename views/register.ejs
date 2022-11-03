@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.104.2">
+  <title>Register</title>
+
+
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+
+  <link rel="stylesheet" href="/stylesheets/signin.css">
+</head>
+
+<body class="text-center">
+
+  <main class="form-signin w-100 m-auto">
+    <form actions="/register" method="post">
+      <img class="" src="/images/logo-dark.png" alt="" width="150" height="100">
+      <h3 class=" mb-2 ">Please sign up</h3>
+      <div>
+        <div class="form-floating">
+          <input type="email" class="form-control rounded-pill mb-2" id="email" name="email"
+            placeholder="name@example.com">
+          <label for="email">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="text" class="form-control rounded-pill mb-2" id="name" name="name" placeholder="Your Name">
+          <label for="name">Name</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control rounded-pill" id="password" name="password"
+            placeholder="Your Password">
+          <label for="password">Password</label>
+        </div>
+        <select class="form-select form-select-xxl rounded-pill" type="role" id="role" name="role">
+          <option value="" selected>Choose your role...</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
+        </select>
+
+      </div>
+      <div class="checkbox mb-3 col-5">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary rounded-pill mb-3" type="submit">Sign up</button>
+      <p class="mt-6 mb-3 text-muted"> Have account? please <a href="/">sign in</a></p>
+
+    </form>
+  </main>
+
+
+
+
+
+  <%- include('./partials/footer') %>
