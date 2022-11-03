@@ -45,7 +45,6 @@ module.exports = function (db) {
       res.send(error)
     }
   })
-
   router.get('/home', function (req, res, next) {
     res.render('index', { user: req.session.user });
   });
