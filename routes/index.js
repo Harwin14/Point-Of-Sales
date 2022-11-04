@@ -65,6 +65,9 @@ module.exports = function (db) {
   router.get('/cek', function (req, res, next) {
     res.render('cek');
   });
+  router.get('/a', function (req, res, next) {
+    res.render('a');
+  });
 
   return router;
 }
