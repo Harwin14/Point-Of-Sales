@@ -12,7 +12,7 @@ module.exports = function (db) {
     try {
       const { email, password } = req.body
       const { rows: emails } = await db.query('SELECT * FROM users WHERE email = $1', [email])
-      if (emails.length = 0) return res.send(`Email doesn't exist`)
+      if (emails.length == 0) return res.send(`Email doesn't exist`)
 
       if (!bcrypt.compareSync(password, emails[0].password)) return res.send(`Password doesn't match`)
 
@@ -57,6 +57,13 @@ module.exports = function (db) {
 
   router.get('/forget', function (req, res, next) {
     res.render('forget');
+  });
+
+  router.get('/test', function (req, res, next) {
+    res.render('test');
+  });
+  router.get('/cek', function (req, res, next) {
+    res.render('cek');
   });
 
   return router;

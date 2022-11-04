@@ -57,3 +57,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 //git push --set-upstream origin master
+// sudo kill -9 `sudo lsof -t -i:3000`
+//git push -f origin main
