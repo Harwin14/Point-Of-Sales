@@ -8,55 +8,59 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Hugo 0.104.2">
+  <title>Sign in</title>
+
+  <link href="/stylesheets/style3.css" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <!-- Favicons -->
+  <!-- Custom styles for this template -->
   <link rel="stylesheet" href="/stylesheets/signin.css">
-  <title>Register</title>
 </head>
 
-<body class="text-center">
+<body class="body">
 
-  <main class="form-signin w-100 m-auto">
-    <form actions="/register" method="post">
-      <img class="" src="/images/logo-dark.png" alt="" width="150" height="100">
-      <h3 class=" mb-2 ">Please sign up</h3>
-      <div>
-        <div class="form-floating">
-          <input type="email" class="form-control rounded-pill mb-2" id="email" name="email"
-            placeholder="n">
-          <label for="email">Email address</label>
-        </div>
+  <div class="container">
+    <div style="display: flex;">
+      <main class="main">
+        <img src="./images/logo2x.png" alt="" class="logo" srcset="">
+      </main>
+      <aside class="aside text-center">
+        <form action="/login" method="post">
+          <div class="form"> 
+            <h1 class="h1">Point of Sales</h1>
+            <hr class="col-10 ">
+            <h2 class="h3 mb-5 fw-normal">Welcome Back!</h2>
 
-        <div class="form-floating">
-          <input type="text" class="form-control rounded-pill mb-2" id="name" name="name" placeholder="Your Name">
-          <label for="name">Name</label>
-        </div>
+            <div class=" form-floating mb-3">
+              <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="Enter Email Address....">
+              <label for="email">Email</label>
+            </div>
 
-        <div class="form-floating">
-          <input type="password" class="form-control rounded-pill" id="password" name="password"
-            placeholder="Your Password">
-          <label for="password">Password</label>
-        </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control rounded-pill " id="name" name="name" placeholder="Your Name">
+              <label for="name">Name</label>
+            </div>
 
-        <select class="form-select form-select-xxl rounded-pill" type="role" id="role" name="role">
-          <option value="" selected>Choose your role...</option>
-          <option value="Admin">Admin</option>
-          <option value="User">User</option>
-        </select>
+            <div class="form-floating mb-3 ">
+              <input type="password" class="form-control rounded-pill " id="password" name="password"
+                placeholder="Password">
+              <label for="password">Password</label>
+            </div>
 
-      </div>
-      <div class="checkbox mb-3 col-5">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary rounded-pill mb-3" type="submit">Sign up</button>
-      <p class="mt-6 mb-3 text-muted"> Have account? please <a href="/">sign in</a></p>
-
-    </form>
-  </main>
-
-
+            <div class="checkbox mb-3 col-5 px-2">
+              <label class="mb-2">
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary rounded-pill mb-4" type="submit">Log in</button>
+            <p class="mt-6 mb-3 text-muted">have account? please <a href="/">sign in</a></p>
+            <hr>
+          </div>
+        </form>
+      </aside>
 
 
+    </div>
 
+  </div>
   <%- include('./partials/footer') %>

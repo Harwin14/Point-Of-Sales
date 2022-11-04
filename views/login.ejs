@@ -10,50 +10,52 @@
   <meta name="generator" content="Hugo 0.104.2">
   <title>Sign in</title>
 
-  <link href="/stylesheets/style.css" rel="stylesheet">
+  <link href="/stylesheets/style3.css" rel="stylesheet">
   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
   <!-- Favicons -->
   <!-- Custom styles for this template -->
   <link rel="stylesheet" href="/stylesheets/signin.css">
 </head>
 
-<body >
+<body class="body">
+
   <div class="container">
-  <div class="row row-cols-2">
-    <div class="logo bg-dark ">
-      <img src="./images/logo2x.png" class="img-fluid logos" alt="logo">
+    <div style="display: flex;">
+      <main class="main">
+        <img src="./images/logo2x.png" alt="" class="logo" srcset="">
+      </main>
+      <aside class="aside text-center">
+        <form action="/login" method="post">
+          <div class="form"> 
+            <h1 class="h1">Point of Sales</h1>
+            <hr class="col-10 ">
+            <h2 class="h3 mb-5 fw-normal">Welcome Back!</h2>
+
+            <div class=" form-floating mb-3">
+              <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="Enter Email Address....">
+              <label for="email">Email</label>
+            </div>
+            <div class="form-floating mb-3 ">
+              <input type="password" class="form-control rounded-pill " id="password" name="password"
+                placeholder="Password">
+              <label for="password">Password</label>
+            </div>
+
+            <div class="checkbox mb-3 col-5 px-2">
+              <label class="mb-2">
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary rounded-pill mb-4" type="submit">Log in</button>
+            <p class="mt-6 mb-3 text-muted">Doesn't have account? please <a href="/register">sign up</a></p>
+            <hr>
+            <p class="mt-6 mb-3 text-muted no-text-decoration"><a href="/forget">Forgot Password?</a></p>
+          </div>
+        </form>
+      </aside>
+
+
     </div>
-    <main class="form-signin w-100 m-auto">
-      <form action="/login" method="post">
-      
-        <h1>Point of Sales</h1>
-        <hr>
-        <h2 class="h3 mb-3 fw-normal">Welcome Back!</h2>
 
-        <div class="form-floating ">
-          <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="email">
-          <label for="email">Email</label>
-        </div>
-        <div class="form-floating ">
-          <input type="password" class="form-control rounded-pill " id="password" name="password"
-            placeholder="Password">
-          <label for="password">Password</label>
-        </div>
-
-        <div class="checkbox mb-3 col-5">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary rounded-pill mb-3" type="submit">Log in</button>
-        <p class="mt-6 mb-3 text-muted">Doesn't have account? please <a href="/register">sign up</a></p>
-        <hr>
-        <p class="mt-6 mb-3 text-muted"><a href="/forget">Forgot Password?</a></p>
-      </form>
-    </main>
   </div>
-</div>
-
-
-
   <%- include('./partials/footer') %>
