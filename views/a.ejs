@@ -10,50 +10,47 @@
     <link rel="stylesheet" href="./stylesheets/bootstrap.min.css">
     <link href="./fontawesome/css/all.css" rel="stylesheet">
     <link href="/public/stylesheets/style4.css" rel="stylesheet">
+    <link href="./stylesheets/styledd.css" rel="stylesheet">
     <title>a fkcing a</title>
     <script src="/jquery-3.6.1.min.js"></script>
 </head>
 
 <body class="body">
+  <div class="name">
+    <span>Agung Harwin N</span>
+  </div>
+  <div class="action">
 
-    <div class="wrapper">
-        <div class="navbar">
-            <div class="left">
-                <ul>
-                  <li><a href="#">
-                    <i class="fas fa-home"></i></a></li>
-                  <li><a href="#">
-                    <i class="fas fa-envelope"></i></a></li>
-                  <li><a href="#">
-                    <i class="fas fa-bell"></i></a></li>
-              </ul>
-            </div>
-            <div class="right">
-                <ul>
-                  <li>
-                    <a href="#">
-                      <p>Coding Market<br> <span>Admin</span></p><img src="Profile.png" alt="Admin" width="40"><i class="fas fa-angle-down"></i>
-                    </a>
-                     
-                    <div class="dropdown">
-                        <ul>
-                          <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
-                          <li><a href="#"><i class="fas fa-sliders-h"></i> Settings</a></li>
-                          <li><a href="#"><i class="fas fa-sign-out-alt"></i> Signout</a></li>
-                      </ul>
-                    </div>
-                    
-                  </li>
-              </ul>
-            </div>
-        </div>
-    </div>	
+    <div class="profile" onclick="menuToggle();">
+        <img src="/images/112538956.jpeg" alt="" height="80">
+    </div>
+
+    <div class="menu">
+
+        <ul>
+            <li>
+              <i class="fa-solid fa-user-large"></i>
+                <a class="a" href="#">Profile</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-gears"></i>
+                <a href="#">Settings</a>
+            </li>
+            <li>
+              <i class="fa-solid fa-list"></i>
+                <a href="#">Activity Log</a>
+            </li>
+      
+        </ul>
+    </div>
     
-    <script>
-        document.querySelector(".right ul li").addEventListener("click", function(){
-              this.classList.toggle("active");
-        });
-    </script>
+</div>
+<script>
+    function menuToggle(){
+        const toggleMenu = document.querySelector('.menu');
+        toggleMenu.classList.toggle('active')
+    }
+</script>
 
 </body>
 

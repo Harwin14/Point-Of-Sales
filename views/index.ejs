@@ -8,6 +8,8 @@
     <link href="/stylesheets/style1.css" rel="stylesheet">
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
     <link href="./fontawesome/css/all.css" rel="stylesheet">
+    <link href="./stylesheets/styledd.css" rel="stylesheet">
+
     <title>Dashboard</title>
     <script src="/jquery-3.6.1.min.js"></script>
 </head>
@@ -49,7 +51,7 @@
 
         </div>
         <div class="content">
-            <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <nav class="navbar">
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between d-md-none d-block">
                         <button class="btn px-1 py-0 open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
@@ -61,22 +63,46 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-                                <span class="name  justify-content-end d-block">Agung Harwin</span>
-                                      <div class="profil ">
-                                    <img src="./images/112538956.jpeg" alt="profil_pic" class="img-fluid rounded-circle px-2 d-none d-md-block shadow justify-content-end" width="50px">
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div>
+                    <div class="name">
+                        <span>Agung Harwin N</span>
                     </div>
+                    <div class="action">
 
+                        <div class="profile" onclick="menuToggle();">
+                            <img src="/images/112538956.jpeg" alt="">
+                        </div>
 
-                    </ul>
+                        <div class="menu">
 
+                            <ul>
+                                <li>
+                                    <i class="fa-solid fa-user-large"></i>
+                                    <a class="a" href="#">Profile</a>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-gears"></i>
+                                    <a href="#">Settings</a>
+                                </li>
+                                <li>
+                                    <i class="fa-solid fa-list"></i>
+                                    <a href="#">Activity Log</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
                 </div>
             </nav>
         </div>
+    </div>
+
+
+    </ul>
+
+    </div>
+    </nav>
+    </div>
 
 
     </div>
@@ -84,7 +110,9 @@
 
 
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
     <script>
         $(".sidebar ul li").on('click', function () {
             $(".sidebar ul li.active").removeClass('active');
@@ -97,6 +125,12 @@
             $('.sidebar').removeClass('active');
         })
 
+    </script>
+    <script>
+        function menuToggle() {
+            const toggleMenu = document.querySelector('.menu');
+            toggleMenu.classList.toggle('active')
+        }
     </script>
 
 </body>
