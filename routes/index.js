@@ -5,7 +5,7 @@ var router = express.Router();
 
 
 module.exports = function (db) {
-  router.get('/login', function (req, res, next) {
+  router.get('/', function (req, res, next) {
     res.render('login');
   });
   router.post('/login', async (req, res) => {
@@ -59,12 +59,7 @@ module.exports = function (db) {
     res.render('forget');
   });
 
-  router.get('/test', function (req, res, next) {
-    res.render('test');
-  });
-  router.get('/cek', function (req, res, next) {
-    res.render('cek');
-  });
+
   router.get('/a', function (req, res, next) {
     res.render('a');
   });
