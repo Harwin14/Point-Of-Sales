@@ -15,45 +15,45 @@
 </head>
 
 <body class="body">
+
     <div class="wrapper">
         <div class="navbar">
             <div class="left">
                 <ul>
-                    <li><a href="#"><i class="fas fa-home"></i></a></li>
-                    <li><a href="#"><i class="fas fa-envelope"></i></a></li>
-                    <li><a href="#"><i class="fas fa-bell"></i></a></li>
-                </ul>
+                  <li><a href="#">
+                    <i class="fas fa-home"></i></a></li>
+                  <li><a href="#">
+                    <i class="fas fa-envelope"></i></a></li>
+                  <li><a href="#">
+                    <i class="fas fa-bell"></i></a></li>
+              </ul>
             </div>
             <div class="right">
                 <ul>
-                    <li><a href="#">
-                            <p>Agung Harwin N<br> <span>Admin</span></p>
-                            <img src="/images/112538956.jpeg" class="rounded-circle " alt="Admin_image" width="40">
-                            <i class="fas fa-angle-down"></i>
-                        </a>
+                  <li>
+                    <a href="#">
+                      <p>Coding Market<br> <span>Admin</span></p><img src="Profile.png" alt="Admin" width="40"><i class="fas fa-angle-down"></i>
+                    </a>
+                     
                     <div class="dropdown">
                         <ul>
-                            <li><a href="#">
-                                <i class="fas fa-user"></i>
-                                Profil
-                            </a></li>
-                            <li><a href="#">
-                                <i class="fas fa-sliders-h"></i>
-                                Settings
-                            </a></li>
-                            <li><a href="#">
-                                <i class="fas fa-sign-out-alt"></i>
-                                Signout
-                            </a></li>
-                        </ul>
+                          <li><a href="#"><i class="fas fa-user"></i> Profile</a></li>
+                          <li><a href="#"><i class="fas fa-sliders-h"></i> Settings</a></li>
+                          <li><a href="#"><i class="fas fa-sign-out-alt"></i> Signout</a></li>
+                      </ul>
                     </div>
                     
-                    </li>
-                </ul>
+                  </li>
+              </ul>
             </div>
         </div>
-    </div>
-
+    </div>	
+    
+    <script>
+        document.querySelector(".right ul li").addEventListener("click", function(){
+              this.classList.toggle("active");
+        });
+    </script>
 
 </body>
 
