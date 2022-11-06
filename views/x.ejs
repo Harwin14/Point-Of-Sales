@@ -5,12 +5,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/stylesheets/stylesb.css" rel="stylesheet">
+    <link href="/stylesheets/style1.css" rel="stylesheet">
     <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
     <link href="./fontawesome/css/all.css" rel="stylesheet">
     <link href="./stylesheets/styledd.css" rel="stylesheet">
-    <link href="./stylesheets/style4.css" rel="stylesheet">
- 
+
     <title>Dashboard</title>
     <script src="/jquery-3.6.1.min.js"></script>
 </head>
@@ -51,10 +50,10 @@
             </ul>
 
         </div>
-        <div class="hero">
+        <div class="content">
             <nav class="navbar">
                 <div class="container-fluid">
-                    <div class="d-flex d-md-none d-block">
+                    <div class="d-flex justify-content-between d-md-none d-block">
                         <button class="btn px-1 py-0 open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
                         <a href="#" class="navbar-brand fs-4"><span
                                 class="bg-dark rounded px-2 py-20 text-white">PoS</span></a>
@@ -62,30 +61,23 @@
                     </div>
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
+                        <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
-          
-                     
-                    <i class="fa-regular fa-bell bell"></i>
-                    <div class="solid"></div>
-                    <a class="name" onclick="menuToggle()">Agung harwin</a>
+                    <div class="name">
+                        <span>Agung Harwin N</span>
+                    </div>
                     <div class="action">
+
                         <div class="profile" onclick="menuToggle();">
                             <img src="/images/112538956.jpeg" alt="">
                         </div>
-                        
+
                         <div class="menu">
-                            <h3>
-                                Agung harwin
-                                <div>
-                                    Operational Team
-                                </div>
-                            </h3>
+
                             <ul>
                                 <li>
                                     <i class="fa-solid fa-user-large"></i>
-                                    <a class="a" href="#"> Profile</a>
+                                    <a class="a" href="#">Profile</a>
                                 </li>
                                 <li>
                                     <i class="fa-solid fa-gears"></i>
@@ -93,28 +85,28 @@
                                 </li>
                                 <li>
                                     <i class="fa-solid fa-list"></i>
-                                    <a href="#"> Activity Log</a>
-                                </li>
-                                <hr>
-                                <li>
-                                    <i class="fa-solid fa-right-from-bracket"></i>
-                                    <a href="#"> Logout</a>
+                                    <a href="#">Activity Log</a>
                                 </li>
 
                             </ul>
                         </div>
+
                     </div>
-                    <script>
-                        function menuToggle() {
-                            const toggleMenu = document.querySelector('.menu');
-                            toggleMenu.classList.toggle('active')
-                        }
-                    </script>
-
-
                 </div>
+            </nav>
         </div>
     </div>
+
+
+    </ul>
+
+    </div>
+    </nav>
+    </div>
+
+
+    </div>
+
 
 
 

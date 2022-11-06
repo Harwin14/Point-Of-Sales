@@ -16,39 +16,42 @@
 </head>
 
 <body class="body">
-  <div class="name">
-    <span>Agung Harwin N</span>
-  </div>
-  <div class="action">
-    <div class="profile" onclick="menuToggle();">
-        <img src="/images/112538956.jpeg" alt="" height="80">
-    </div>
-
-    <div class="menu">
-        <ul>
-            <li>
-              <i class="fa-solid fa-user-large"></i>
-                <a class="a" href="#">Profile</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-gears"></i>
-                <a href="#">Settings</a>
-            </li>
-            <li>
-              <i class="fa-solid fa-list"></i>
-                <a href="#">Activity Log</a>
-            </li>
+ <div class="hero">
+    <nav>
+      <img src="/images/logo2x.png" class="logo">
+      <ul>
       
-        </ul>
-    </div>
-</div>
-<script>
-    function menuToggle(){
-        const toggleMenu = document.querySelector('.menu');
-        toggleMenu.classList.toggle('active')
-    }
-</script>
-
+        <li><a href="#">Agung Harwin N</a></li>
+      </ul>
+      
+      <img src="/images/112538956.jpeg" class="user-pic">
+      <div class="sub-menu-wrap">
+        <div class="sub-menu">
+          <div class="user-info">
+            <img src="/images/112538956.jpeg" class="rounded-circle"height="60px">
+            <h2>Agung Harwin N</h2>
+          </div>
+          <hr>
+          <i class="fa-solid fa-user-large"></i>
+          <img src="/images/112538956.jpeg">
+          <p>Profile</p>
+          <span></span>
+        </a>
+        <a href="#" class="sub-menu-link">
+          <img src="/images/112538956.jpeg">
+          <p>Setting</p>
+          <span></span>
+        </a>
+        <a href="#" class="sub-menu-link">
+          <img src="/images/112538956.jpeg">
+          <p>Activity Log</p>
+          <span></span>
+        </a>
+        </div>
+      </div>
+      
+    </nav>
+ </div>
 </body>
 
 </html>

@@ -9,11 +9,28 @@ body{
     background-color: rgb(231, 228, 228);
     height: 100vh;
 }
+.bell{
+    position: absolute;
+    justify-content: end;
+    margin-left: 1380px;
+    font-size: 30px;
+    cursor: pointer;
+}
+.solid{
+    border-left: 2px rgb(202, 192, 192) solid;
+    height:60px;
+    width: 10px;
+    display: inline-block;
+    margin-left: 1150px;
+    }
 .name{
-    position: relative;
-    left: 1600px;
-    top:30px;
-    height: 60px
+    cursor: pointer;
+    text-decoration: none;
+    color: #818181;
+    width: 200px;
+    padding-right: 20px;
+  
+
 }
 .profile{
     position: relative;
@@ -44,24 +61,7 @@ body{
     left: 0;
     height: 100%;
 }
-.action .menu{
-    background-color:#FFF;
-    box-sizing:0 5px 25px rgba(0,0,0,0.1);
-    border-radius: 15px;
-    padding: 10px 20px;
-    position: absolute;
-    right: -10px;
-    width: 200px;
-    transition: 0.5s;
-    top: 120px;
-    visibility: hidden;
-    opacity: 0;
-}
-.action .menu.active{
-    opacity: 1;
-    top: 80px;
-    visibility: visible;
-}
+
 .action .menu::before{
     background-color:#fff;
     content: '';

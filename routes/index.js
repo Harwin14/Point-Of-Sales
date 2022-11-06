@@ -63,6 +63,9 @@ module.exports = function (db) {
   router.get('/a', function (req, res, next) {
     res.render('a');
   });
+  router.get('/b', function (req, res, next) {
+    res.render('b');
+  });
 
   return router;
 }
