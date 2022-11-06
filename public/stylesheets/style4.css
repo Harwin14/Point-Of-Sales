@@ -1,11 +1,11 @@
 * {
-  font-family: "poppins", sans-serif;
-  margin-left: 1px;
-  padding: px;
+
+  margin : 0px;
+  padding: 0px;
 }
 
 body {
-  background-color: #333;
+  background-color: rgb(40, 65, 207);
   height: 100vh;
 }
 
@@ -56,6 +56,7 @@ body {
   opacity: 1;
   top: 80px;
   visibility: visible;
+  
 }
 
 .action .menu::before {
@@ -85,7 +86,7 @@ body {
   font-weight: 400;
   text-align: center;
 }
-ul{
+.ul > li{
   margin-left: -20px;
 }
 a{

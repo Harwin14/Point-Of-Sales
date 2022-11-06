@@ -3,6 +3,13 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 var router = express.Router();
 
+const isLoggedIn = (res, res, next) => {
+  if(req.session.user){
+    next()
+  }else{
+    res.redirect('/')
+  }
+}
 
 module.exports = function (db) {
   router.get('/', function (req, res, next) {
@@ -18,6 +25,7 @@ module.exports = function (db) {
 
       const user = emails[0]
       delete user[password]
+
       req.session.user = user
       res.redirect('/home')
     } catch (error) {
@@ -45,7 +53,7 @@ module.exports = function (db) {
       res.send(error)
     }
   })
-  router.get('/home', function (req, res, next) {
+  router.get('/home',isLoggedIn, function (req, res, next) {
     res.render('index', { user: req.session.user });
   });
 
