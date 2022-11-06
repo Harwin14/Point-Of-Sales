@@ -9,6 +9,9 @@ body{
     background-color: rgb(231, 228, 228);
     height: 100vh;
 }
+.smile{
+    transform: rotate(-20deg);
+}
 .bell{
     position: absolute;
     justify-content: end;
@@ -27,11 +30,11 @@ body{
     cursor: pointer;
     text-decoration: none;
     color: #818181;
-    width: 200px;
-    padding-right: 20px;
-  
-
+    width: 215px;
+    padding-right: 22px;
+    text-transform: capitalize;
 }
+
 .profile{
     position: relative;
     top: -15px;
@@ -80,11 +83,13 @@ body{
     padding: 20px 0px;
     text-align: left;
     width: 100%;
+    text-transform: capitalize;
 }
 .action .menu h3 div{
     color: #818181;
     font-size: 14px;
     font-weight: 400;
+    text-transform: capitalize;
 }
 .action .menu ul li{
     align-items: center;
