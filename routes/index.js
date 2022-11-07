@@ -53,7 +53,6 @@ module.exports = function (db) {
       res.send(error)
     }
   })
-
   router.get('/logout', function (req, res, next) {
     req.session.destroy(function (err) {
       res.redirect('/')
