@@ -1,61 +1,94 @@
-
-        <div class="hero">
-            <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="d-flex d-md-none d-block">
-                        <button class="btn px-1 py-0 open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
-                        <a href="#" class="navbar-brand fs-4"><span
-                                class="bg-dark rounded px-2 py-20 text-white">PoS</span></a>
-                    </div>
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary" type="submit"><i
-                                class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>    
-                    <i class="fa-regular fa-bell bell"></i>
-                    <div class="solid"></div>
-                    <a class="name" onclick="menuToggle()"><%=user.name%></a>
-                    <div class="action">
-                        <div class="profile" onclick="menuToggle();">
-                            <img src="/images/112538956.jpeg" alt="">
-                        </div>
-                        
-                        <div class="menu">
-                            <h3>
-                                <%=user.name%>
-                                <div>
-                                    Operational Team
-                                </div>
-                            </h3>
-                            <ul class="ul">
-                                <li>
-                                    <i class="fa-solid fa-user-large"></i>
-                                    <a class="a" href="#"> Profile</a>
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-gears"></i>
-                                    <a href="#">Settings</a>
-                                </li>
-                                <li>
-                                    <i class="fa-solid fa-list"></i>
-                                    <a href="#"> Activity Log</a>
-                                </li>
-                                <hr>
-                                <li>
-                                    <i class="fa-solid fa-right-from-bracket"></i>
-                                    <a href="/logout"> Logout</a>
-                                </li>
-
-                            </ul>
-                        </div>
-                    </div>
-                    <script>
-                        function menuToggle() {
-                            const toggleMenu = document.querySelector('.menu');
-                            toggleMenu.classList.toggle('active')
-                        }
-                    </script>
-
-
+<div class="hero">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="d-flex d-md-none d-block">
+                <button class="btn px-1 py-0 open-btn"><i class="fa-solid fa-bars-staggered"></i></button>
+                <a href="#" class="navbar-brand fs-4"><span class="bg-dark rounded px-2 py-20 text-white">PoS</span></a>
+            </div>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2 search" type="search" placeholder="Search for..." aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit"><i
+                        class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+            <i class="fa-regular fa-bell bell"></i>
+            <div class="solid"></div>
+            <a class="name" onclick="menuToggle()">
+                <%=user.name%>
+            </a>
+            <div class="action">
+                <div class="profile" onclick="menuToggle();">
+                    <img src="/images/112538956.jpeg" alt="">
                 </div>
+
+                <div class="menu">
+                    <h3>
+                        <%=user.name%>
+                            <div>
+                                Operational Team
+                            </div>
+                    </h3>
+                    <ul class="ul">
+                        <li>
+                            <i class="fa-solid fa-user-large"></i>
+                            <a class="a" href="#"> Profile</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-gears"></i>
+                            <a href="#">Settings</a>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-list"></i>
+                            <a href="#"> Activity Log</a>
+                        </li>
+                        <hr>
+                        <li>
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <a href="#" onclick="$('#modal-logout').modal('show')"> Logout</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Do yo want to leave?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                onclick="$('#modal-logout').modal('hide')">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Select Logout to end your session?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btn-logout" type="button" class="btn btn-primary" onclick="$('#logout').modal('hide')">Logout</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                onclick="$('#modal-logout').modal('hide')">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+
+                $('#modal-logout').click(function(){
+                 $('#logout').show()  
+                 })
+                 $('#logout').click(function(){
+                 $('/logout').show()  
+                 })
+               
+               
+               
+                    function menuToggle() {
+                        const toggleMenu = document.querySelector('.menu');
+                        toggleMenu.classList.toggle('active')
+                    }
+            </script>
+
+
         </div>
+</div>

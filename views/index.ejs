@@ -10,7 +10,11 @@
     <link href="./fontawesome/css/all.css" rel="stylesheet">
     <link href="./stylesheets/styledd.css" rel="stylesheet">
     <link href="./stylesheets/style4.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
     <title>Dashboard</title>
     <script src="/jquery-3.6.1.min.js"></script>
 </head>
@@ -18,11 +22,104 @@
 <body>
     <div class="main-container d-flex">
         <%- include('./partials/sidebar') %>
-        <%- include('./partials/navbar') %>
+            <%- include('./partials/navbar') %>
+    </div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="/?page=1<%= sortBy == 'id' && order == 'asc' ? '&sortBy=id&order=desc' : '&sortBy=id&order=asc' %>"
+                            style="text-decoration:none; color: black;" <% if(sortBy=='id' && order=='asc' ){ %>
+                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='id' && order=='desc' ){ %> 
+                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
+                            <i class="fa-solid fa-sort"></i <% } %>> ID
+                        </a>
+                    </th>
+
+                    <th>
+                        <a href="/?page=1<%= sortBy == 'string' && order == 'asc' ? '&sortBy=string&order=desc' : '&sortBy=string&order=asc' %>"
+                            style="text-decoration:none; color: black;" <% if(sortBy=='string' && order=='asc' ) {%>
+                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='string' && order=='desc' ){ %>
+                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
+                            <i class="fa-solid fa-sort"></i <% } %>>String
+                        </a>
+                    </th>
+
+                    <th> <a href="/?page=1<%= sortBy == 'integer' && order == 'asc' ? '&sortBy=integer&order=desc' : '&sortBy=integer&order=asc' %>"
+                            style="text-decoration:none; color: black;" <% if(sortBy=='integer' && order=='asc' ) {%>
+                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='integer' && order=='desc' ){ %>
+                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
+                            <i class="fa-solid fa-sort"></i <% } %>>Integer
+                        </a>
+                    </th>
+                    <th>
+                        <a href="/?page=1<%= sortBy == 'float' && order == 'asc' ? '&sortBy=float&order=desc' : '&sortBy=float&order=asc' %>"
+                            style="text-decoration:none; color: black;" <% if(sortBy=='float' && order=='asc' ) { %>
+                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='float' && order=='desc' ){ %> 
+                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
+                            <i class="fa-solid fa-sort"></i <% } %>>Float
+                        </a>
+                    </th>
+                    <th>
+                        <a href="/?page=1<%= sortBy == 'date' && order == 'asc' ? '&sortBy=date&order=desc' : '&sortBy=date&order=asc' %>"
+                            style="text-decoration:none; color: black;" <% if(sortBy=='date' && order=='asc' ) { %>
+                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='date' && order=='desc' ){ %> 
+                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
+                            <i class="fa-solid fa-sort"></i <% } %>>Date
+                        </a>
+                    </th>
+                    <th> 
+                        <a href="/?page=1<%= sortBy == 'boolean' && order == 'asc' ? '&sortBy=boolean&order=desc' : '&sortBy=boolean&order=asc' %>"
+                            style="text-decoration:none; color: black;" <% if(sortBy=='boolean' && order=='asc' ) { %> 
+                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='boolean' && order=='desc' ){ %>
+                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
+                            <i class="fa-solid fa-sort"></i <% } %>>Boolean
+                        </a>
+                    </th>
+                    <th >Actions </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((item, index)=> { %>
+                    <tr>
+                        <div>
+                            <td>
+                                 <%=item.id %>
+                            </td>
+
+                            <td>
+                                <%= item.string %>
+                            </td>
+                            <td>
+                                <%= item.integer %>
+                            </td>
+                            <td>
+                                <%= item.float %>
+                            </td>
+                            <td>
+                                <%= moment(item.date).format('DD MMM YYYY'); %>
+                            </td>
+                            <td>
+                                <%= item.boolean %>
+                            </td>
+                            <td>
+                                <div class="d-grid gap-2 d-md-block">
+                                    <a class="btn btn-success" href="/edit/<%= item.id %>">Edit</a>
+                                    <a class="btn btn-danger" href="/delete/<%= item.id %>"
+                                        href="delete_methode_link"
+                                        onclick="return confirm('Are you sure you want to delete?');">Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </div>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
     </div>
 
-
-  <script>
+    <script>
         $(".sidebar ul li").on('click', function () {
             $(".sidebar ul li.active").removeClass('active');
             $(this).addClass('active');
@@ -42,6 +139,4 @@
         }
     </script>
 
-</body>
-
-</html>
+    <%- include('./partials/footer') %>

@@ -1,32 +1,45 @@
-
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-*{
-    font-family:'Josefin Sans', sans-serif;
+
+* {
+    font-family: 'Josefin Sans', sans-serif;
     margin: 0;
     padding: 0;
 }
-body{
+
+body {
     background-color: rgb(231, 228, 228);
     height: 100vh;
 }
-.smile{
+
+.smile {
     transform: rotate(-20deg);
 }
-.bell{
+
+.bell {
     position: absolute;
     justify-content: end;
-    margin-left: 1380px;
+    margin-left: 1350px;
     font-size: 30px;
     cursor: pointer;
 }
-.solid{
+
+
+.search {
+    margin-left: 10px;
+    height: 40px;
+    width: 50px;
+
+}
+
+.solid {
     border-left: 2px rgb(202, 192, 192) solid;
-    height:60px;
+    height: 60px;
     width: 10px;
     display: inline-block;
-    margin-left: 1150px;
-    }
-.name{
+    margin-left: 1140px;
+}
+
+.name {
     cursor: pointer;
     text-decoration: none;
     color: #818181;
@@ -35,20 +48,23 @@ body{
     text-transform: capitalize;
 }
 
-.profile{
+.profile {
     position: relative;
     top: -15px;
 }
-.icons-size{
+
+.icons-size {
     color: #333;
     font-size: 14px;
 }
-.action{
+
+.action {
     position: fixed;
     right: 30px;
-    top:20px
+    top: 20px
 }
-.action .profile{
+
+.action .profile {
     border-radius: 50%;
     cursor: pointer;
     height: 60px;
@@ -56,26 +72,28 @@ body{
     position: relative;
     width: 60px;
 }
-.action .profile img{
+
+.action .profile img {
     width: 100%;
-    top:0;
+    top: 0;
     position: absolute;
     object-fit: cover;
     left: 0;
     height: 100%;
 }
 
-.action .menu::before{
-    background-color:#fff;
+.action .menu::before {
+    background-color: #fff;
     content: '';
     height: 20px;
     position: absolute;
     right: 30px;
-    transform:rotate(45deg);
-    top:-5px;
+    transform: rotate(45deg);
+    top: -5px;
     width: 20px;
 }
-.action .menu h3{
+
+.action .menu h3 {
     color: #555;
     font-size: 16px;
     font-weight: 600;
@@ -85,27 +103,31 @@ body{
     width: 100%;
     text-transform: capitalize;
 }
-.action .menu h3 div{
+
+.action .menu h3 div {
     color: #818181;
     font-size: 14px;
     font-weight: 400;
     text-transform: capitalize;
 }
-.action .menu ul li{
+
+.action .menu ul li {
     align-items: center;
-    border-top:1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: left;
     list-style: none;
     padding: 10px 0px;
 }
-.action .menu ul li img{
+
+.action .menu ul li img {
     max-width: 20px;
     margin-right: 10px;
     opacity: 0.5;
-    transition:0.5s
+    transition: 0.5s
 }
-.action .menu ul li a{
+
+.action .menu ul li a {
     display: inline-block;
     color: #555;
     font-size: 14px;
@@ -114,9 +136,11 @@ body{
     text-decoration: none;
     transition: 0.5s;
 }
-.action .menu ul li:hover img{
+
+.action .menu ul li:hover img {
     opacity: 1;
 }
-.action .menu ul li:hover a{
-    color:#ff00ff;
+
+.action .menu ul li:hover a {
+    color: #ff00ff;
 }
