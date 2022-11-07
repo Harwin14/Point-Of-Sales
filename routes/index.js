@@ -1,7 +1,7 @@
-var express = require('express');
+const express = require('express');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-var router = express.Router();
+const router = express.Router();
 
 const isLoggedIn = (req, res, next) => {
   if(req.session.user){
@@ -53,9 +53,6 @@ module.exports = function (db) {
       res.send(error)
     }
   })
-  router.get('/home', isLoggedIn, function (req, res, next) {
-    res.render('index', { user: req.session.user });
-  });
 
   router.get('/logout', function (req, res, next) {
     req.session.destroy(function (err) {
@@ -65,6 +62,16 @@ module.exports = function (db) {
 
   router.get('/forget', function (req, res, next) {
     res.render('forget');
+  });
+  router.get('/home', isLoggedIn, function (req, res, next) {
+    res.render('index', { user: req.session.user });
+    let sql ="SELECT * FROM users"
+    db.query(sql, (err, data) => {
+      if(err) {
+        console.error(err)
+      }
+      res.sender('index', {data})
+    })
   });
 
 

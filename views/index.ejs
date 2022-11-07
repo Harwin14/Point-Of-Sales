@@ -29,52 +29,28 @@
             <thead>
                 <tr>
                     <th>
-                        <a href="/?page=1<%= sortBy == 'id' && order == 'asc' ? '&sortBy=id&order=desc' : '&sortBy=id&order=asc' %>"
-                            style="text-decoration:none; color: black;" <% if(sortBy=='id' && order=='asc' ){ %>
-                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='id' && order=='desc' ){ %> 
-                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
-                            <i class="fa-solid fa-sort"></i <% } %>> ID
+                        <a> ID
                         </a>
                     </th>
 
                     <th>
-                        <a href="/?page=1<%= sortBy == 'string' && order == 'asc' ? '&sortBy=string&order=desc' : '&sortBy=string&order=asc' %>"
-                            style="text-decoration:none; color: black;" <% if(sortBy=='string' && order=='asc' ) {%>
-                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='string' && order=='desc' ){ %>
-                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
-                            <i class="fa-solid fa-sort"></i <% } %>>String
+                        <a>String
                         </a>
                     </th>
 
-                    <th> <a href="/?page=1<%= sortBy == 'integer' && order == 'asc' ? '&sortBy=integer&order=desc' : '&sortBy=integer&order=asc' %>"
-                            style="text-decoration:none; color: black;" <% if(sortBy=='integer' && order=='asc' ) {%>
-                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='integer' && order=='desc' ){ %>
-                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
-                            <i class="fa-solid fa-sort"></i <% } %>>Integer
+                    <th> <a>Integer
                         </a>
                     </th>
                     <th>
-                        <a href="/?page=1<%= sortBy == 'float' && order == 'asc' ? '&sortBy=float&order=desc' : '&sortBy=float&order=asc' %>"
-                            style="text-decoration:none; color: black;" <% if(sortBy=='float' && order=='asc' ) { %>
-                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='float' && order=='desc' ){ %> 
-                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
-                            <i class="fa-solid fa-sort"></i <% } %>>Float
+                        <a>Float
                         </a>
                     </th>
                     <th>
-                        <a href="/?page=1<%= sortBy == 'date' && order == 'asc' ? '&sortBy=date&order=desc' : '&sortBy=date&order=asc' %>"
-                            style="text-decoration:none; color: black;" <% if(sortBy=='date' && order=='asc' ) { %>
-                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='date' && order=='desc' ){ %> 
-                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
-                            <i class="fa-solid fa-sort"></i <% } %>>Date
+                        <a>Date
                         </a>
                     </th>
                     <th> 
-                        <a href="/?page=1<%= sortBy == 'boolean' && order == 'asc' ? '&sortBy=boolean&order=desc' : '&sortBy=boolean&order=asc' %>"
-                            style="text-decoration:none; color: black;" <% if(sortBy=='boolean' && order=='asc' ) { %> 
-                            <i class="fa-solid fa-sort-up"></i <% } else if (sortBy=='boolean' && order=='desc' ){ %>
-                            <i class="fa-solid fa-sort-down"></i <% } else { %> 
-                            <i class="fa-solid fa-sort"></i <% } %>>Boolean
+                        <a>Boolean
                         </a>
                     </th>
                     <th >Actions </th>
