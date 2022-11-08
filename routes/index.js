@@ -63,13 +63,9 @@ module.exports = function (db) {
     res.render('forget');
   });
   router.get('/home', isLoggedIn, function (req, res, next) {
-    res.render('index', { user: req.session.user });
-    let sql ="SELECT * FROM users"
-    db.query(sql, (err, data) => {
-      if(err) {
-        console.error(err)
-      }
-      res.sender('index', {data})
+    db.query('SELECT * FROM public."users"', (err, data) => {
+      if (err) return res.send(err)
+      res.render('index', {users: data.rows})
     })
   });
 

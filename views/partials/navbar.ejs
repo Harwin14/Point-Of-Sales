@@ -13,7 +13,8 @@
             <i class="fa-regular fa-bell bell"></i>
             <div class="solid"></div>
             <a class="name" onclick="menuToggle()">
-                <%=user.name%>
+                <%= users.name %>
+                Agung harwin n
             </a>
             <div class="action">
                 <div class="profile" onclick="menuToggle();">
@@ -22,7 +23,8 @@
 
                 <div class="menu">
                     <h3>
-                        <%=user.name%>
+                        <%= users.name %>
+                        agung harwin n
                             <div>
                                 Operational Team
                             </div>
@@ -65,7 +67,7 @@
                         </div>
                         <div class="modal-footer">
                             <button id="btn-logout" type="button" class="btn btn-primary" onclick="$('#logout').modal('hide')">Logout</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            <button type="button" class="btn btn-secondary add" data-dismiss="modal"
                                 onclick="$('#modal-logout').modal('hide')">Cancel</button>
                         </div>
                     </div>

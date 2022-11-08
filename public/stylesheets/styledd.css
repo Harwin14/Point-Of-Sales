@@ -9,6 +9,7 @@
 body {
     background-color: rgb(231, 228, 228);
     height: 100vh;
+    width: 100%;
 }
 
 .smile {
@@ -27,9 +28,18 @@ body {
 .search {
     margin-left: 10px;
     height: 40px;
-    width: 50px;
-
+    width: 80px;
+   
 }
+.fsearch {
+    margin-left: 10px;
+    height: 40px;
+    width: 20px;
+   
+}
+
+
+
 
 .solid {
     border-left: 2px rgb(202, 192, 192) solid;

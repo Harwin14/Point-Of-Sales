@@ -246,3 +246,24 @@ text-align: center;
 position: relative;
 align-items: center;
 }
+.card{
+  height: 1000px;
+  width: 80%;
+  background-color: #000;
+  padding: 2%;
+  margin: 5%;
+
+}
+.card-header{
+  margin: -32px;
+  height: 60px;
+
+}
+.add{
+  margin-left: 15px;
+}
+.table{
+  margin-top: 10px;
+}
+
+
