@@ -4,15 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session')
+var flash = require('connect-flash');
 
 const { Pool} = require('pg')
 const pool = new Pool({
-  user: 'harwin',
+  user: 'postgres',
   host: 'localhost',
   database: 'posdb',
   password: '12345',
   port: 5432,
 })
+
 
 
 
@@ -35,6 +37,7 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }))
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

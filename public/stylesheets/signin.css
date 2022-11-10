@@ -81,3 +81,47 @@ body {
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
   }
+  .body{
+    background-color: rgb(61, 61, 236);
+}
+.container {
+    height: 800px;
+    width: 100%;
+    background: rgb(115, 151, 151);
+}
+
+
+.main{
+    width: 830px;
+    height: 800px;
+    background: black;
+    margin: 0 -10% 0 -20px;
+    
+}
+
+.aside{
+    width: 700px;
+    height: 800px;
+    background: white;
+    margin: 0 -20% 0 10px;
+}
+.logo{
+    position: relative;
+    top: 250px;
+    right: 5px;
+    width: 720px;
+}
+.h1 {
+    font-size: 50px;
+}
+
+.form {
+    padding: 10% 10% 10% 10%;
+  }
+  .rmb{
+    position: relative;
+   right: 50px;
+  }
+  .role{
+    height: 55px;
+  }
