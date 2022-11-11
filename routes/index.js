@@ -25,14 +25,12 @@ module.exports = function (db) {
       delete user[password]
 
       req.session.user = user
-      res.redirect('/home')
+      res.redirect('dashboard/index')
     } catch (err) {
       req.flash('error', err)
       return res.redirect('/')  
     }
   })
-
-
 
   router.get('/register', function (req, res, next) {
     res.render('register', {
@@ -67,15 +65,7 @@ module.exports = function (db) {
   router.get('/forget', function (req, res, next) {
     res.render('forget');
   });
-  router.get('/home', isLoggedIn, function (req, res, next) {
-    db.query('SELECT * FROM public."users"', (err, data) => {
-      if (err) return res.send(err)
-      res.render('index', { users: data.rows })
-    })
-  });
-  router.get('/users', function (req, res, next) {
-    res.render('users');
-  });
+
 
   return router;
 }

@@ -12112,7 +12112,7 @@ a:focus {
     background-repeat: no-repeat;
   }
 
-
+.fa
 .logo{
   position: relative;
   top: 192px;
@@ -12621,4 +12621,10 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+.role {
+  position: relative;
+left: 270px;
+top: -40px;
+text-decoration-color: red;
 }
