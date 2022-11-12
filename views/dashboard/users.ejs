@@ -53,7 +53,7 @@
     <!-- Nav Item - Users -->
 
     <li class="nav-item active">
-        <a class="nav-link" href="/dashboard/users">
+        <a class="nav-link" href="/users">
             <i class="fas fa-fw fa-solid fa-user"></i>
             <span>Users</span></a>
     </li>
@@ -109,10 +109,13 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a type="button" class="btn btn-primary " title="Add" href="/dashboard/add">
-                                <i class="fas fa-solid fa-user-plus" href="/dashboard/add"></i>
+                            <a type="button" class="btn btn-primary " title="Add" href="/add">
+                                <i class="fas fa-solid fa-user-plus" href="/add"></i>
                                 ADD
                             </a>
+                            <div class="text-center">
+                                <%- include('../partials/alert') %>
+                            </div>                   
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -153,13 +156,32 @@
                                                 </td>
                                                 <td>
                                                     <div class="d-grid gap-2 d-md-block">
-                                                        <button type="button"
-                                                            class="btn btn-success btn-edit rounded-circle"
-                                                            title="Edit"><i class="fas fa-solid fa-pen"></i></button>
-                                                        <button type="button"
-                                                            class="btn btn-danger btn-delete rounded-circle"
-                                                            title="Delete"><i
-                                                                class="fas fa-solid fa-trash"></i></button>
+                                                        <a type="button"
+                                                            class="btn btn-success rounded-circle"
+                                                            href="/edit/<%= item.userid %>"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
+                                                        <a type="button"
+                                                            class="btn btn-danger  rounded-circle"onclick="$('#modal-logout').modal('show')"
+                                                            title="Delete" ><i
+                                                                class="fas fa-solid fa-trash"></i></a>
+                                                    </div>
+                                                        <div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title">Deleted confirmation</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="$('#modal-logout').modal('hide')">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <p>Are you sure, you want to delete it?</p>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-logout').modal('hide')">No</button>
+                                                                        <a id="btn-logout" type="button" class="btn btn-primary" href="/delete/<%= item.userid %>">Yes</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>

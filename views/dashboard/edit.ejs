@@ -53,7 +53,7 @@
     <!-- Nav Item - Users -->
 
     <li class="nav-item active">
-        <a class="nav-link" href="/users">
+        <a class="nav-link" href="/dashboard/users">
             <i class="fas fa-fw fa-solid fa-user"></i>
             <span>Users</span></a>
     </li>
@@ -103,10 +103,10 @@
 
 
                     <!-- DataTales Example -->
-                    <form action="/add" method="post">
+                    <form action="" method="post">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h4 class="m-0 font-weight-bold text-primary">Form add</h6>
+                                <h4 class="m-0 font-weight-bold text-primary">Form Edit</h6>
                             </div>
                             <div class="card-body">
                                 <input type="hidden" name="page" value="1">
@@ -115,33 +115,25 @@
                                     <label for="email" class="form-check-label col-sm-2 text-lg ">Email</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" name="email" placeholder="Email"
-                                            value="">
+                                            value="<%= item.email %>">
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
 
                                     <label for="name" class="form-check-label col-sm-2 text-lg ">Nama</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="name" placeholder="name"
-                                            value="">
-                                    </div>
-                                </div>
-                                <div class="row mb-3 form-switch">
-
-                                    <label for="password" class="form-check-label col-sm-2 text-lg ">Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="password" placeholder="password"
-                                            value="">
+                                        <input type="string" class="form-control" name="name" placeholder="Name"
+                                            value="<%= item.name %>">
                                     </div>
                                 </div>
                                 <div class=" form-switch">
                                     <label class="text-lg ">Role</label>
                                     <div class="role">
-                                        <input type="radio" name="role" value=Operator id="Operator">
+                                        <input type="radio" name="role" value=Operator <%= item.role == 'Operator' ? 'selected' : '' %> id="Operator">
                                         <label for="Operator">Operator</label>
                                     </div>
                                     <div class="role">
-                                        <input class="" type="radio" name="role" value=Admin  id="Admin">
+                                        <input type="radio" name="role" value=Admin <%= item.role == 'Admin' ? 'selected' : '' %> id="Admin">
                                         <label for="Admin">Admin</label>
                                     </div>
                                 </div>
@@ -149,9 +141,10 @@
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success" title="Save"><i
                                         class="fas fa-solid fa-database"> Save</i></button>
-                                <a type="button" class="btn btn-warning" href="/users" title="Back"><i
-                                        class="fas fa-regular fa-hand-point-left"> Back</i></a>
+                                <button type="button" class="btn btn-warning" title="Back"><i
+                                        class="fas fa-regular fa-hand-point-left"> Back</i></button>
                             </div>
+
                         </div>
                     </form>
                 </div>
