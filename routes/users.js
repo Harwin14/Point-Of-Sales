@@ -68,7 +68,7 @@ module.exports = (db) => {
           if (users.length > 0) {
             throw 'User already exist'
           }
-    
+  
           await db.query('UPDATE users SET email = $1, name = $2, role = $3 WHERE userid = $4',[email, name, role, userid])
          
           req.flash('success', 'Account edited successfully')
