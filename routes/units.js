@@ -3,39 +3,83 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
-  router.get('/', isLoggedIn, (req, res, next) => {
-    
-    const url = req.url == '/' ? '/units/?page=1 ' : `/units${req.url}`
-  
-    let page = req.query.page || 1
-    page = Number(page)
-    const limit = 3
-    const offset = (page - 1) * limit
+  // router.get('/', isLoggedIn, async (req, res, next) => {
+  //   try {
+  //   //seaching
+  //   let params = []
+  //   let values = []
 
-    db.query('SELECT count(*) as total FROM units', (err, data) => {
-      if (err) return res.send(err)
+  //   if (req.query.name) {
+  //     values.push(req.query.name)
+  //     // ilike ignore huruf besar / kecil
+  //     params.push(`name = '%' || $${values.length} || '%' `)
+  //   }
+  //   if (req.query.email) {
+  //     // ilike ignore huruf besar / kecil
+  //     params.push(`email = '%' || $${values.length} || '%' `)
+  //   }
 
-      const total = data.rows[0].total
-      const pages = Math.ceil(total / limit)
 
-      db.query('SELECT * FROM units LIMIT $1 OFFSET $2', [limit, offset], (err, data) => {
-        if (err) return res.send(err)
-        res.render('unitsPages/units', {
-          success: req.flash('success'),
-          error: req.flash('error'),
-          currentPage: 'users',
-          user: req.session.user,
-          units: data.rows,
-          page,
-          pages,
-          offset,
-          url,
-        
-        })
+  //   //pagination
+  //   const url = req.url == '/' ? '/units/?page=1 ' : `/units${req.url}`
+  //   let page = req.query.page || 1
+  //   page = Number(page)
+  //   const limit = req.body.limit || 3
+  //   const offset = (page - 1) * limit
+
+  //   let sql = 'SELECT count(*) as total FROM units'
+
+  //   if (params.length > 0) {
+  //     sql += ` WHERE ${params.join(' OR ')}`
+  //   }
+
+
+  //   const { rows } = await db.query(sql, values)
+
+  //   const total = rows[0].total
+  //   const pages = Math.ceil(total / limit)
+
+  //   sql = 'SELECT * FROM units'
+
+  //   if (params.length > 0) {
+  //     sql += ` WHERE ${params.join(' AND ')}`
+  //   }
+
+  //   sql += ` LIMIT $${values.length + 1} OFFSET $${values.length + 2}`
+
+  //   console.log('sql', sql)
+  //   const { rows: units } = await db.query(sql, [...values, limit, offset])
+  //   res.render('unitsPages/units', {
+  //     success: req.flash('success'),
+  //     error: req.flash('error'),
+  //     currentPage: 'units',
+  //     user: req.session.user,
+  //     units,
+  //      page,
+  //      pages,
+  //      offset,
+  //      url,
+  //      query: req.query
+  //   })
+  // }catch (err){
+  //   console.log(err)
+  //   res.send(err)
+  // }
+  // })
+  router.get('/', isLoggedIn, async  (req, res, next) => {
+    try {
+      const { rows } = await db.query('SELECT * FROM units')
+      res.render('unitsPages/units', {
+        success: req.flash('success'),
+        error: req.flash('error'),
+        currentPage: 'units',
+        user: req.session.user,
+        rows
       })
-    })
-  })
-
+    } catch (e) {
+      res.send(e);
+    }
+  });
 
 
 

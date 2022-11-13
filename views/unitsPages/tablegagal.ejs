@@ -113,7 +113,17 @@
                                 <a href="units/add" class="btn btn-primary">Add</a>
                                
                             </div>
-                    
+                            <!-- <form>
+                                <input type="hidden" name="page" value="1">
+                                <div>
+                                    
+                                        <input type="text" class="form-control" id="name" name="name" value="<%=query.name%>">
+                                     
+                                </div>
+                                <button class="btn btn-primary" type="submit">Search</button>
+                            </form> -->
+                           
+
                             
 
                             <div class="text-center">
@@ -141,7 +151,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <% rows.forEach((item, index)=> { %>
+                                        <% units.forEach((item, index)=> { %>
                                             <tr>
 
                                                 <td>
@@ -188,7 +198,22 @@
                                     </tbody>
                                  </table>
                                  
-     
+        <!-- <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item<%= page == 1 ? ' disabled' : '' %>"><a class="page-link"
+                        href="<%= url.replace(`page=${page}`,`page=${page - 1}`) %>">Previous</a></li>
+                <% for(let i=1; i<=pages; i++){%>
+                    <li class="page-item<%= page == i ? ' active' : '' %>"><a class="page-link <%= i == page ? ' active' : ''%>"
+                            href="<%= url.replace(`page=${page}`,`page=${i}`) %> ">
+                            <%= i %>
+                        </a></li>
+                    <% }%>
+                        <li class="page-item<%= page == pages ? ' disabled' : '' %>"><a class="page-link"
+                                href="<%= url.replace(`page=${page}`,`page=${page + 1}`) %>">Next</a></li>
+            </ul>
+        </nav> -->
+
+        
 
                             </div>
                         </div>
