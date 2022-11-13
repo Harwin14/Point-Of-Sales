@@ -5,7 +5,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="/dashboard/index">
+        <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -19,9 +19,8 @@
     </div>
 
 
-
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
@@ -30,10 +29,8 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="/goods">Goods</a>
+                <a class="collapse-item active" href="/units">Units</a>
             </div>
         </div>
     </li>
@@ -52,8 +49,8 @@
     </li>
     <!-- Nav Item - Users -->
 
-    <li class="nav-item active">
-        <a class="nav-link" href="/dashboard/users">
+    <li class="nav-item ">
+        <a class="nav-link" href="/users">
             <i class="fas fa-fw fa-solid fa-user"></i>
             <span>Users</span></a>
     </li>
@@ -64,7 +61,6 @@
     <div class="sidebar-heading">
         Transactions
     </div>
-
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
@@ -79,7 +75,6 @@
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Sales</span></a>
     </li>
-
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
@@ -97,54 +92,48 @@
             <%- include('../partials/topbar') %>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Users</h1>
-
 
                     <!-- DataTales Example -->
                     <form action="" method="post">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h4 class="m-0 font-weight-bold text-primary">Form Edit</h6>
+                                <h4 class="m-0 font-weight-bold text-primary">Form add</h6>
                             </div>
                             <div class="card-body">
                                 <input type="hidden" name="page" value="1">
                                 <div class="row mb-3 form-switch">
-
-                                    <label for="email" class="form-check-label col-sm-2 text-lg ">Email</label>
+                                    <label for="unit" class="form-check-label col-sm-2 text-lg">Unit</label>
                                     <div class="col-sm-10">
-                                        <input type="email" class="form-control" name="email" placeholder="Email"
-                                            value="<%= item.email %>">
+                                        <input type="string" class="form-control" name="unit"
+                                            value="">
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
 
-                                    <label for="name" class="form-check-label col-sm-2 text-lg ">Nama</label>
+                                    <label for="name" class="form-check-label col-sm-2 text-lg">Nama</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="name" placeholder="Name"
-                                            value="<%= item.name %>">
+                                        <input type="string" class="form-control" name="name" 
+                                            value="">
                                     </div>
                                 </div>
-                                <div class=" form-switch">
-                                    <label class="text-lg ">Role</label>
-                                    <div class="role">
-                                        <input type="radio" name="role" value=Operator <%= item.role == 'Operator' ? 'selected' : '' %> id="Operator">
-                                        <label for="Operator">Operator</label>
-                                    </div>
-                                    <div class="role">
-                                        <input type="radio" name="role" value=Admin <%= item.role == 'Admin' ? 'selected' : '' %> id="Admin">
-                                        <label for="Admin">Admin</label>
+                                <div class="row mb-3 form-switch">
+
+                                    <label for="note" class="form-check-label col-sm-2 text-lg">Note</label>
+                                    <div class="col-sm-10">
+                                        <textarea type="string" class="form-control" name="note" 
+                                            value=""></textarea>
                                     </div>
                                 </div>
+                    
                             </div>
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-success" title="Save"><i
                                         class="fas fa-solid fa-database"> Save</i></button>
-                                <button type="button" class="btn btn-warning" title="Back"><i
-                                        class="fas fa-regular fa-hand-point-left"> Back</i></button>
+                                <a type="button" class="btn btn-warning" href="/units" title="Back"><i
+                                        class="fas fa-regular fa-hand-point-left"> Back</i></a>
                             </div>
-
                         </div>
                     </form>
                 </div>

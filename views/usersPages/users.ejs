@@ -5,7 +5,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="/dashboard/index">
+        <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -30,23 +30,21 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Custom Utilities:</h6>
-                <a class="collapse-item" href="utilities-color.html">Colors</a>
-                <a class="collapse-item" href="utilities-border.html">Borders</a>
-                <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+                <a class="collapse-item" href="/goods">Goods</a>
+                <a class="collapse-item" href="/units">Units</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Supliers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-solid fa-link"></i>
             <span>Suppliers</span></a>
     </li>
     <!-- Nav Item - Customers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-solid fa-users"></i>
             <span>Customers</span></a>
     </li>
@@ -68,14 +66,14 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-table"></i>
             <span>Purchases</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Sales</span></a>
     </li>
@@ -109,10 +107,13 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <a type="button" class="btn btn-primary " title="Add" href="/add">
-                                <i class="fas fa-solid fa-user-plus" href="/add"></i>
-                                ADD
-                            </a>
+                            <div class="btn-group">
+                                
+                                <a href="/users/add" class="btn btn-primary active" aria-current="page"><i class="fas fa-solid fa-user-plus" ></i></a>
+                                <a href="/users/add" class="btn btn-primary">Add</a>
+                               
+                            </div>
+                            
                             <div class="text-center">
                                 <%- include('../partials/alert') %>
                             </div>                   
@@ -142,10 +143,10 @@
                                         <% rows.forEach((item, index)=> { %>
                                             <tr>
 
-                                                <td class="table-borderless ">
+                                                <td>
                                                     <%= item.userid %>
                                                 </td>
-                                                <td class="">
+                                                <td>
                                                     <%= item.email %>
                                                 </td>
                                                 <td>
@@ -158,18 +159,18 @@
                                                     <div class="d-grid gap-2 d-md-block">
                                                         <a type="button"
                                                             class="btn btn-success rounded-circle"
-                                                            href="/edit/<%= item.userid %>"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
+                                                            href="/users/edit/<%= item.userid %>"><i class="fas fa-solid fa-pen"></i></a>
                                                         <a type="button"
-                                                            class="btn btn-danger  rounded-circle"onclick="$('#modal-logout').modal('show')"
+                                                            class="btn btn-danger rounded-circle" onclick="$('#modal-delete').modal('show')"
                                                             title="Delete" ><i
                                                                 class="fas fa-solid fa-trash"></i></a>
                                                     </div>
-                                                        <div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
                                                                         <h5 class="modal-title">Deleted confirmation</h5>
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="$('#modal-logout').modal('hide')">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"onclick="$('#modal-delete').modal('hide')">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
@@ -177,8 +178,8 @@
                                                                         <p>Are you sure, you want to delete it?</p>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-logout').modal('hide')">No</button>
-                                                                        <a id="btn-logout" type="button" class="btn btn-primary" href="/delete/<%= item.userid %>">Yes</a>
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-delete').modal('hide')">No</button>
+                                                                        <a id="btn-delete" type="button" class="btn btn-primary" href="users/delete/<%= item.userid %>">Yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>
