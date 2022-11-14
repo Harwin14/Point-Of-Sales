@@ -37,13 +37,13 @@
 
     <!-- Nav Item - Supliers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-solid fa-link"></i>
             <span>Suppliers</span></a>
     </li>
     <!-- Nav Item - Customers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-solid fa-users"></i>
             <span>Customers</span></a>
     </li>
@@ -64,14 +64,14 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
             <span>Purchases</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Sales</span></a>
     </li>
@@ -89,7 +89,7 @@
     <div id="content-wrapper" class="d-flex flex-column">
         <!-- Main Content -->
         <div id="content">
-            <%- include('../partials/topbar') %>
+            <%- include('../partials/navbar') %>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
@@ -124,17 +124,25 @@
                                             placeholder="password">
                                     </div>
                                 </div>
-                                <div class=" form-switch">
-                                    <label class="text-lg ">Role</label>
-                                    <div class="role">
-                                        <input type="radio" name="role" value=Operator id="Operator">
-                                        <label for="Operator">Operator</label>
+                                <fieldset class="form-switch">
+                                    <div class="row">
+                                      <legend class="col-form-label col-sm-2 pt-0 text-lg">Role</legend>
+                                      <div class="col-sm-10">
+                                        <div class="form-check">
+                                          <input class="form-check-input" type="radio" name="role" value=Operator id="Operator">
+                                          <label class="form-check-label" for="Operator">
+                                            Operator
+                                          </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="role" value=Admin id="Admin">
+                                            <label class="form-check-label" for="Admin">
+                                              Admin
+                                            </label>
+                                        </div>
+                                      </div>
                                     </div>
-                                    <div class="role">
-                                        <input class="" type="radio" name="role" value=Admin id="Admin">
-                                        <label for="Admin">Admin</label>
-                                    </div>
-                                </div>
+                                  </fieldset>
                             </div>
                             <div class="card-footer">
                                 <div class="btn-group">

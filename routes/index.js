@@ -6,9 +6,10 @@ const router = express.Router();
 
 
 
-module.exports = function (db) {
-  router.get('/', function (req, res, next) {
+module.exports = (db) => {
+  router.get('/', (req, res, next) => {
     res.render('login', {
+      currentPage: 'POS - Sign in',
       success: req.flash('success'),
       error: req.flash('error')
     });
@@ -32,18 +33,10 @@ module.exports = function (db) {
       return res.redirect('/')
     }
   })
-  router.get('/dashboard', isLoggedIn, function (req, res, next) {
-    db.query('SELECT * FROM users', (err, data) => {
-        if (err) return res.send(err)
-        res.render('dashboard', {
-            currentPage: 'dashboard',
-            user: req.session.user,
-            users: data.rows
-        })
-    })
-});
-  router.get('/register', function (req, res, next) {
+
+  router.get('/register',  (req, res, next) => {
     res.render('register', {
+      currentPage: 'POS - sign up',
       success: req.flash('success'),
       error: req.flash('error')
     });
@@ -73,7 +66,20 @@ module.exports = function (db) {
   });
 
   router.get('/forget', function (req, res, next) {
-    res.render('forget');
+    res.render('forget',{
+      currentPage: 'POS - help',
+    });
   });
+  
+  router.get('/dashboard', isLoggedIn, (req, res, next) => {
+    db.query('SELECT * FROM users', (err, data) => {
+        if (err) return res.send(err)
+        res.render('dashboard', {
+            currentPage: 'dashboard',
+            user: req.session.user,
+            users: data.rows
+        })
+    })
+});
   return router;
 }

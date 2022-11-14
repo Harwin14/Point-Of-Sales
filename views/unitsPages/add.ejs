@@ -37,13 +37,13 @@
 
     <!-- Nav Item - Supliers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
             <i class="fas fa-fw fa-solid fa-link"></i>
             <span>Suppliers</span></a>
     </li>
     <!-- Nav Item - Customers -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-solid fa-users"></i>
             <span>Customers</span></a>
     </li>
@@ -64,36 +64,24 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-table"></i>
             <span>Purchases</span></a>
     </li>
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="#">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Sales</span></a>
     </li>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
-
-    <!-- Sidebar Toggler (Sidebar) -->
-    <div class="text-center d-none d-md-inline">
-        <button class="rounded-circle border-0" id="sidebarToggle"></button>
-    </div>
-    </ul>
-    <!-- End of Sidebar -->
-    <!-- Content Wrapper -->
-    <div id="content-wrapper" class="d-flex flex-column">
-        <!-- Main Content -->
-        <div id="content">
-            <%- include('../partials/topbar') %>
+ 
+            <%- include('../partials/navbar') %>
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Users</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Units</h1>
 
                     <!-- DataTales Example -->
                     <form action="" method="post">
@@ -112,7 +100,7 @@
                                 </div>
                                 <div class="row mb-3 form-switch">
 
-                                    <label for="name" class="form-check-label col-sm-2 text-lg">Nama</label>
+                                    <label for="name" class="form-check-label col-sm-2 text-lg">Name</label>
                                     <div class="col-sm-10">
                                         <input type="string" class="form-control" name="name" 
                                             value="">
