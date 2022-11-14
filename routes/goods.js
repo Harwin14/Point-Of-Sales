@@ -17,7 +17,6 @@ module.exports = (db) => {
             res.send(e);
         }
     });
-
     router.get('/add', isLoggedIn, async (req, res, next) => {
         res.render('goodsPages/add', {
             currentPage: 'add',
