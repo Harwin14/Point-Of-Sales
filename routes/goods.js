@@ -6,7 +6,7 @@ const router = express.Router();
 
 module.exports = (db) => {
     router.get('/', isLoggedIn, async (req, res, next) => {
-        try { 
+        try {  
             const { rows: goods } = await db.query('SELECT * FROM goods LEFT JOIN units ON goods.unit = units.unit', )
             console.log(goods)
             res.render('goods/list', {
