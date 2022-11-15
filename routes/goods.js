@@ -15,7 +15,7 @@ module.exports = (db) => {
                 currentPage: 'Goods Utilities',
                 user: req.session.user,
                 goods
-            })
+            }) 
         } catch (e) {
             console.log(e)
             res.send(e);
