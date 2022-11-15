@@ -8,7 +8,8 @@ module.exports = (db) => {
     router.get('/', isLoggedIn, async (req, res, next) => {
         try {
             
-            const { rows: goods } = await db.query('SELECT goods.barcode, goods.name, goods.stock, goods.purchaseprice, goods.sellingprice, units.unit, goods.picture  FROM goods LEFT JOIN units ON goods.unit = units.unit', )
+            const { rows: goods } = await db.query('SELECT * FROM goods LEFT JOIN units ON goods.unit = units.unit', )
+            console.log(goods)
             res.render('goods/list', {
                 success: req.flash('success'),
                 error: req.flash('error'),
@@ -51,7 +52,7 @@ module.exports = (db) => {
             if (err)
                 return res.status(500).send(err);
 
-            const { barcode, name, stock, purchaseprice, sellingprice, unit } = req.body
+            const { barcode, name, stock, purchaseprice, sellingprice, unit  } = req.body
             console.log(barcode, name, stock, purchaseprice, sellingprice)
 
 
