@@ -75,7 +75,7 @@ module.exports = (db) => {
     db.query('SELECT * FROM users', (err, data) => {
         if (err) return res.send(err)
         res.render('dashboard', {
-            currentPage: 'dashboard',
+            currentPage: 'Dashboard',
             user: req.session.user,
             users: data.rows
         })

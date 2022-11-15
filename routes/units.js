@@ -5,27 +5,34 @@ const router = express.Router();
 module.exports = (db) => {
   // router.get('/', isLoggedIn, async (req, res, next) => {
   //   try {
-  //   //seaching
-  //   let params = []
-  //   let values = []
+    //seaching
+    // let params = []
+    // let values = []
+    // let count = 1
 
-  //   if (req.query.name) {
-  //     values.push(req.query.name)
-  //     // ilike ignore huruf besar / kecil
-  //     params.push(`name = '%' || $${values.length} || '%' `)
-  //   }
-  //   if (req.query.email) {
-  //     // ilike ignore huruf besar / kecil
-  //     params.push(`email = '%' || $${values.length} || '%' `)
-  //   }
+    // if (req.query.findUnit) {
+    //   // ilike ignore huruf besar / kecil
+    //   params.push(`unit ilike '%' || $${count++} || '%' `)
+    //   values.push(req.query.findUnit)
+    // }
+    // if (req.query.findName) {
+    //   // ilike ignore huruf besar / kecil
+    //   params.push(`name ilike '%' || $${count++} || '%' `)
+    //   values.push(req.query.findName)
+    // }
+    // if (req.query.findNote) {
+    //   // ilike ignore huruf besar / kecil
+    //   params.push(`note ilike '%' || $${count++} || '%' `)
+    //   values.push(req.query.findNote)
+    // }
 
 
-  //   //pagination
-  //   const url = req.url == '/' ? '/units/?page=1 ' : `/units${req.url}`
-  //   let page = req.query.page || 1
-  //   page = Number(page)
-  //   const limit = req.body.limit || 3
-  //   const offset = (page - 1) * limit
+    //pagination
+    // const url = req.url == '/' ? '/units/?page=1 ' : `/units${req.url}`
+    // let page = req.query.page || 1
+    // page = Number(page)
+    // const limit = req.body.limit || 3
+    // const offset = (page - 1) * limit
 
   //   let sql = 'SELECT count(*) as total FROM units'
 
@@ -49,16 +56,16 @@ module.exports = (db) => {
 
   //   console.log('sql', sql)
   //   const { rows: units } = await db.query(sql, [...values, limit, offset])
-  //   res.render('unitsPages/units', {
+  //   res.render('units/units', {
   //     success: req.flash('success'),
   //     error: req.flash('error'),
   //     currentPage: 'units',
   //     user: req.session.user,
   //     units,
-  //      page,
-  //      pages,
-  //      offset,
-  //      url,
+  //     //  page,
+  //     //  pages,
+  //     //  offset,
+  //     //  url,
   //      query: req.query
   //   })
   // }catch (err){
@@ -68,13 +75,13 @@ module.exports = (db) => {
   // })
   router.get('/', isLoggedIn, async  (req, res, next) => {
     try {
-      const { rows } = await db.query('SELECT * FROM units')
-      res.render('unitsPages/units', {
+      const { rows: units } = await db.query('SELECT * FROM units')
+      res.render('units/list', {
         success: req.flash('success'),
         error: req.flash('error'),
-        currentPage: 'units',
+        currentPage: 'Goods Utilities',
         user: req.session.user,
-        rows
+        units
       })
     } catch (e) {
       res.send(e);
@@ -82,10 +89,9 @@ module.exports = (db) => {
   });
 
 
-
   router.get('/add', isLoggedIn, async (req, res, next) => {
-    res.render('unitsPages/add', {
-      currentPage: 'add',
+    res.render('units/add', {
+      currentPage: 'Goods Utilities',
       user: req.session.user,
     })
   });
@@ -109,12 +115,12 @@ module.exports = (db) => {
   })
 
 
-  router.get('/edit/:id', isLoggedIn, async (req, res, next) => {
+  router.get('/edit/:unit', isLoggedIn, async (req, res, next) => {
     try {
-      const { id } = req.params
-      const { rows } = await db.query('SELECT * FROM units WHERE id = $1', [id])
-      res.render('unitsPages/edit', {
-        currentPage: 'edit',
+      const { unit } = req.params
+      const { rows } = await db.query('SELECT * FROM units WHERE unit = $1', [unit])
+      res.render('units/edit', {
+        currentPage: 'Goods Utilities',
         user: req.session.user,
         item: rows[0]
       })
@@ -122,13 +128,13 @@ module.exports = (db) => {
       res.send(e);
     }
   });
-  router.post('/edit/:id', isLoggedIn, async (req, res) => {
+  router.post('/edit/:unit', isLoggedIn, async (req, res) => {
     try {
-      const { id } = req.params
-      const { unit, name, note } = req.body
+      const { unit } = req.params
+      const {name, note } = req.body
 
 
-      await db.query('UPDATE units SET unit = $1, name = $2, note = $3 WHERE id = $4', [unit, name, note, id])
+      await db.query('UPDATE units SET name = $1, note = $2 WHERE unit = $3', [ name, note, unit])
 
       req.flash('success', 'Unit successfully edited')
       res.redirect('/units')
@@ -138,11 +144,10 @@ module.exports = (db) => {
     }
   })
 
-  router.get('/delete/:id', isLoggedIn, async (req, res, next) => {
+  router.get('/delete/:unit', isLoggedIn, async (req, res, next) => {
     try {
-      const { id } = req.body
-      console.log(id)
-      await db.query('DELETE FROM units WHERE id = $1', [id])
+      const { unit } = req.params
+      await db.query('DELETE FROM units WHERE unit = $1', [unit])
       req.flash('success', 'Unit deleted successfully')
       res.redirect('/units')
     } catch (e) {
