@@ -9,7 +9,7 @@ $(document).ready(() => {
             { "data": "name" },
             { "data": "stock" },
             { "data": "unit" },
-            { 
+            {  
                 "data": "purchaseprice" ,
                 render: function (data){
                     return`
