@@ -17,7 +17,7 @@ $(document).ready(() => {
                     `
                   } 
             },
-            { 
+            {  
               "data": "sellingprice",
               render: function (data){
                 return`
