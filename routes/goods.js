@@ -1,9 +1,9 @@
 const express = require('express');
 const path = require('path')
 const { isLoggedIn } = require('../helpers/util')
-const { currencyFormatter } = require('../helpers/util')
+// const { currencyFormatter } = require('../helpers/util')
 const router = express.Router();
-
+var currencyFormatter = require('currency-formatter');
 
 
 module.exports = (db) => {

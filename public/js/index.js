@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(() => {
     $('#goods-table').DataTable({
         "lengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
         "processing": true,
@@ -9,12 +9,26 @@ $(document).ready(function () {
             { "data": "name" },
             { "data": "stock" },
             { "data": "unit" },
-            { "data": "purchaseprice" },
-            { "data": "sellingprice" },
+            { 
+                "data": "purchaseprice" ,
+                render: function (data){
+                    return`
+                   Rp ${data}
+                    `
+                  } 
+            },
+            { 
+              "data": "sellingprice",
+              render: function (data){
+                return`
+                Rp ${data}
+                `
+              } 
+            
+            },
             { 
                 "data": "picture",
                 render: function (data){
-                    console.log(data)
                     return`
                     <img src="/images/upload/${data}" alt="Your preview" width="100">
                     `
