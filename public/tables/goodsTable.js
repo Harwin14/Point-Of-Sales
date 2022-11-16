@@ -43,7 +43,7 @@ $(document).ready(() => {
                     return`
                     <div class="d-grid gap-2 d-md-block">
                                                         <a type="button"
-                                                            class="btn btn-success rounded-circle"
+                                                            class="btn btn-success rounded-circle" title="Edit"
                                                             href="/goods/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
                                                         <a type="button"
                                                             class="btn btn-danger  rounded-circle"onclick="$('#modal-delete${data}').modal('show')"

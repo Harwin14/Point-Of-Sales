@@ -1,22 +1,21 @@
 $(document).ready(() => {
-    $('#users-table').DataTable({
+    $('#suppliers-table').DataTable({
         "lengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
         "processing": true,
         "serverSide": true,
-        "ajax": "/users/datatable",
+        "ajax": "/suppliers/datatable",
         "columns": [
-            { "data": "userid" },
             { "data": "name" },
-            { "data": "email" },
-            { "data": "role" },
+            { "data": "address" },
+            { "data": "phone" },
             {
-                "data": "userid",
+                "data": "supplierid",
                 render: function (data) { 
                     return`
                     <div class="d-grid gap-2 d-md-block">
                                                         <a type="button"
                                                             class="btn btn-success rounded-circle" title="Edit"
-                                                            href="/users/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
+                                                            href="/suppliers/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
                                                         <a type="button"
                                                             class="btn btn-danger  rounded-circle"onclick="$('#modal-delete${data}').modal('show')"
                                                             title="Delete" ><i
@@ -36,7 +35,7 @@ $(document).ready(() => {
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-delete').modal('hide')">No</button>
-                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="users/delete/${data}">Yes</a>
+                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="suppliers/delete/${data}">Yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>

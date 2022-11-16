@@ -18,7 +18,7 @@
                         <div class="row mb-3 form-switch">
                             <label for="barcode" class="form-check-label col-sm-2 text-lg">Barcode</label>
                             <div class="col-sm-10">
-                                <input type="string" class="form-control" name="barcode" value="<%= goods.barcode %>">
+                                <input type="string" class="form-control" name="barcode" value="<%= goods.barcode %>" readonly>
                             </div>
                         </div>
                         <div class="row mb-3 form-switch">
@@ -70,8 +70,8 @@
                             <label for="formFile" class="form-check-label col-sm-2 text-lg">Picture</label>
                             <div class="col-sm-10">
                                 <input type="file" class="form-control upload-box" name="sampleFile" id="imgInp"
-                                    accept="image/png, image/gif, image/jpeg" >
-                                    <img id="blah" src="/images/upload/<%= goods.picture %> %>" alt="your image" width="400" height="auto"/>
+                                    accept="image/png, image/gif, image/jpeg" required>
+                                    <img id="blah" src="/images/upload/<%= goods.picture %>" alt="your image" width="400" height="auto"/>
                                     
                             </div>
                         </div>

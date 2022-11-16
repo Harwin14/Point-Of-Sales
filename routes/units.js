@@ -22,7 +22,7 @@ module.exports = (db) => {
     let params = []
 
     if (req.query.search.value) {
-        params.push(`units ilike '%${req.query.search.value}%'`)
+        params.push(`unit ilike '%${req.query.search.value}%'`)
     }
     if (req.query.search.value) {
         params.push(`name ilike '%${req.query.search.value}%'`)

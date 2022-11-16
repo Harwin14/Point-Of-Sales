@@ -1,0 +1,63 @@
+<%- include('../partials/header') %>
+<%- include('../partials/sidebar') %>
+<%- include('../partials/topbar') %>
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Suplliers</h1>
+                    <p class="mb-4">This is data of Suplliers</p>
+
+                
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <div class="btn-group">
+                                
+                                <a href="suppliers/add" class="btn btn-primary active" aria-current="page"><i class="fas fa-solid fa-user-plus" ></i></a>
+                                <a href="suppliers/add" class="btn btn-primary">Add</a>
+                               
+                            </div>
+                    
+                            
+
+                            <div class="text-center">
+                                <%- include('../partials/alert') %>
+                            </div>                   
+                        </div>
+                        
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="suppliers-table" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Phone</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Address</th>
+                                            <th>Phone</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                   
+                                 </table>
+                                 
+     
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+<%- include('../partials/footer') %>

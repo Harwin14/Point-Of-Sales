@@ -36,19 +36,7 @@ module.exports = (db) => {
         if (req.query.search.value) {
             params.push(`name ilike '%${req.query.search.value}%'`)
         }
-        if (req.query.search.value) {
-            params.push(`stock ilike '%${req.query.search.value}%'`)
-        }
-        if (req.query.search.value) {
-            params.push(`unit ilike '%${req.query.search.value}%'`)
-        }
-
-        if (req.query.search.value) {
-            params.push(`purchaseprice ilike '%${req.query.search.value}%'`)
-        }
-        if (req.query.search.value) {
-            params.push(`sellingprice ilike '%${req.query.search.value}%'`)
-        }
+       
        
         console.log(req.query.length)
         const limit = req.query.length
@@ -135,7 +123,7 @@ module.exports = (db) => {
             sampleFile.mv(uploadPath)
 
             const { barcode, name, stock, purchaseprice, sellingprice, unit } = req.body
-            const { rows: goods } = await db.query('SELECT * FROM goods WHERE barcode = $1', [barcode])
+            const { rows: goods } = await db.query('SELECT * FROM goods" WHERE barcode = $1', [barcode])
             if (goods.length > 0) {
                 req.flash('error', 'Product already exist!')
                 return res.redirect('/add')

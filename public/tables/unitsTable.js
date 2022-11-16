@@ -14,10 +14,10 @@ $(document).ready(() => {
                     return`
                     <div class="d-grid gap-2 d-md-block">
                                                         <a type="button"
-                                                            class="btn btn-success rounded-circle"
-                                                            href="/goods/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
+                                                            class="btn btn-success rounded-circle" title="Edit"
+                                                            href="/units/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
                                                         <a type="button"
-                                                            class="btn btn-danger  rounded-circle"onclick="$('#modal-delete').modal('show')"
+                                                            class="btn btn-danger  rounded-circle"onclick="$('#modal-delete${data}').modal('show')"
                                                             title="Delete" ><i
                                                                 class="fas fa-solid fa-trash"></i></a>
                                                     </div>
@@ -35,7 +35,7 @@ $(document).ready(() => {
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-delete').modal('hide')">No</button>
-                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="goods/delete/${data}">Yes</a>
+                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="units/delete/${data}">Yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>
