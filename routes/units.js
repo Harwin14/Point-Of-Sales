@@ -3,76 +3,6 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (db) => {
-  // router.get('/', isLoggedIn, async (req, res, next) => {
-  //   try {
-    //seaching
-    // let params = []
-    // let values = []
-    // let count = 1
-
-    // if (req.query.findUnit) {
-    //   // ilike ignore huruf besar / kecil
-    //   params.push(`unit ilike '%' || $${count++} || '%' `)
-    //   values.push(req.query.findUnit)
-    // }
-    // if (req.query.findName) {
-    //   // ilike ignore huruf besar / kecil
-    //   params.push(`name ilike '%' || $${count++} || '%' `)
-    //   values.push(req.query.findName)
-    // }
-    // if (req.query.findNote) {
-    //   // ilike ignore huruf besar / kecil
-    //   params.push(`note ilike '%' || $${count++} || '%' `)
-    //   values.push(req.query.findNote)
-    // }
-
-
-    //pagination
-    // const url = req.url == '/' ? '/units/?page=1 ' : `/units${req.url}`
-    // let page = req.query.page || 1
-    // page = Number(page)
-    // const limit = req.body.limit || 3
-    // const offset = (page - 1) * limit
-
-  //   let sql = 'SELECT count(*) as total FROM units'
-
-  //   if (params.length > 0) {
-  //     sql += ` WHERE ${params.join(' OR ')}`
-  //   }
-
-
-  //   const { rows } = await db.query(sql, values)
-
-  //   const total = rows[0].total
-  //   const pages = Math.ceil(total / limit)
-
-  //   sql = 'SELECT * FROM units'
-
-  //   if (params.length > 0) {
-  //     sql += ` WHERE ${params.join(' AND ')}`
-  //   }
-
-  //   sql += ` LIMIT $${values.length + 1} OFFSET $${values.length + 2}`
-
-  //   console.log('sql', sql)
-  //   const { rows: units } = await db.query(sql, [...values, limit, offset])
-  //   res.render('units/units', {
-  //     success: req.flash('success'),
-  //     error: req.flash('error'),
-  //     currentPage: 'units',
-  //     user: req.session.user,
-  //     units,
-  //     //  page,
-  //     //  pages,
-  //     //  offset,
-  //     //  url,
-  //      query: req.query
-  //   })
-  // }catch (err){
-  //   console.log(err)
-  //   res.send(err)
-  // }
-  // })
   router.get('/', isLoggedIn, async  (req, res, next) => {
     try {
       const { rows: units } = await db.query('SELECT * FROM units')
@@ -88,6 +18,35 @@ module.exports = (db) => {
     }
   });
 
+  router.get('/datatable', async (req, res) => {
+    let params = []
+
+    if (req.query.search.value) {
+        params.push(`units ilike '%${req.query.search.value}%'`)
+    }
+    if (req.query.search.value) {
+        params.push(`name ilike '%${req.query.search.value}%'`)
+    }
+    if (req.query.search.value) {
+        params.push(`note ilike '%${req.query.search.value}%'`)
+    }
+   
+    
+    const limit = req.query.length
+    const offset = req.query.start
+    const sortBy = req.query.columns[req.query.order[0].column].data
+    const sortMode = req.query.order[0].dir
+
+    const total = await db.query(`select count(*) as total from units${params.length > 0 ? ` where ${params.join(' or ')}` : ''}`)
+    const data = await db.query(`select * from units${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
+    const response = {
+        "draw": Number(req.query.draw),
+        "recordsTotal": total.rows[0].total,
+        "recordsFiltered": total.rows[0].total,
+        "data": data.rows
+    }
+    res.json(response)
+})
 
   router.get('/add', isLoggedIn, async (req, res, next) => {
     res.render('units/add', {

@@ -14,6 +14,7 @@ module.exports = (db) => {
       error: req.flash('error')
     });
   });
+  
   router.post('/login', async (req, res) => {
     try {
       const { email, password } = req.body
