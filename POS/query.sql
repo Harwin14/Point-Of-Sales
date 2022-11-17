@@ -140,7 +140,7 @@ BEFORE INSERT OR UPDATE ON purchaseitems
     FOR EACH ROW EXECUTE FUNCTION price_updates();
 
 
-
+ 
 
 
     -- update total harga
