@@ -131,7 +131,7 @@ CREATE OR REPLACE FUNCTION price_updates() RETURNS TRIGGER AS $set_total_price$
         NEW.sellingprice_detail := sellingprice_goods;
         NEW.total_sellingprice_detail := NEW.quantity * sellingprice_goods;
         RETURN NEW;
-
+ 
     END;
 $set_total_price$ LANGUAGE plpgsql;
 
