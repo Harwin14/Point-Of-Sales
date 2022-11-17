@@ -74,12 +74,13 @@ module.exports = (db) => {
   })
 
 
-  router.get('/edit/:unit', isLoggedIn, async (req, res, next) => {
+  router.get('/edit/:unit', isLoggedIn, async  (req, res, next) => {
     try {
       const { unit } = req.params
       const { rows } = await db.query('SELECT * FROM units WHERE unit = $1', [unit])
+      console.log(rows)
       res.render('units/edit', {
-        currentPage: 'Goods Utilities',
+        currentPage: 'POS - Users',
         user: req.session.user,
         item: rows[0]
       })

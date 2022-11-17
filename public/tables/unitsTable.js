@@ -9,13 +9,13 @@ $(document).ready(() => {
             { "data": "name" },
             { "data": "note" },
             {
-                "data": "note",
+                "data": "unit",
                 render: function (data) { 
                     return`
                     <div class="d-grid gap-2 d-md-block">
                                                         <a type="button"
                                                             class="btn btn-success rounded-circle" title="Edit"
-                                                            href="/units/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
+                                                            href="/units/edit/${data}"><i class="fas fa-solid fa-pen"href="/units/edit/${data}"></i></a>
                                                         <a type="button"
                                                             class="btn btn-danger  rounded-circle"onclick="$('#modal-delete${data}').modal('show')"
                                                             title="Delete" ><i

@@ -90,10 +90,10 @@ module.exports = (db) => {
         try {
           const { userid } = req.params
           const { email, name, role } = req.body
-          const { rows: users } = await db.query('SELECT * FROM users WHERE email = $1', [email])
-          if (users.length > 0) {
-            throw 'User already exist'
-          }
+          // const { rows: users } = await db.query('SELECT * FROM users WHERE email = $1', [email])
+          // if (users.length > 0) {
+          //   throw 'User already exist'
+          // }
   
           await db.query('UPDATE users SET email = $1, name = $2, role = $3 WHERE userid = $4',[email, name, role, userid])
          
