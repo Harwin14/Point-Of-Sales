@@ -120,7 +120,7 @@ AFTER INSERT OR UPDATE OR DELETE ON purchases
     ERROR:  "totalsum" is not a known variable
 LINE 25:         SELECT sum(purchaseprice) INTO totalsum FROM purchas...
     ---------------------------------------------------------------
- 
+  
 --update totalprice
 
 CREATE OR REPLACE FUNCTION price_updates() RETURNS TRIGGER AS $set_total_price$
