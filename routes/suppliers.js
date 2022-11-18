@@ -1,5 +1,4 @@
 const express = require('express');
-const path = require('path')
 const { isLoggedIn } = require('../helpers/util')
 const router = express.Router();
 
@@ -33,8 +32,7 @@ module.exports = (db) => {
             params.push(`phone ilike '%${req.query.search.value}%'`)
         }
        
-       
-        console.log(req.query.length)
+
         const limit = req.query.length
         const offset = req.query.start
         const sortBy = req.query.columns[req.query.order[0].column].data

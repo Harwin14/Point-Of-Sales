@@ -1,10 +1,10 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session')
-var flash = require('connect-flash');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const session = require('express-session')
+const flash = require('connect-flash');
 const fileUpload = require('express-fileupload');
 const { Pool} = require('pg')
 
@@ -19,13 +19,14 @@ const pool = new Pool({
 
 
 
-var indexRouter = require('./routes/index')(pool);
-var usersRouter = require('./routes/users')(pool);
-var unitsRouter = require('./routes/units')(pool);
-var goodsRouter = require('./routes/goods')(pool);
-var supplierRouter = require('./routes/suppliers')(pool);
+const indexRouter = require('./routes/index')(pool);
+const usersRouter = require('./routes/users')(pool);
+const unitsRouter = require('./routes/units')(pool);
+const goodsRouter = require('./routes/goods')(pool);
+const suppliersRouter = require('./routes/suppliers')(pool);
+const purchasesRouter = require('./routes/purchases')(pool);
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -50,7 +51,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/units', unitsRouter);
 app.use('/goods', goodsRouter);
-app.use('/suppliers', supplierRouter);
+app.use('/suppliers', suppliersRouter);
+app.use('/purchases', purchasesRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

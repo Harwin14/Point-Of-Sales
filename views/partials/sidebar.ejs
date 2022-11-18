@@ -29,13 +29,13 @@ MASTER
 
 
 <!-- Nav Item - Utilities Collapse Menu -->
-<li class="nav-item <%= currentPage == 'Goods Utilities' ? 'active' : '' %>">
+<li class="nav-item <%= currentPage == 'Goods Utilities' ? 'active' : ''  %>">
 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
     aria-expanded="true" aria-controls="collapseUtilities">
     <i class="fas fa-fw fa-wrench"></i>
     <span>Goods Utilities</span>
 </a>
-<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+<div id="collapseUtilities" class="collapse <%= currentPage == 'Goods Utilities' ? 'show' : ''  %>" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Goods Utilities:</h6>
         <a class="collapse-item <%= currentPage == 'Goods Utilities' ? 'active' : '' %>" href="/goods">Goods</a>
@@ -74,7 +74,7 @@ Transactions
 
 <!-- Nav Item - Tables -->
 <li class="nav-item <%= currentPage == 'Purchases' ? 'active' : '' %>">
-<a class="nav-link" href="">
+<a class="nav-link" href="/purchases">
     <i class="fas fa-fw fa-table"></i>
     <span>Purchases</span></a>
 </li>

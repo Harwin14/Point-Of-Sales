@@ -3,12 +3,11 @@ const path = require('path')
 const { isLoggedIn } = require('../helpers/util')
 // const { currencyFormatter } = require('../helpers/util')
 const router = express.Router();
-var currencyFormatter = require('currency-formatter');
+
 
 
 
 module.exports = (db) => {
-
     router.get('/', isLoggedIn, async (req, res, next) => {
         try {
             const { rows: goods } = await db.query('SELECT * FROM goods',)
@@ -18,7 +17,6 @@ module.exports = (db) => {
                 error: req.flash('error'),
                 currentPage: 'Goods Utilities',
                 user: req.session.user,
-                currencyFormatter,
                 goods
             })
         } catch (e) {

@@ -1,6 +1,6 @@
 $(document).ready(() => {
     $('#goods-table').DataTable({
-        "lengthMenu": [[3, 5, 10, -1], [3, 5, 10, "All"]],
+        "lengthMenu": [[3, 5, 10, 100], [3, 5, 10, 100]],
         "processing": true,
         "serverSide": true,
         "ajax": "/goods/datatable",
@@ -12,19 +12,14 @@ $(document).ready(() => {
             {  
                 "data": "purchaseprice" ,
                 render: function (data){
-                    return`
-                   Rp ${data}
-                    `
+                    return currencyFormatter.format(data)
                   } 
             },
             {   
               "data": "sellingprice",
               render: function (data){
-                return`
-                Rp ${data}
-                `
+                return currencyFormatter.format(data)  
               } 
-            
             },
             { 
                 "data": "picture",
@@ -33,9 +28,6 @@ $(document).ready(() => {
                     <img src="/images/upload/${data}" alt="Your preview" width="100">
                     `
                 }
-          
-   
-           
             },
             {
                 "data": "barcode",

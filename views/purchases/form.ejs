@@ -1,0 +1,184 @@
+<%- include('../partials/header') %>
+
+    <div class="container-fluid">
+        <h3>Purchases</h3>
+        <div class="card">
+            <div class="card-header">
+                <h1>Transactions</h1>
+            </div>
+            <form id="start-form" action="" >
+                <div class="row">
+                    <div class="form-switch col py-3 px-4 input">
+                        <label for="invoice" class="form-check-label text-lg text-gray-800">Invoice</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="invoice" id="invoice" value="<%= purchases.invoice %>"readonly >
+                        </div>
+                    </div>
+
+
+                    <div class="form-switch col py-3 px-1">
+                        <label for="time" class="form-check-label text-lg  text-gray-800">Time</label>
+                        <div class="">
+                            <input type="date" class="form-control rounded-pill" name="time" value="time" id="time" value="<%= moment(purchases.time).format('DD MMM YYYY HH:mm:ss') %>" readonly>
+                        </div>
+                    </div>
+
+
+                    <div class="form-switch col py-3 px-4">
+                        <label for="Operator" class="form-check-label text-lg  text-gray-800">Operator</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="Operator" id="operator" readonly>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="form-switch col py-3 px-4 input">
+                        
+                        <label for="barcode" class="form-check-label text-lg  text-gray-800">Goods Barcode</label>
+                            <select class="form-control rounded-pill" name="barcode" id="barcode">
+                                <% goods.forEach(item=> { %>
+                                  <option value="<%= item.barcode %>"><%= item.barcode + ' - ' + item.name %></option>
+                                  <% }) %>
+                            </select>
+                       
+                    </div>
+
+
+                    <div class="form-switch col py-3 px-1">
+                        <label for="goodsname" class="form-check-label text-lg  text-gray-800">Goods Name</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="goodsname" id="goodsname"readonly>
+                        </div>
+                    </div>
+
+
+                    <div class="form-switch col py-3 px-4">
+                        <label for="stock" class="form-check-label text-lg  text-gray-800">Stock</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="stock" id="stock"readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-switch col py-3 px-4">
+                        <label for="purchaseprice" class="form-check-label text-lg  text-gray-800">Purchase Price</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="purchaseprice" id="purchaseprice">
+                        </div>
+                    </div>
+                    <div class="form-switch col py-3 px-1">
+                        <label for="quantity" class="form-check-label text-lg  text-gray-800">Qty</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="quantity" id="quantity">
+                        </div>
+                    </div>
+                    <div class="form-switch col py-3 px-4">
+                        <label for="totalprice" class="form-check-label text-lg  text-gray-800">Total Price</label>
+                        <div class="">
+                            <input type="text" class="form-control rounded-pill" name="totalprice" id="totalprice">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="btn-group px-3">
+                    <a type="button" class="btn btn-primary active "  title="Save" aria-current="page"><i
+                        class="fas fa-solid fa-database"></i></a>
+                <button class="btn btn-primary ">ADD</button>
+                </div>
+                <hr>
+            </form>
+            <form id="detail-form">
+                <table class="table table-striped " id="" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Barcode</th>
+                            <th>Nama</th>
+                            <th>Qty</th>
+                            <th>Nama</th>
+                            <th>Total Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                        </tr>
+                        <tr>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                            <td>a</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+                <div class="row mb-3 px-2">
+                    <label for="totalsum" class="col-sm-2 col-form-label">Total Summary</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="totalsum">
+                    </div>
+                </div>
+                <div class="row mb-3 px-2">
+                    <label for="supplier" class="col-sm-2 col-form-label">Supplier</label>
+                    <div class="col-sm-10">
+                        <select type="password" class="form-control" id="supplier">
+                            <option name="" id="supplier"></option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success active" title="Save" aria-current="page" disabled><i
+                            class="fas fa-solid fa-database"></i></button>
+                    <button class="btn btn-success" disabled>Save</button>
+                </div>
+                <div class="btn-group">
+                    <a href="/purchases" class="btn btn-warning active" aria-current="page"><i
+                            class="fas fa-fw fa-undo-alt"></i></a>
+                    <a href="/purchases" class="btn btn-warning">Back</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+    <!-- /.container-fluid -->
+
+
+    
+
+
+
+
+
+    <script>
+        let invoice = "";
+        $(document).ready(function(){
+            $( "#detail-form" ).prop( "disabled", true );
+            $('#start-form').submit(function(e){
+                e.preventDefault();
+                $.post('/purchases/start').done(function(data){
+                    invoice = data.invoice
+                    $('#(invoice').val(invoice)
+                    $('#time').val(data.time)
+                    $( "#start-form" ).prop( "disabled", true );
+                    $( "#detail-form" ).prop( "disabled", false );
+                })
+            })
+        })
+    </script>
+    
+    <!-- End of Main Content -->
+
+    <%- include('../partials/footer') %>

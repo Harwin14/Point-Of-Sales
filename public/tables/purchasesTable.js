@@ -1,21 +1,22 @@
 $(document).ready(() => {
-    $('#suppliers-table').DataTable({
+    $('#purchases-table').DataTable({
         "lengthMenu": [[3, 5, 10, 100], [3, 5, 10, 100]],
         "processing": true,
         "serverSide": true,
-        "ajax": "/suppliers/datatable",
+        "ajax": "/purchases/datatable",
         "columns": [
-            { "data": "name" },
-            { "data": "address" },
-            { "data": "phone" },
+            { "data": "invoice" },
+            { "data": "time" },
+            { "data": "totalsum" },
+            { "data": "supplier" },
             {
-                "data": "supplierid",
+                "data": "invoice",
                 render: function (data) { 
                     return`
                     <div class="d-grid gap-2 d-md-block">
                                                         <a type="button"
                                                             class="btn btn-success rounded-circle" title="Edit"
-                                                            href="/suppliers/edit/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
+                                                            href="/purchases/show/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
                                                         <a type="button"
                                                             class="btn btn-danger  rounded-circle"onclick="$('#modal-delete${data}').modal('show')"
                                                             title="Delete" ><i
@@ -35,7 +36,7 @@ $(document).ready(() => {
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-delete').modal('hide')">No</button>
-                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="suppliers/delete/${data}">Yes</a>
+                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="purchases/delete/${data}">Yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -46,3 +47,4 @@ $(document).ready(() => {
         ]
     });
 });
+
