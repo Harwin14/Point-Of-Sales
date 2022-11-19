@@ -12,11 +12,13 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
+                        <form action="" id="start-form">
                         <div class="btn-group">
-                            <a href="/purchases/show" class="btn btn-primary active" aria-current="page"><i
-                                    class="fas fa-solid fa-plus"></i></a>
-                            <a href="/purchases/show" class="btn btn-primary">Add</a>
+                            <button href="" type="submit" class="btn btn-primary active" aria-current="page"><i
+                                    class="fas fa-solid fa-plus"></i></button>
+                            <button href="" class="btn btn-primary">Add</button>
                         </div>
+                        </form>
                         <div class="text-center">
                             <%- include('../partials/alert') %>
                         </div>
@@ -52,5 +54,22 @@
             <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
+            <script>
+                const invoice = "";
+                $(document).ready(function(){
+                    $('#start-form').submit(function(e){
+                        e.preventDefault();
+                        $.post('/purchases/start').done(function(data){
+                        invoice = data.invoice
+                        $('#invoice').val(invoice)
+                        $('#time').val(data.time)
+                        $("#start-form").prop("disabled", true)
+                        $("#detail-form").prop("disabled", false)
+//detail-form tidak perlu
 
+                let invoice = "";
+                        })
+                    })
+                })
+            </script>
             <%- include('../partials/footer') %>

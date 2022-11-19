@@ -37,7 +37,8 @@
                          
                         <label for="barcode" class="form-check-label text-lg  text-gray-800">Goods Barcode</label>
                             <select class="form-control rounded-pill" name="barcode" id="barcode">
-                                <% goods.forEach(item=> { %>
+                                <option value="" readonly>Choose barcode product</option>
+                                <% goods.forEach(item => { %>
                                   <option value="<%= item.barcode %>"><%= item.barcode + ' - ' + item.name %></option>
                                   <% }) %>
                             </select>
@@ -97,19 +98,22 @@
                             <th>Barcode</th>
                             <th>Nama</th>
                             <th>Qty</th>
-                            <th>Nama</th>
+                            <th>Price</th>
                             <th>Total Price</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <% rows.forEach((item, index) => { %>
                         <tr>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
-                            <td>a</td>
+                            <td><%= index + 1 %></td>
+                            <td><%= item.barcode %></td>
+                            <td><%= item.name + 1 %></td>
+                            <td><%= item.quantity + 1 %></td>
+                            <td><%= item.purchaseprice %></td>
+                            <td><%= item.totalprice %></td>
+                            
                         </tr>
+                        <% }) %>
                         <tr>
                             <td>a</td>
                             <td>a</td>
@@ -161,23 +165,18 @@
 
 
 
-
+<!-- 
     <script>
-        let invoice = "";
+
         $(document).ready(function(){
-            $( "#detail-form" ).prop( "disabled", true );
             $('#start-form').submit(function(e){
                 e.preventDefault();
                 $.post('/purchases/start').done(function(data){
-                    invoice = data.invoice
-                    $('#(invoice').val(invoice)
-                    $('#time').val(data.time)
-                    $( "#start-form" ).prop( "disabled", true );
-                    $( "#detail-form" ).prop( "disabled", false );
+                console.log(data)
                 })
             })
         })
-    </script>
+    </script> -->
     
     <!-- End of Main Content -->
 
