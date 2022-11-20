@@ -110,7 +110,7 @@ module.exports = (db) => {
      res.json(rows[0])
     } catch (err) {
      res.send(err)
-    } 
+    }  
   })
 
   router.post('/additem', isLoggedIn, async (req, res) => {
