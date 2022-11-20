@@ -99,7 +99,7 @@ module.exports = (db) => {
       console.log(error)
       req.flash('error', 'Transaction Fail!')
       return res.redirect('/purchases')
-    }
+    } 
   }) 
 
   router.get('/goods/:barcode', isLoggedIn, async (req, res) => {
