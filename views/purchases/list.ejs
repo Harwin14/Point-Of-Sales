@@ -14,9 +14,9 @@
                     <div class="card-header py-3">
                         <form action="" id="start-form">
                         <div class="btn-group">
-                            <button href="" type="submit" class="btn btn-primary active" aria-current="page"><i
-                                    class="fas fa-solid fa-plus"></i></button>
-                            <button href="" class="btn btn-primary">Add</button>
+                        <a href="/purchases/create" type="button" class="btn btn-primary active" aria-current="page"><i
+                                    class="fas fa-solid fa-plus"></i></a>
+                            <a href="/purchases/create" class="btn btn-primary">Add</a>
                         </div>
                         </form>
                         <div class="text-center">
@@ -55,17 +55,15 @@
             </div> 
             <!-- End of Main Content -->
             <script>
-                const invoice = "";
+                let invoice = null;
                 $(document).ready(function(){
                     $('#start-form').submit(function(e){
                         e.preventDefault();
-                        $.post('/purchases/start').done(function(data){
+                        $.post('/purchases/create').done(function(data){
                         invoice = data.invoice
                         $('#invoice').val(invoice)
                         $('#time').val(data.time)
-                        $("#start-form").prop("disabled", true)
-                        $("#detail-form").prop("disabled", false)
-//detail-form tidak perlu
+                        $()
 
                 let invoice = "";
                         })

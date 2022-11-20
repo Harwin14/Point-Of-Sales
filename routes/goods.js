@@ -20,7 +20,6 @@ module.exports = (db) => {
                 goods
             })
         } catch (e) {
-            console.log(e)
             res.send(e);
         }
     });
@@ -176,7 +175,7 @@ module.exports = (db) => {
                 res.redirect('/goods')
             })
         } catch (err) {
-            console.log(err)
+            res.send(e);
         }
     })
     // router.post('/edit/:barcode', isLoggedIn, async (req, res) => {
@@ -209,11 +208,11 @@ module.exports = (db) => {
 
     router.get('/delete/:barcode', isLoggedIn, async (req, res, next) => {
         try {
-            await db.query('DELETE FROM goods WHERE barcode = $1', [req.params.barcode])
+            const { barcode } = req.params
+            await db.query('DELETE FROM goods WHERE barcode = $1', [barcode])
 
             res.redirect('/goods');
         } catch (err) {
-            console.log(err)
             res.send(err)
         }
     });

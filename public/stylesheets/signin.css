@@ -82,7 +82,9 @@ body {
     -webkit-overflow-scrolling: touch;
   }
   .body{
-    background-color: rgb(29, 29, 209);
+    background-color: #132fab;
+    background-image: linear-gradient(180deg, #132fab 40%, aqua 100%);
+    background-size: cover;
 }
 .container {
     height: 800px;

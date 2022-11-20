@@ -5,13 +5,11 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/', isLoggedIn, async  (req, res, next) => {
     try {
-      const { rows: units } = await db.query('SELECT * FROM units')
       res.render('units/list', {
         success: req.flash('success'),
         error: req.flash('error'),
         currentPage: 'Goods Utilities',
         user: req.session.user,
-        units
       })
     } catch (e) {
       res.send(e);
@@ -91,9 +89,7 @@ module.exports = (db) => {
   router.post('/edit/:unit', isLoggedIn, async (req, res) => {
     try {
       const { unit } = req.params
-      const {name, note } = req.body
-
-
+      const { name, note } = req.body
       await db.query('UPDATE units SET name = $1, note = $2 WHERE unit = $3', [ name, note, unit])
 
       req.flash('success', 'Unit successfully edited')
@@ -110,7 +106,7 @@ module.exports = (db) => {
       await db.query('DELETE FROM units WHERE unit = $1', [unit])
       req.flash('success', 'Unit deleted successfully')
       res.redirect('/units')
-    } catch (e) {
+    } catch (err) {
       req.flash('error', err)
       return res.redirect('/units')
     }

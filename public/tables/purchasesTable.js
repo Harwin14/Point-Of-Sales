@@ -7,7 +7,12 @@ $(document).ready(() => {
         "columns": [
             { "data": "invoice" },
             { "data": "time" },
-            { "data": "totalsum" },
+            {
+                 "data": "totalsum" ,
+                 render: function (data){
+                    return currencyFormatter.format(data)
+                } 
+        },
             { "data": "supplier" },
             {
                 "data": "invoice",
@@ -18,7 +23,7 @@ $(document).ready(() => {
                                                             class="btn btn-success rounded-circle" title="Edit"
                                                             href="/purchases/show/${data}"><i class="fas fa-solid fa-pen"href="/edit"></i></a>
                                                         <a type="button"
-                                                            class="btn btn-danger  rounded-circle"onclick="$('#modal-delete${data}').modal('show')"
+                                                            class="btn btn-danger rounded-circle" onclick="$('#modal-delete${data}').modal('show')"
                                                             title="Delete" ><i
                                                                 class="fas fa-solid fa-trash"></i></a>
                                                     </div>
@@ -36,7 +41,7 @@ $(document).ready(() => {
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal"onclick="$('#modal-delete').modal('hide')">No</button>
-                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="purchases/delete/${data}">Yes</a>
+                                                                        <a id="btn-delete" type="button" class="btn btn-primary" id="btn-deleted" href="/purchases/delete/${data}">Yes</a>
                                                                 </div>
                                                             </div>
                                                         </div>
