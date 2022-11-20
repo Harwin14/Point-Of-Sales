@@ -86,7 +86,7 @@ module.exports = (db) => {
     } catch (e) {
       res.send(e);
     } 
-  });
+  }); 
   router.post('/show:invoice', isLoggedIn, async (req, res) => {
     try {
       const { invoice } = req.params
