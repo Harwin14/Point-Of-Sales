@@ -185,7 +185,7 @@
                 readDetails()
                 $('#totalsum').val(currencyFormatter.format(data.totalsum))
             })  
-        })  
+        })   
     })
     const readDetails = () => {
         $.get(`/purchases/details/${invoice}`).done(function (data) {
