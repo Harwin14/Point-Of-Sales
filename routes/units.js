@@ -78,7 +78,7 @@ module.exports = (db) => {
       const { rows } = await db.query('SELECT * FROM units WHERE unit = $1', [unit])
       console.log(rows)
       res.render('units/edit', {
-        currentPage: 'POS - Users',
+        currentPage: 'POS - Units',
         user: req.session.user,
         item: rows[0]
       })
@@ -89,7 +89,9 @@ module.exports = (db) => {
   router.post('/edit/:unit', isLoggedIn, async (req, res) => {
     try {
       const { unit } = req.params
-      const { name, note } = req.body
+      const {name, note } = req.body
+
+
       await db.query('UPDATE units SET name = $1, note = $2 WHERE unit = $3', [ name, note, unit])
 
       req.flash('success', 'Unit successfully edited')

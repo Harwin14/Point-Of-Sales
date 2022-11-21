@@ -6,13 +6,18 @@ $(document).ready(() => {
         "ajax": "/purchases/datatable",
         "columns": [
             { "data": "invoice" },
-            { "data": "time" },
+            { 
+                "data": "time" ,
+                render: function (data){
+                    return` ${moment(data).format('DD MMM YYYY HH:mm:s')}`
+                 }
+            },
             {
                  "data": "totalsum" ,
                  render: function (data){
                     return currencyFormatter.format(data)
                 } 
-        },
+            },
             { "data": "supplier" },
             {
                 "data": "invoice",
@@ -52,4 +57,3 @@ $(document).ready(() => {
         ]
     });
 });
-

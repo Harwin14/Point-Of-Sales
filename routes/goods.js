@@ -7,6 +7,7 @@ const router = express.Router();
 
 
 
+
 module.exports = (db) => {
     router.get('/', isLoggedIn, async (req, res, next) => {
         try {

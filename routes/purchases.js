@@ -92,7 +92,7 @@ module.exports = (db) => {
       const { invoice } = req.params
       const { time, totalsum, supplier, operator} = req.body
       await db.query('UPDATE purchases SET time = $1, totalsum = $2, supplier = $3, operator = $4  WHERE invoice = $5', [time, totalsum, supplier, operator,invoice])
-      await db.query('INSERT INTO public.purchases(invoice, "time", totalsum, supplier, operator)VALUES ($1, $2, $3, $4, $5)', [time, totalsum, supplier, operator,invoice])
+      await db.query('INSERT INTO public.purchases(invoice, "time", totalsum, supplier, operator)VALUES ($1, $2, $3, $4, $5)', [invoice, time, totalsum, supplier, operator])
       req.flash('success', 'Transaction success!')
       res.redirect('/purchases')
     } catch (error) {
@@ -106,7 +106,7 @@ module.exports = (db) => {
     try {
      const { barcode } = req.params
      const { rows } = await db.query('SELECT * FROM goods WHERE barcode = $1', [barcode]);
-     console.log(rows, barcode )
+     console.log(rows, barcode ,"l")
      res.json(rows[0])
     } catch (err) {
      res.send(err)
