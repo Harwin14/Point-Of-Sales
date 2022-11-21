@@ -179,12 +179,12 @@
         // })
         $('#detail-form').submit(function (e) {
             e.preventDefault();
-            const itemcode = $('#barcode').val()
+            const itemcode = $('#barcode').val() 
             const quantity = $('#quantity').val()
             $.post('/purchases/additem', { invoice, itemcode, quantity }).done(function (data) {
                 readDetails()
                 $('#totalsum').val(currencyFormatter.format(data.totalsum))
-            })
+            }) 
         })  
     })
     const readDetails = () => {
