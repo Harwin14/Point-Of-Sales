@@ -5314,8 +5314,9 @@ input[type="button"].btn-block {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #0000ff;
+  background-image: linear-gradient(180deg, #132fab 40%, aqua 100%);
+  border-color: #dddfeb;
 }
 
 .page-item.disabled .page-link {
