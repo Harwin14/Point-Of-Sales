@@ -70,7 +70,7 @@ module.exports = (db) => {
       return res.redirect('/units')
     }
   })
- 
+  
   router.get('/edit/:unit', isLoggedIn, async  (req, res, next) => {
     try {
       const { unit } = req.params
