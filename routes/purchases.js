@@ -33,8 +33,6 @@ module.exports = (db) => {
     const sortMode = req.query.order[0].dir
 
     const total = await db.query(`select count(*) as total from purchases${params.length > 0 ? ` where ${params.join(' or ')}` : ''}`)
-   // const users  = await db.query('SELECT * FROM users ORDER BY userid')
-
     //const data = await db.query(`select * from purchases${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
     const data = await db.query(`SELECT p.*, s.* FROM purchases as p LEFT JOIN suppliers as s ON p.supplier = s.supplierid${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
     const response = {
@@ -67,9 +65,7 @@ module.exports = (db) => {
       const { rows: goods } = await db.query('SELECT barcode, name FROM goods ORDER BY barcode')
       const { rows } = await db.query('SELECT * FROM suppliers ORDER BY supplierid')
      
-      // const invoice = req.body.invoice || rows.length > 0 ? rows[0].invoice : ''
-      // const data = await db.query('SELECT g.barcode, g.name, pi.quantity, pi.purchaseprice, pi.totalprice, g.barcode, g.name FROM purchaseitems as pi LEFT JOIN goods as g ON pi.itemcode = g.barcode WHERE pi.invoice = $1 ORDER BY pi.purchaseprice ',[invoice])
-      res.render('purchases/form', {
+     res.render('purchases/form', {
         currentPage: 'Purchases',
         user: req.session.user,
         purchases: purchases.rows[0],
@@ -77,8 +73,7 @@ module.exports = (db) => {
         users,
         supplier: rows,
         moment,
-        //data: data.rows
-      })
+    })
     } catch (e) {
       res.send(e);
     }
