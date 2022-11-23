@@ -71,7 +71,6 @@ module.exports = (db) => {
     }
   })
 
-
   router.get('/edit/:unit', isLoggedIn, async  (req, res, next) => {
     try {
       const { unit } = req.params
