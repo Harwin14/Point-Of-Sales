@@ -16,7 +16,7 @@
 
 
                     <div class="form-switch col py-3 px-1">
-                        <label  class="form-check-label text-lg  text-gray-800">Time</label>
+                        <label class="form-check-label text-lg  text-gray-800">Time</label>
                         <input type="text" class="form-control" name="time" id="time"
                             value="<%= moment(sales.time).format('DD MMM YYYY HH:mm:ss') %>" readonly>
                     </div>
@@ -58,9 +58,9 @@
                 </div>
                 <div class="row">
                     <div class="form-switch col py-3 px-4">
-                        <label for="purchaseprice" class="form-check-label text-lg  text-gray-800">Purchase
+                        <label for="sellingprice" class="form-check-label text-lg  text-gray-800">Selling
                             Price</label>
-                        <input type="text" class="form-control " name="purchaseprice" id="purchaseprice">
+                        <input type="text" class="form-control " name="sellingprice" id="sellingprice">
                     </div>
                     <div class="form-switch col py-3 px-1">
                         <label for="quantity" class="form-check-label text-lg  text-gray-800">Qty</label>
@@ -83,7 +83,7 @@
             </form>
 
 
-            
+
             <form action="" method="post">
                 <table class="table table-striped text-dark" id="detail-table" width="100%" cellspacing="0">
                     <thead>
@@ -105,17 +105,32 @@
                     <div class="row mb-3 px-2">
                         <label for="totalsum" class="col-sm-2 col-form-label text-dark">Total Summary</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="totalsum" name="totalsum" value="<%= sales.totalsum %>"
-                                readonly>
+                            <input type="text" class="form-control" id="totalsum" name="totalsum"
+                                value="<%= sales.totalsum %>" readonly>
                         </div>
                     </div>
                     <div class="row mb-3 px-2">
-                        <label for="supplier" class="col-sm-2 col-form-label text-dark">Supplier</label>
+                        <label for="pay" class="col-sm-2 col-form-label text-dark">Pay</label>
                         <div class="col-sm-10">
-                            <select type="password" class="form-control" id="supplier" name="supplier" >
-                                <option value="<%= sales.supplier %>" ><%= sales.name %></option>
-                                <% supplier.forEach(item=> { %>
-                                    <option value="<%= item.supplierid %>">
+                            <input type="text" class="form-control" id="pay" name="pay" value="<%= sales.pay %>">
+                        </div>
+                    </div>
+                    <div class="row mb-3 px-2">
+                        <label for="change" class="col-sm-2 col-form-label text-dark">Change</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="change" name="change"
+                                value="<%= sales.change %>" readonly>
+                        </div>
+                    </div>
+                    <div class="row mb-3 px-2">
+                        <label for="customer" class="col-sm-2 col-form-label text-dark">Customer</label>
+                        <div class="col-sm-10">
+                            <select type="password" class="form-control" id="customer" name="customer">
+                                <option value="<%= sales.customer %>">
+                                    <%= sales.name %>
+                                </option>
+                                <% customer.forEach(item=> { %>
+                                    <option value="<%= item.customerid %>">
                                         <%= item.name %>
                                             <% }) %>
                             </select>
@@ -149,15 +164,21 @@
                     console.log('ini data', data)
                     $('#name').val(data.name)
                     $('#stock').val(data.stock)
-                    $('#purchaseprice').val(data.purchaseprice)
+                    $('#sellingprice').val(data.sellingprice)
                     $('#quantity').val(0)
                     $('#totalprice').val(data.totalprice)
                 })
             })
             $('#quantity').keyup(function () {
                 const quantity = $(this).val()
-                const purchaseprice = $('#purchaseprice').val()
-                $('#totalprice').val(currencyFormatter.format(purchaseprice * quantity))
+                const sellingprice = $('#sellingprice').val()
+                $('#totalprice').val(currencyFormatter.format(sellingprice * quantity))
+            })
+
+            $('#pay').keyup(() => {
+                const pay = $('#pay').val()
+                const totalsum = $('#totalsum').val()
+                $('#change').val(pay - totalsum)
             })
             $('#detail-form').submit(function (e) {
                 e.preventDefault();
@@ -166,6 +187,8 @@
                 $.post('/sales/additem', { invoice, itemcode, quantity }).done(function (data) {
                     readDetails()
                     $('#totalsum').val((data.totalsum))
+                    $('#pay').val(data.pay)
+                    $('#change').val(data.change)
                 })
             })
         })
@@ -188,7 +211,7 @@
                         ${item.quantity}
                     </td>
                     <td>
-                        ${currencyFormatter.format(item.purchaseprice)}
+                        ${currencyFormatter.format(item.sellingprice)}
                     </td>
                     <td>
                         ${currencyFormatter.format(item.totalprice)}

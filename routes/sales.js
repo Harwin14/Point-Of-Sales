@@ -13,8 +13,6 @@ module.exports = (db) => {
         error: req.flash('error'),
         currentPage: 'POS - Sales',
         user: req.session.user,
-        currencyFormatter,
-        moment
       })
     } catch (e) {
       console.log('error awal',e)
@@ -33,7 +31,6 @@ module.exports = (db) => {
     const sortMode = req.query.order[0].dir
 
     const total = await db.query(`select count(*) as total from sales${params.length > 0 ? ` where ${params.join(' or ')}` : ''}`)
-    //const data = await db.query(`select * from sales${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
     const data = await db.query(`SELECT s.*, c.* FROM sales as s LEFT JOIN customers as c ON s.customer = c.customerid${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
     const response = {
       "draw": Number(req.query.draw),
@@ -85,8 +82,8 @@ module.exports = (db) => {
   router.post('/show/:invoice', isLoggedIn, async (req, res) => {
     try {
       const { invoice } = req.params
-      const { totalsum, customer } = req.body
-      await db.query('UPDATE sales SET totalsum = $1, customer = $2 WHERE invoice = $3', [totalsum, customer, invoice])
+      const { totalsum, pay, change, customer } = req.body
+      await db.query('UPDATE sales SET totalsum = $1, pay = $2, change = $3, customer = $4 WHERE invoice = $5', [totalsum, pay, change, customer, invoice])
 
       req.flash('success', 'Transaction Success!')
       res.redirect('/sales')
@@ -112,7 +109,7 @@ module.exports = (db) => {
   router.post('/additem', isLoggedIn, async (req, res) => {
     try {
       const { invoice, itemcode, quantity } = req.body
-      await db.query('INSERT INTO salesitems (invoice, itemcode, quantity)VALUES ($1, $2, $3) returning *', [invoice, itemcode, quantity]);
+      await db.query('INSERT INTO saleitems (invoice, itemcode, quantity)VALUES ($1, $2, $3) returning *', [invoice, itemcode, quantity]);
       const { rows } = await db.query('SELECT * FROM sales WHERE invoice = $1', [invoice])
     
       res.json(rows[0])
@@ -125,7 +122,7 @@ module.exports = (db) => {
   router.get('/details/:invoice', isLoggedIn, async (req, res, next) => {
     try {
       const { invoice } = req.params
-      const { rows: data } = await db.query('SELECT salesitems.*, goods.name FROM salesitems LEFT JOIN goods ON salesitems.itemcode = goods.barcode WHERE salesitems.invoice = $1 ORDER BY salesitems.id', [invoice])
+      const { rows: data } = await db.query('SELECT saleitems.*, goods.name FROM saleitems LEFT JOIN goods ON saleitems.itemcode = goods.barcode WHERE saleitems.invoice = $1 ORDER BY saleitems.id', [invoice])
 
       res.json(data)
     } catch (err) {
@@ -137,7 +134,7 @@ module.exports = (db) => {
   router.get('/deleteitems/:id', isLoggedIn, async (req, res, next) => {
     try {
       const { id } = req.params
-      const { rows: data } = await db.query('DELETE FROM salesitems WHERE id = $1 returning *', [id])
+      const { rows: data } = await db.query('DELETE FROM saleitems WHERE id = $1 returning *', [id])
       
       req.flash('success', 'Transaction deleted successfully') 
       res.redirect(`/sales/show/${data[0].invoice}`)

@@ -48,8 +48,8 @@ module.exports = (db) => {
   router.get('/create', isLoggedIn, async (req, res, next) => {
     try {
       const { userid } = req.session.user
-      const { rows } = await db.query('INSERT INTO purchases(totalsum, operator) VALUES (0, $1) returning *', [userid])
-     // console.log(rows)
+      const { rows } = await db.query('INSERT INTO purchases(totalsum, operator) VALUES (0, $1) returning*', [userid])
+      console.log(rows)
 
       res.redirect(`/purchases/show/${rows[0].invoice}`)
 
@@ -112,7 +112,7 @@ module.exports = (db) => {
   router.post('/additem', isLoggedIn, async (req, res) => {
     try {
       const { invoice, itemcode, quantity } = req.body
-      await db.query('INSERT INTO purchaseitems (invoice, itemcode, quantity)VALUES ($1, $2, $3) returning *', [invoice, itemcode, quantity]);
+      await db.query('INSERT INTO purchaseitems (invoice, itemcode, quantity)VALUES ($1, $2, $3) returning*', [invoice, itemcode, quantity]);
       const { rows } = await db.query('SELECT * FROM purchases WHERE invoice = $1', [invoice])
     
       res.json(rows[0])
