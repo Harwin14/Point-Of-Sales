@@ -11,7 +11,7 @@ module.exports = (db) => {
           res.render('users/list', {
             success: req.flash('success'),
             error: req.flash('error'),
-            currentPage: 'POS - Users',
+            currentPage: 'POS - Data Users',
             user: req.session.user,
             rows
           })
@@ -49,7 +49,7 @@ module.exports = (db) => {
       
       router.get('/add', isLoggedIn, async  (req, res, next) => {
         res.render('users/add', {
-          currentPage: 'POS - Users',
+          currentPage: 'POS - Data Users',
           user: req.session.user,
         })
       });
@@ -78,7 +78,7 @@ module.exports = (db) => {
           const { userid } = req.params
           const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
           res.render('users/edit', {
-            currentPage: 'POS - Users',
+            currentPage: 'POS - Data Users',
             user: req.session.user,
             item: rows[0]
           })

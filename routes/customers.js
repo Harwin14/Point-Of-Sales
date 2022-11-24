@@ -10,7 +10,7 @@ module.exports = (db) => {
           res.render('customers/list', {
             success: req.flash('success'),
             error: req.flash('error'),
-            currentPage: 'Data Customers',
+            currentPage: 'POS - Data Customers',
             user: req.session.user,
             customers
           })
@@ -50,7 +50,7 @@ module.exports = (db) => {
     })
     router.get('/add', isLoggedIn, async (req, res, next) => {
       res.render('customers/add', {
-        currentPage: 'Data Customers',
+        currentPage: 'POS - Data Customers',
         user: req.session.user,
       })
     });
@@ -77,7 +77,7 @@ module.exports = (db) => {
         const { customerid } = req.params
         const { rows } = await db.query('SELECT * FROM customers WHERE customerid = $1', [customerid])
         res.render('customers/edit', {
-          currentPage: 'Goods Utilities',
+          currentPage: 'POS - Data Customers',
           user: req.session.user,
           item: rows[0]
         })
