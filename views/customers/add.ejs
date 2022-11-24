@@ -4,41 +4,39 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Suppliers</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Customers</h1>
 
                     <!-- DataTales Example -->
                     <form action="" method="post">
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h4 class="m-0 font-weight-bold text-primary">Form edit</h6>
+                                <h4 class="m-0 font-weight-bold text-primary">Form add</h6>
                             </div>
                             <div class="card-body">
-                               
+                                
                                 <div class="row mb-3 form-switch">
                                     <label for="name" class="form-check-label col-sm-2 text-lg">Name</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="name"
-                                            value="<%= item.name %>" >
+                                        <input type="string" class="form-control" name="name">
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
 
-                                    <label for="address" class="form-check-label col-sm-2 text-lg">Address</label>
+                                    <label for="addess" class="form-check-label col-sm-2 text-lg">Address</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="address" 
-                                            value="<%= item.address %>">
+                                        <input type="string" class="form-control" name="address">
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
 
                                     <label for="phone" class="form-check-label col-sm-2 text-lg">Phone</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="phone" 
-                                            value="<%= item.phone %>">
+                                        <input type="string" class="form-control" name="phone"></input>
                                     </div>
                                 </div>
                     
                             </div>
+                        
                             <div class="card-footer">
                                 <div class="btn-group">
                                     <button type="submit" class="btn btn-success active" title="Save" aria-current="page"><i
@@ -46,13 +44,14 @@
                                     <button class="btn btn-success ">Save</button>
                                 </div>
                                 <div class="btn-group">
-                                    <a href="/suppliers" class="btn btn-warning active" aria-current="page"><i
+                                    <a href="/customers" class="btn btn-warning active" aria-current="page"><i
                                             class="fas fa-fw fa-undo-alt"></i></a>
-                                    <a href="/suppliers" class="btn btn-warning">Back</a>
+                                    <a href="/customers" class="btn btn-warning">Back</a>
 
                                 </div>
                             </div>
                         </div>
+
                     </form>
                 </div>
         </div>
@@ -60,4 +59,5 @@
         <!-- /.container-fluid -->
 
         <!-- End of Main Content -->
+
 <%- include('../partials/footer') %>
