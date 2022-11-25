@@ -140,7 +140,6 @@ module.exports = (db) => {
                 goods: rows[0],
                 units
             })
-
         } catch (e) {
             res.send(e);
         }
@@ -150,8 +149,10 @@ module.exports = (db) => {
         try {
             let sampleFile;
             let uploadPath;
+        
             const { barcode } = req.params
             const { name, stock, purchaseprice, sellingprice, unit } = req.body
+            
             if (!req.files || Object.keys(req.files).length === 0) {
                 await db.query('UPDATE goods SET name=$1, stock=$2, purchaseprice=$3, sellingprice=$4, unit=$5 WHERE barcode=$6',
                 [name, stock, purchaseprice, sellingprice, unit, barcode])
@@ -205,7 +206,10 @@ module.exports = (db) => {
         try {
             const { barcode } = req.params
             await db.query('DELETE FROM goods WHERE barcode = $1', [barcode])
-
+            const { rows: resut } = await db.query('SELECT * FROM goods WHERE barcode = $1', [barcode])
+            const removeImg = resut[0].picture
+            const removePath = path.join(__dirname, '..', 'public', 'images', 'upload', removeImg);
+            console.log(removePath)
             res.redirect('/goods');
         } catch (err) {
             res.send(err)
