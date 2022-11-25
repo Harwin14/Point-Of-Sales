@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    $('#customer-table').DataTable({
+    $('#customers-table').DataTable({
         "lengthMenu": [[3, 5, 10, 100], [3, 5, 10, 100]],
         "processing": true,
         "serverSide": true,
