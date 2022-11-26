@@ -1,3 +1,17 @@
+
 .custom-file-input{
     cursor: pointer;
+}
+.di{
+    color: #132feb;
+}
+.me{
+    color: #00FFFF;
+}
+.fa-circle{
+    margin-left: 20px;
+}
+.dime{
+    margin-left: 50px;
+    margin-top: 20px;
 }

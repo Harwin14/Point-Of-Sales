@@ -3,7 +3,6 @@ const { isLoggedIn } = require('../helpers/util')
 const { currencyFormatter } = require('../helpers/util')
 const router = express.Router();
 const moment = require('moment');
-const { query } = require('express');
 
 module.exports = (db) => {
   router.get('/', isLoggedIn, async (req, res, next) => {

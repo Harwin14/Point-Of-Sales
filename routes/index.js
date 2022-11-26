@@ -28,7 +28,7 @@ module.exports = (db) => {
       delete user[password]
 
       req.session.user = user
-      res.redirect('/dashboard')
+      res.redirect('/dashboards')
     } catch (err) {
       req.flash('error', err)
       return res.redirect('/')
@@ -71,16 +71,6 @@ module.exports = (db) => {
       currentPage: 'POS - help',
     });
   });
-  
-  router.get('/dashboard', isLoggedIn, (req, res, next) => {
-    db.query('SELECT * FROM users', (err, data) => {
-        if (err) return res.send(err)
-        res.render('dashboard', {
-            currentPage: 'Dashboard',
-            user: req.session.user,
-            users: data.rows
-        })
-    })
-});
+
   return router;
 }
