@@ -1,0 +1,12 @@
+function getDataReports() {
+    $.ajax({
+        type: 'GET' ,
+        url:'/dashboards',
+        data: {
+            functionName: 'getDataReport'
+        },
+        success: function(response) {
+            console.log(response)
+        }
+    })
+}

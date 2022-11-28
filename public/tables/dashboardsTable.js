@@ -12,7 +12,7 @@ $(document).ready(() => {
                 }
             },
             {
-                "data": "expense",
+                "dataz": "expense",
                 render: function (data) {
                     return currencyFormatter.format(data)
                 }

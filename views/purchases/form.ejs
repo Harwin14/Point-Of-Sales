@@ -112,7 +112,7 @@
                     <div class="row mb-3 px-2">
                         <label for="supplier" class="col-sm-2 col-form-label text-dark">Supplier</label>
                         <div class="col-sm-10">
-                            <select type="password" class="form-control" id="supplier" name="supplier" >
+                            <select type="password" class="form-control" id="supplier" name="supplier" required >
                                 <option value="<%= purchases.supplier %>" ><%= purchases.name %></option>
                                 <% supplier.forEach(item=> { %>
                                     <option value="<%= item.supplierid %>">

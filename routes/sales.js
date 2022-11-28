@@ -81,8 +81,8 @@ module.exports = (db) => {
     try {
       const { invoice } = req.params
       const { totalsum, pay, change, customer } = req.body
-      await db.query('UPDATE sales SET totalsum = $1, pay = $2, change = $3, customer = $4 WHERE invoice = $5', [totalsum, pay, change, customer, invoice])
-
+    const s =   await db.query('UPDATE sales SET totalsum = $1, pay = $2, change = $3, customer = $4 WHERE invoice = $5', [totalsum, pay, change, customer, invoice])
+console.log(s)
       req.flash('success', 'Transaction Success!')
       res.redirect('/sales')
     } catch (error) {
