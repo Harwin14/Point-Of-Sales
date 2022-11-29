@@ -6,13 +6,13 @@ $(document).ready(() => {
         "ajax": "/dashboards/datatable",
         "columns": [
             {
-                "data": "monthly",
+                "data": "expense",
                 render: function (data) {
                     return `${moment(data).format('MMM YYYY')}`
                 }
             },
             {
-                "dataz": "expense",
+                "data": "expense",
                 render: function (data) {
                     return currencyFormatter.format(data)
                 }
