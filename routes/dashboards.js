@@ -75,7 +75,7 @@ module.exports = (db) => {
         }
         //   console.log(data)
         res.json(response)
-    }) 
+    })  
  
  
     return router; 
