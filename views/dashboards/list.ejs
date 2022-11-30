@@ -54,9 +54,9 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Purchases</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 715.000,00</div>
-                            </div>
-                            <div class="col-auto">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><%= currencyFormatter.format(report.rows[0].purchases, { code: 'IDR' }) %></div>
+                                </div>
+                                <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
                             </div>
                         </div>
@@ -72,7 +72,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Sales</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 859.000,00</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR' }) %></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -90,7 +90,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     Earnings </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">Rp 144.000,00</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= currencyFormatter.format(report.rows[0].sales - report.rows[0].purchases, { code: 'IDR' }) %></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -107,7 +107,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     Total Sales</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= totalsales[0].total %></div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-comments-dollar fa-2x text-gray-300"></i>
@@ -128,7 +128,7 @@
                 <!-- Area Chart -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Area Chart</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
@@ -144,12 +144,12 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-pie pt-4">
-                            <canvas id="myPieChart"></canvas>
+                            <canvas id="doughnut"></canvas>
                         </div>
                         
                         <div class="text-center dime">
@@ -253,11 +253,12 @@
     <script src="/js/sb-admin-2.js"></script>
     <script src="/js/sb-admin-2.min.js"></script> 
     <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
+    <script src="/js/demo/donat.js"></script>
+
 
     <script src="/js/util.js"></script>
     <script src="/js/moment.min.js"></script>
-    <script src="/js/reportcharts"></script>
+    <!-- <script src="/js/reportcharts"></script> -->
     
     
     

@@ -6,15 +6,12 @@ $(document).ready(() => {
         "ajax": "/dashboards/datatable",
         "columns": [
             {
-                "data": "expense",
-                render: function (data) {
-                    return `${moment(data).format('MMM YYYY')}`
-                }
+                "data": "monthly",
             },
             {
-                "data": "expense",
-                render: function (data) {
-                    return currencyFormatter.format(data)
+                "rows": "expense",
+                render: function (rows) {
+                    return currencyFormatter.format(rows)
                 }
             },
             {
