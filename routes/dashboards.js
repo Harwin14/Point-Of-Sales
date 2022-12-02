@@ -52,7 +52,7 @@ module.exports = (db) => {
             res.send(e);
         }
     });
-
+ 
     router.get('/donatChart', isLoggedIn, async (req, res, next) => {
         try {
             const { startdate, enddate } = req.query
