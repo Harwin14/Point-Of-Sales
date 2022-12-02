@@ -8,7 +8,7 @@ const readData = () => {
   let countDirect = null
   let countCustomer = null
   $.get({
-    url: 'dashboards/doughnut'
+    url: 'dashboards/chart'
   }).done((res) => {
     const { member, direct } = res
     countDirect = direct[0].count

@@ -18,23 +18,23 @@
                                     <label for="name" class="form-check-label col-sm-2 text-lg">Name</label>
                                     <div class="col-sm-10">
                                         <input type="string" class="form-control" name="name"
-                                            value="<%= item.name %>" >
+                                            value="<%= item.name %>" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
 
                                     <label for="address" class="form-check-label col-sm-2 text-lg">Address</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="address" 
-                                            value="<%= item.address %>">
+                                        <input type="text" class="form-control" name="address" 
+                                            value="<%= item.address %>" required>
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
 
                                     <label for="phone" class="form-check-label col-sm-2 text-lg">Phone</label>
                                     <div class="col-sm-10">
-                                        <input type="string" class="form-control" name="phone" 
-                                            value="<%= item.phone %>">
+                                        <input type="number" class="form-control" name="phone" 
+                                            value="<%= item.phone %>" required>
                                     </div>
                                 </div>
                     

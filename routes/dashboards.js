@@ -26,22 +26,15 @@ module.exports = (db) => {
             res.send(e);
         }
     });
+  
     router.get('/chart', isLoggedIn, async (req, res, next) => {
-        try {
-         const { rows: expense } = await db.query(`SELECT to_char(time, 'mon YY')AS monthly, to_char(time, 'MM YY')AS forsort,sum(totalsum)AS expense from purchases GROUP BY monthly, forsort ORDER BY forsort`)
-          console.log(totalpurch)
-          const { rows: totalsales } = await db.query(`SELECT to_char(time, 'mon YY')AS monthly, to_char(time, 'MM YY')AS forsort,sum(totalsum)AS revenue from sales GROUP BY monthly, forsort ORDER BY forsort`)
-          res.json({ member, direct, totalpurch, totalsales })
-        } catch (err) {
-          res.send(err)
-        }
-      })
-    router.get('/doughnut', isLoggedIn, async (req, res, next) => {
         try {
             const { rows: direct } = await db.query('SELECT COUNT(*) FROM sales WHERE customer = 1')
             const { rows: member } = await db.query('SELECT COUNT(*) FROM sales WHERE customer != 1')
-
-            res.json({ direct, member })
+           
+            const { rows: expense } = await db.query(`SELECT to_char(time, 'mon YY')AS monthly, to_char(time, 'MM YY')AS forsort,sum(totalsum)AS expense from purchases GROUP BY monthly, forsort ORDER BY forsort`)
+            const { rows: revenue } = await db.query(`SELECT to_char(time, 'mon YY')AS monthly, to_char(time, 'MM YY')AS forsort,sum(totalsum)AS revenue from sales GROUP BY monthly, forsort ORDER BY forsort`)
+            res.json({ member, direct, expense, revenue })
         } catch (error) {
             console.log(error)
         }
@@ -54,18 +47,16 @@ module.exports = (db) => {
         }
 
 
-            console.log(req.query.length)
         const limit = req.query.length
         const offset = req.query.start
         const sortBy = req.query.columns[req.query.order[0].column].data
         const sortMode = req.query.order[0].dir
         const total = await db.query(`select count(*) as total from purchases${params.length > 0 ? ` where ${params.join(' or ')}` : ''}`)
         //  ${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `
-        const value = []
+
         const rows = await db.query(`SELECT to_char(time, 'mon YY')AS monthly, to_char(time, 'MM YY')AS forsort,sum(totalsum)AS expense from purchases GROUP BY monthly, forsort ORDER BY forsort`)
         const data = await db.query(`SELECT to_char(time, 'mon YY')AS monthly, to_char(time, 'MM YY')AS forsort,sum(totalsum)AS revenue from sales GROUP BY monthly, forsort ORDER BY forsort`)
-        value.push(rows)
-        console.log(value)
+
         const response = {
             "draw": Number(req.query.draw),
             "recordsTotal": total.rows[0].total,

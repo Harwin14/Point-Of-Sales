@@ -16,7 +16,6 @@ module.exports = (db) => {
         moment
       })
     } catch (e) {
-      console.log('error awal',e)
       res.send(e);
     }
   });
@@ -48,12 +47,11 @@ module.exports = (db) => {
     try {
       const { userid } = req.session.user
       const { rows } = await db.query('INSERT INTO purchases(totalsum, operator) VALUES (0, $1) returning*', [userid])
-      console.log(rows)
 
       res.redirect(`/purchases/show/${rows[0].invoice}`)
 
     } catch (error) {
-      console.log('error create', error)
+      res.send(e)
     }
   });
 
@@ -64,7 +62,6 @@ module.exports = (db) => {
       const  users  = await db.query('SELECT * FROM users ORDER BY userid')
       const { rows: goods } = await db.query('SELECT barcode, name FROM goods ORDER BY barcode')
       const { rows } = await db.query('SELECT * FROM suppliers ORDER BY supplierid')
-     //console.log(purchases, purchases.rows[0])
      
      res.render('purchases/form', {
         currentPage: 'POS - Purchases',
@@ -76,7 +73,6 @@ module.exports = (db) => {
         moment,
     })
     } catch (e) {
-      console.log('error show', e)
       res.send(e);
     }
   });
@@ -90,7 +86,6 @@ module.exports = (db) => {
       req.flash('success', 'Transaction Success!')
       res.redirect('/purchases')
     } catch (error) {
-      console.log('error post show',error)
       req.flash('error', 'Transaction Fail!')
       return res.redirect('/purchases')
     }
@@ -116,7 +111,6 @@ module.exports = (db) => {
     
       res.json(rows[0])
     } catch (err) {
-      console.log(err)
       res.send(err)
     }
   })
@@ -128,7 +122,6 @@ module.exports = (db) => {
 
       res.json(data)
     } catch (err) {
-      console.log(err)
     }
   });
 
@@ -142,8 +135,7 @@ module.exports = (db) => {
       res.redirect(`/purchases/show/${data[0].invoice}`)
     } catch (err) {
       req.flash('error', 'Please, Edit and Delete items first ')
-
-      console.log(err)
+    
     }
   });
 

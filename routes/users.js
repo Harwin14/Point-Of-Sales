@@ -62,7 +62,7 @@ module.exports = (db) => {
     
           const hash = bcrypt.hashSync(password, saltRounds)
           await db.query('INSERT INTO users (email, name, password, role) VALUES ($1, $2, $3, $4)', [email, name, hash, role])
-          req.flash('success', 'Account was created successfully')
+          req.flash('success', 'Account created successfully')
           res.redirect('/users')
         } catch (err) {
           req.flash('error', err)

@@ -55,7 +55,6 @@ module.exports = (db) => {
   router.post('/add', isLoggedIn, async (req, res) => {
     try {
       const { unit, name, note } = req.body
-      console.log(unit, name, note)
       const { rows: units } = await db.query('SELECT * FROM units WHERE unit = $1', [unit])
       if (units.length > 0) {
         throw 'Unit already exist'
@@ -75,7 +74,6 @@ module.exports = (db) => {
     try {
       const { unit } = req.params
       const { rows } = await db.query('SELECT * FROM units WHERE unit = $1', [unit])
-      console.log(rows)
       res.render('units/edit', {
         currentPage: 'POS - Units',
         user: req.session.user,
@@ -89,7 +87,6 @@ module.exports = (db) => {
     try {
       const { unit } = req.params
       const {name, note } = req.body
-
 
       await db.query('UPDATE units SET name = $1, note = $2 WHERE unit = $3', [ name, note, unit])
 

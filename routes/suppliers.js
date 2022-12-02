@@ -55,10 +55,9 @@ module.exports = (db) => {
     router.post('/add', isLoggedIn, async (req, res) => {
       try {
         const { name, address, phone } = req.body
-        console.log(name, address, phone)
         const { rows: suppliers } = await db.query('SELECT * FROM suppliers WHERE name = $1', [name])
         if (suppliers.length > 0) {
-          throw 'Unit already exist'
+          throw 'Supplier already exist'
         }
   
   
@@ -91,10 +90,10 @@ module.exports = (db) => {
   
         await db.query('UPDATE suppliers SET name = $1, address = $2 , phone = $3 WHERE supplierid = $4', [ name, address, phone, supplierid])
   
-        req.flash('success', 'Suppliers successfully edited')
+        req.flash('success', 'Supplier successfully edited')
         res.redirect('/suppliers')
       } catch (err) {
-        req.flash('error', 'Suppliers already exist')
+        req.flash('error', 'Supplier already exist')
         return res.redirect('/suppliers')
       }
     })
@@ -102,10 +101,9 @@ module.exports = (db) => {
       try {
         const { supplierid } = req.params
         await db.query('DELETE FROM suppliers WHERE supplierid = $1', [supplierid])
-        req.flash('success', 'Suplliers deleted successfully')
+        req.flash('success', 'Supllier deleted successfully')
         res.redirect('/suppliers')
       } catch (err) {
-        console.log(err)
         req.flash('error', err)
         return res.redirect('/suppliers')
       }

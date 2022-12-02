@@ -13,7 +13,6 @@ module.exports = (db) => {
         user: req.session.user,
       })
     } catch (e) {
-      console.log('error awal',e)
       res.send(e);
     }
   });
@@ -43,13 +42,12 @@ module.exports = (db) => {
   router.get('/create', isLoggedIn, async (req, res, next) => {
     try {
       const { userid, customerid } = req.session.user
-      const { rows } = await db.query('INSERT INTO sales(totalsum, customer, operator) VALUES (0, $1, $2) returning *', [customerid,userid])
-     // console.log(rows)
+      const { rows } = await db.query('INSERT INTO sales(totalsum, customer, operator) VALUES (0, $1, $2) returning *', [customerid, userid])
 
       res.redirect(`/sales/show/${rows[0].invoice}`)
 
     } catch (error) {
-      console.log('error create', error)
+      res.send(error)
     }
   });
 
@@ -57,12 +55,11 @@ module.exports = (db) => {
     try {
       const { invoice } = req.params
       const sales = await db.query('SELECT s.*, c.* FROM sales as s LEFT JOIN customers as c ON s.customer = c.customerid where invoice = $1', [invoice])
-      const  users  = await db.query('SELECT * FROM users ORDER BY userid')
+      const users = await db.query('SELECT * FROM users ORDER BY userid')
       const { rows: goods } = await db.query('SELECT barcode, name FROM goods ORDER BY barcode')
       const { rows } = await db.query('SELECT * FROM customers ORDER BY customerid')
-     //console.log(sales, sales.rows[0])
-     
-     res.render('sales/form', {
+
+      res.render('sales/form', {
         currentPage: 'POS - Sales',
         user: req.session.user,
         sales: sales.rows[0],
@@ -70,9 +67,8 @@ module.exports = (db) => {
         users,
         customer: rows,
         moment,
-    })
+      })
     } catch (e) {
-      console.log('error show', e)
       res.send(e);
     }
   });
@@ -81,12 +77,10 @@ module.exports = (db) => {
     try {
       const { invoice } = req.params
       const { totalsum, pay, change, customer } = req.body
-    const s =   await db.query('UPDATE sales SET totalsum = $1, pay = $2, change = $3, customer = $4 WHERE invoice = $5', [totalsum, pay, change, customer, invoice])
-console.log(s)
+      const s = await db.query('UPDATE sales SET totalsum = $1, pay = $2, change = $3, customer = $4 WHERE invoice = $5', [totalsum, pay, change, customer, invoice])
       req.flash('success', 'Transaction Success!')
       res.redirect('/sales')
     } catch (error) {
-      console.log('error post show',error)
       req.flash('error', 'Transaction Fail!')
       return res.redirect('/sales')
     }
@@ -97,7 +91,7 @@ console.log(s)
     try {
       const { barcode } = req.params
       const { rows } = await db.query('SELECT * FROM goods WHERE barcode = $1', [barcode]);
-     
+
       res.json(rows[0])
     } catch (err) {
       res.send(err)
@@ -109,10 +103,9 @@ console.log(s)
       const { invoice, itemcode, quantity } = req.body
       await db.query('INSERT INTO saleitems (invoice, itemcode, quantity)VALUES ($1, $2, $3) returning *', [invoice, itemcode, quantity]);
       const { rows } = await db.query('SELECT * FROM sales WHERE invoice = $1', [invoice])
-    
+
       res.json(rows[0])
     } catch (err) {
-      console.log(err)
       res.send(err)
     }
   })
@@ -124,22 +117,19 @@ console.log(s)
 
       res.json(data)
     } catch (err) {
-      console.log(err)
     }
   });
 
- 
+
   router.get('/deleteitems/:id', isLoggedIn, async (req, res, next) => {
     try {
       const { id } = req.params
       const { rows: data } = await db.query('DELETE FROM saleitems WHERE id = $1 returning *', [id])
-      
-      req.flash('success', 'Transaction deleted successfully') 
+
+      req.flash('success', 'Transaction deleted successfully')
       res.redirect(`/sales/show/${data[0].invoice}`)
     } catch (err) {
       req.flash('error', 'Please, Edit and Delete items first ')
-
-      console.log(err)
     }
   });
 
@@ -147,7 +137,7 @@ console.log(s)
     try {
       const { invoice } = req.params
       await db.query('DELETE FROM sales WHERE invoice = $1', [invoice])
-    
+
       req.flash('success', 'Transaction deleted successfully')
       res.redirect('/sales');
     } catch (err) {

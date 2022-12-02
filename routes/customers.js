@@ -55,7 +55,6 @@ module.exports = (db) => {
     router.post('/add', isLoggedIn, async (req, res) => {
       try {
         const { name, address, phone } = req.body
-        console.log(name, address, phone)
         const { rows: customers } = await db.query('SELECT * FROM customers WHERE name = $1', [name])
         if (customers.length > 0) {
           throw 'Customer already exist'
@@ -102,10 +101,9 @@ module.exports = (db) => {
       try {
         const { customerid } = req.params
         await db.query('DELETE FROM customers WHERE customerid = $1', [customerid])
-        req.flash('success', 'Suplliers deleted successfully')
+        req.flash('success', 'Customers deleted successfully')
         res.redirect('/customers')
       } catch (err) {
-        console.log(err)
         req.flash('error', err)
         return res.redirect('/customers')
       }
