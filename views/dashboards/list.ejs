@@ -1,11 +1,12 @@
 <%- include('../partials/header') %>
 
-<div class="d-flex col mb-2">
-    <h1 class="h3  text-gray-800 px-2    ">Dashboard</h1> 
-    <div class=" d-flex justify-content-end col" >
-        <button type="submit" class="btn btn-primary " title="Save" aria-current="page"><i class="fas fa-solid fa-download"></i> Generate Report </button>
+    <div class="d-flex col mb-2">
+        <h1 class="h3  text-gray-800 px-2    ">Dashboard</h1>
+        <div class=" d-flex justify-content-end col">
+            <button type="submit" class="btn btn-primary " title="Save" aria-current="page"><i
+                    class="fas fa-solid fa-download"></i> Generate Report </button>
+        </div>
     </div>
-</div>
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -13,35 +14,39 @@
             <div class="card-header font-weight-bold text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Date Settings</h6>
             </div>
-            <div class="card-body row">
-                <div class="col-md-6">
-                    <div class="">
-                        <label for="" class="form-labe font-weight-bold">Start Date</label>
+            <form action="" method="get">
+                <div class="card-body row">
+
+                    <div class="col-md-6">
+                        <div class="">
+                            <label for="" class="form-labe font-weight-bold">Start Date</label>
+                        </div>
+                        <div class="">
+                            <input type="date" class="form-control" id="startdate" name="startdate"
+                                value="<%= query.startdate %>">
+                        </div>
                     </div>
-                    <div class="">
-                        <input type="date" class="form-control " id="">
+                    <div class="col-md-6">
+                        <div class="">
+                            <label for="" class="form-label font-weight-bold">End Date</label>
+                        </div>
+                        <div class="">
+                            <input type="date" class="form-control" id="enddate" name="enddate"
+                                value="<%= query.enddate %>">
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="">
-                        <label for="" class="form-label font-weight-bold">End Date</label>
-                    </div>
-                    <div class="">
-                        <input type="date" class="form-control " id="">
-                    </div>
-                </div>
-            </div>
-            <card class="card-footer">
-                <button type="submit" class="btn btn-success btn-icon-split">
-                    <span class="icon text-white-50"><i class="fas fa-solid fa-plus"></i></span>
-                    <span class="text">FINISH</span>
-                </button>
-                <a href="" type="submit" class="btn btn-warning btn-icon-split">
-                    <span class="icon text-white-50"><i class="fas fa-fw fa-undo-alt"></i></span>
-                    <span class="text">Back</span>
-                </a>
-            </card>
-            
+                <card class="card-footer">
+                    <button type="submit" class="btn btn-success btn-icon-split">
+                        <span class="icon text-white-50"><i class="fas fa-solid fa-plus"></i></span>
+                        <span class="text">Query</span>
+                    </button>
+                    <a href="/dashboards" class="btn btn-warning btn-icon-split">
+                        <span class="icon text-white-50"><i class="fas fa-fw fa-undo-alt"></i></span>
+                        <span class="text">Back</span>
+                    </a>
+                </card>
+            </form>
 
         </div>
         <br>
@@ -54,9 +59,11 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Purchases</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><%= currencyFormatter.format(report.rows[0].purchases, { code: 'IDR' }) %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%= currencyFormatter.format(report.rows[0].purchases, { code: 'IDR' }) %>
                                 </div>
-                                <div class="col-auto">
+                            </div>
+                            <div class="col-auto">
                                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
                             </div>
                         </div>
@@ -72,7 +79,9 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Sales</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR' }) %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR' }) %>
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -90,7 +99,10 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     Earnings </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= currencyFormatter.format(report.rows[0].sales - report.rows[0].purchases, { code: 'IDR' }) %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%= currencyFormatter.format(report.rows[0].sales - report.rows[0].purchases, {
+                                        code: 'IDR' }) %>
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -107,7 +119,9 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                     Total Sales</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"><%= totalsales[0].total %></div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <%= salesTotal[0].total %>
+                                </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-comments-dollar fa-2x text-gray-300"></i>
@@ -132,9 +146,9 @@
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
-                            <canvas id="areaChart"></canvas>
+                            <canvas id="lineChart"></canvas>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -149,9 +163,9 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-pie pt-4">
-                            <canvas id="doughnut"></canvas>
+                            <canvas id="donatChart"></canvas>
                         </div>
-                        
+
                         <div class="text-center dime">
                             <i class="fas fa-regular fa-circle di"></i>
                             Direct
@@ -170,7 +184,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dashboards-table" width="100%" cellspacing="0">
+                    <table id="dashboards-table" class="table table-bordered" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Monthly</th>
@@ -179,6 +193,24 @@
                                 <th>Earning</th>
                             </tr>
                         </thead>
+                        <tbody>
+                            <% data.forEach(item=> { %>
+                                <tr>
+                                    <td>
+                                        <%= item.monthly %> 
+                                    </td>
+                                    <td>
+                                        <%= currencyFormatter.format(item.expense, { code: 'IDR' }) %> 
+                                    </td>
+                                    <td>
+                                        <%= currencyFormatter.format(item.revenue, { code: 'IDR' }) %>
+                                    </td>
+                                    <td>
+                                        <%= currencyFormatter.format((item.revenue - item.expense), { code: 'IDR' }) %> 
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
                         <tfoot>
                             <tr>
                                 <td>Monthly</td>
@@ -190,7 +222,7 @@
 
                     </table>
                 </div>
-                
+
             </div>
         </div>
         <br>
@@ -198,18 +230,18 @@
     </div>
     <!-- End of Main Content -->
 
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; RUBICAMP 2022</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
+    <!-- Footer -->
+    <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+                <span>Copyright &copy; RUBICAMP 2022</span>
+            </div>
         </div>
-        <!-- End of Content Wrapper -->
+    </footer>
+    <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -221,7 +253,7 @@
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -238,40 +270,39 @@
             </div>
         </div>
     </div>
- 
+
+
 
 
     <!-- Core plugin JavaScript-->
     <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-     
-         
-     
+
+
+
     <!-- Page level plugins -->
     <script src="/vendor/datatables/jquery.dataTables.js"></script>
     <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.js"></script>
-    <script src="/js/sb-admin-2.min.js"></script> 
+    <script src="/js/sb-admin-2.min.js"></script>
     <!-- <script src="/js/demo/chart-area-demo.js"></script> -->
-    <script src="/js/demo/chart.js"></script>
+    <!-- <script src="/js/demo/chart.js"></script> -->
     <!-- <script src="/js/demo/donat.js"></script> -->
 
 
     <script src="/js/util.js"></script>
     <script src="/js/moment.min.js"></script>
     <!-- <script src="/js/reportcharts"></script> -->
-    
-      <!-- sources for Table -->
-      <script src="/js/dataTables.js"></script>
-    
-    
-    
-    
-    
-    
-    <!-- Page level custom scripts -->
-    <!-- <script src="/tables/demo/datatables-demo.js"></script> -->
-    <!-- <script src="/tables/dashboardsTable.js"></script>
+
+    <!-- sources for Table -->
+    <script src="/js/dataTables.js"></script>
+    <!-- <script src="/js/donatChart.js"></script> -->
+
+    <%- include('donatChart') %>
+        <%- include('lineChart') %>
+            <!-- Page level custom scripts -->
+            <!-- <script src="/tables/demo/datatables-demo.js"></script> -->
+            <!-- <script src="/tables/dashboardsTable.js"></script>
     <script src="/tables/salesTable.js"></script>
     <script src="/tables/purchasesTable.js"></script>
     <script src="/tables/customersTable.js"></script>
@@ -279,7 +310,7 @@
     <script src="/tables/usersTable.js"></script>
     <script src="/tables/unitsTable.js"></script>
     <script src="/tables/suppliersTable.js"></script> -->
-    
-</body>
 
-</html>
+            </body>
+
+            </html>
