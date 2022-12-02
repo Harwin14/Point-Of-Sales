@@ -51,7 +51,7 @@ module.exports = (db) => {
         } catch (e) {
             res.send(e);
         }
-    });  
+    });   
    
     router.get('/donatChart', isLoggedIn, async (req, res, next) => {
         try {
