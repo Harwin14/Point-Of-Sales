@@ -121,7 +121,7 @@ module.exports = (db) => {
           res.render('users/profile', {
             currentPage: 'POS - Data Users',
             user: req.session.user
-          //  item: rows[0]
+          //  item: rows[0] 
           })
         } catch (e) {
           res.send(e);
