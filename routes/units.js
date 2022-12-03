@@ -13,7 +13,7 @@ module.exports = (db) => {
       })
     } catch (e) {
       res.send(e);
-    }
+    } 
   });
 
   router.get('/datatable', async (req, res) => {
