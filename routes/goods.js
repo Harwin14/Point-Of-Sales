@@ -135,7 +135,7 @@ module.exports = (db) => {
             req.flash('success', 'Product edited successfully')
             res.redirect('/goods')
         } catch (err) {
-            res.send(err)
+            res.send(err) 
         }
     })
 
