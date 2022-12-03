@@ -93,8 +93,8 @@ module.exports = (db) => {
           //   throw 'User already exist'
           // }
   
-          await db.query('UPDATE users SET email = $1, name = $2, role = $3 WHERE userid = $4',[email, name, role, userid])
-         
+         const a =  await db.query('UPDATE users SET email = $1, name = $2, role = $3 WHERE userid = $4',[email, name, role, userid])
+         console.log('edit', a.rowCount)
           req.flash('success', 'Account edited successfully')
           res.redirect('/users')
         } catch (err) {
@@ -114,6 +114,76 @@ module.exports = (db) => {
           return res.redirect('/users')
         }
       });
-
+      router.get('/profile', isLoggedIn, async  (req, res, next) => {
+        try {
+          //  const { userid } = req.session
+          //  const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
+          res.render('users/profile', {
+            currentPage: 'POS - Data Users',
+            user: req.session.user
+            // item: rows[0]
+          })
+        } catch (e) {
+          res.send(e);
+        }
+      });
+      router.post('/profile', isLoggedIn, async (req, res) => {
+        try {
+          let user = req.session.user
+          let userid = user.userid
+          const { email, name } = req.body
+          // const { rows: users } = await db.query('SELECT * FROM users WHERE email = $1', [email])
+          // if (users.length > 0) {
+          //   throw 'User already exist'
+          // }
+          console.log(userid)
+          const s = await db.query('UPDATE users SET email = $1, name = $2 WHERE userid = $3', [email, name, userid])
+          console.log('ini untuk profil',s)
+          req.flash('success', 'Profil edited successfully')
+          res.redirect('/users')
+        } catch (err) {
+          console.log(err)
+          req.flash('error', 'Profil already exist')
+          return res.redirect('/users')
+        }
+      })
+      router.get('/changepassword', isLoggedIn, async  (req, res, next) => {
+        try {
+          //  const { userid } = req.session
+          //  const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
+          res.render('users/changepassword', {
+            currentPage: 'POS - Data Users',
+            user: req.session.user
+            // item: rows[0]
+          })
+        } catch (e) {
+          res.send(e);
+        }
+      });
+      router.post('users/changepassword', isLoggedIn, async (req, res) => {
+        try {
+          let user = req.session.user
+          let userid = user.userid
+          const { password, newpassword, repassword } = req.body
+          const { rows: emails } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
+          console.log(emails)
+          if (rows[0].password == password) throw 'password wrong'
+          if (!bcrypt.compareSync(password, emails[0].password)) throw `Password doesn't match`
+         
+         if(newpassword != repassword) throw "Retype password doesn't match"
+         const hash = bcrypt.hashSync(password, saltRounds)
+         await db.query('UPDATE INTO users (  password ) VALUES ($1)', [ hash ])
+         const users = emails[0]
+         delete users[password]
+   
+         
+          req.flash('success', 'Your password has been updated')
+          res.redirect('users/changepassword')
+        } catch (err) {
+          req.flash('error', 'ERROR OI')
+          console.log(err)
+          return res.redirect('users /changepassword')
+        }
+      })
     return router
 }

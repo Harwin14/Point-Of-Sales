@@ -29,7 +29,6 @@ const customersRouter = require('./routes/customers')(pool);
 const salesRouter = require('./routes/sales')(pool);
 const dashboardsRouter = require('./routes/dashboards')(pool);
 
-
 const app = express();
 
 // view engine setup
@@ -60,6 +59,7 @@ app.use('/purchases', purchasesRouter);
 app.use('/customers', customersRouter);
 app.use('/sales', salesRouter);
 app.use('/dashboards', dashboardsRouter);
+
 
 
 
