@@ -120,7 +120,7 @@ module.exports = (db) => {
       const { invoice } = req.params
       const { rows: data } = await db.query('SELECT purchaseitems.*, goods.name FROM purchaseitems LEFT JOIN goods ON purchaseitems.itemcode = goods.barcode WHERE purchaseitems.invoice = $1 ORDER BY purchaseitems.id', [invoice])
 
-      res.json(data)
+      res.json(data) 
     } catch (err) {
     }
   });
