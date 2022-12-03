@@ -117,11 +117,11 @@ module.exports = (db) => {
       router.get('/profile', isLoggedIn, async  (req, res, next) => {
         try {
           //  const { userid } = req.session
-          //  const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
+          //   const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
           res.render('users/profile', {
             currentPage: 'POS - Data Users',
             user: req.session.user
-            // item: rows[0]
+          //  item: rows[0]
           })
         } catch (e) {
           res.send(e);
@@ -139,11 +139,11 @@ module.exports = (db) => {
           console.log(userid)
           const s = await db.query('UPDATE users SET email = $1, name = $2 WHERE userid = $3', [email, name, userid])
           console.log('ini untuk profil',s)
-          req.flash('success', 'Profil edited successfully')
+          req.flash('success', 'Profile edited successfully')
           res.redirect('/users')
         } catch (err) {
           console.log(err)
-          req.flash('error', 'Profil already exist')
+          req.flash('error', 'Profile already exist')
           return res.redirect('/users')
         }
       })
