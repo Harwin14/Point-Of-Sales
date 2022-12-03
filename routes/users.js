@@ -126,7 +126,7 @@ module.exports = (db) => {
         } catch (e) {
           res.send(e);
         }
-      });
+      }); 
       router.post('/profile', isLoggedIn, async (req, res) => {
         try {
           let user = req.session.user

@@ -44,7 +44,7 @@ module.exports = (db) => {
             "recordsFiltered": total.rows[0].total,
             "data": data.rows
         }
-        res.json(response)
+        res.json(response) 
     })
     router.get('/add', isLoggedIn, async (req, res, next) => {
       res.render('customers/add', {
