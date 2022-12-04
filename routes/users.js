@@ -208,7 +208,7 @@ module.exports = (db) => {
     } catch (err) { 
       req.flash('error',err)
       console.log('inierror', err)
-      return res.redirect('/users/changepassword')
+      return res.redirect('/users/changepassword') 
     }
   })
   return router
