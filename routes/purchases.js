@@ -136,7 +136,7 @@ module.exports = (db) => {
     } catch (err) {
       req.flash('error', 'Please, Edit and Delete items first ')
     
-    }
+    } 
   });
 
   router.get('/delete/:invoice', isLoggedIn, async (req, res, next) => {
