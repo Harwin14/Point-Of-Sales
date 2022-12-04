@@ -115,6 +115,8 @@ module.exports = (db) => {
   });
   router.get('/profile', isLoggedIn, async (req, res, next) => {
     try {
+   
+     
       let user = req.session.user
       let userid = user.userid
 
@@ -132,16 +134,16 @@ module.exports = (db) => {
   });
   router.post('/profile', isLoggedIn, async (req, res) => {
     try {
+
       let user = req.session.user
       let userid = user.userid
       const { email, name } = req.body
-      const { rows: users } = await db.query('SELECT * FROM users WHERE email = $1', [email])
-      console.log(users)
-      //if (users.length > 0) throw 'User already exist'
-      //masalahnya kalo mau ganti namanya saja maka muncul 'error', 'Profile with that email already exist'
-
-      await db.query('UPDATE users SET email = $1, name = $2 WHERE userid = $3', [email, name, userid])
-
+      await db.query('UPDATE users SET email = $1, name = $2 WHERE userid = $3 returning *', [email, name, userid])
+     
+      const { rows: emails } = await db.query('SELECT * FROM users WHERE email = $1', [email])
+      const data = emails[0]
+      req.session.user = data
+      req.session.save()
       req.flash('success', 'Profile edited successfully')
       res.redirect('/users/profile')
     } catch (err) {
@@ -172,10 +174,6 @@ module.exports = (db) => {
   // })
   router.get('/changepassword', isLoggedIn, async (req, res, next) => {
     try {
-      // let user = req.session.user
-      // let userid = user.userid
-      // const { rows: emails } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
-      // console.log(emails)
       res.render('users/changepassword', {
         success: req.flash('success'),
         error: req.flash('error'),
