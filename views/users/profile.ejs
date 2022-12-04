@@ -14,6 +14,9 @@
                             <div class="card-header py-3">
                                 <h4 class="m-0 font-weight-bold text-primary">Your Profile</h6>
                             </div>
+                            <div class="text-center">
+                                <%- include('../partials/alert') %>
+                            </div>  
                             <div class="card-body">
                                 
                                 <div class="row mb-3 form-switch">
@@ -21,7 +24,7 @@
                                     <label for="email" class="form-check-label col-sm-2 text-lg text-gray-800">Email</label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control" name="email" placeholder="Email"
-                                            value="<%= user.email %>">
+                                            value="<%= users[0].email %>">
                                     </div>
                                 </div>
                                 <div class="row mb-3 form-switch">
@@ -29,7 +32,7 @@
                                     <label for="name" class="form-check-label col-sm-2 text-lg text-gray-800">Nama</label>
                                     <div class="col-sm-10">
                                         <input type="string" class="form-control" name="name" placeholder="Name"
-                                            value="<%= user.name %>">
+                                            value="<%= users[0].name %>">
                                     </div>
                                 </div>
                                 

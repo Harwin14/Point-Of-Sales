@@ -36,7 +36,6 @@ module.exports = (db) => {
             for (const key in newData) {
                 income.push(newData[key])
             }
-            console.log(newData)
             res.render('dashboards/list', {
                 success: req.flash('success'),
                 error: req.flash('error'),

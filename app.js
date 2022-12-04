@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(flash());
 app.use(fileUpload());
 app.use(session({
-  secret: 'rubicamp',
+  secret: '$2b$10$QYt7/xXW6h9ZYV4dLZQ3v.FkJvLmhqMkYs3qaBaxrIoHSgDa38I.e',
   resave: false,
   saveUninitialized: true
 }))
