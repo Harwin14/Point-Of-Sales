@@ -277,7 +277,7 @@ $(document).ready(() => {
              render: function (data){
                 return currencyFormatter.format(data)
             }  
-        },
+        }, 
         { "data": "name" },
         {
             "data": "invoice",
