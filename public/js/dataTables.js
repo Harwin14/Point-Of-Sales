@@ -276,7 +276,7 @@ $(document).ready(() => {
              "data": "totalsum" ,
              render: function (data){
                 return currencyFormatter.format(data)
-            }  
+            }   
         }, 
         { "data": "name" },
         {
