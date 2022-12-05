@@ -12632,6 +12632,12 @@ left: 270px;
 top: -40px;
 text-decoration-color: red;
 }
-#content{
-
+.gene{
+  background-image: linear-gradient(180deg, #132fab 40%, aqua 100%);
+}
+.se{
+  background-image: linear-gradient(180deg, #132fab 40%, aqua 100%);
+}
+div.Admin{
+  display: none;
 }

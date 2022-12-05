@@ -3,7 +3,7 @@
     <div class="d-flex col mb-2">
         <h1 class="h3  text-gray-800 px-2    ">Dashboard</h1>
         <div class=" d-flex justify-content-end col">
-            <button type="submit" class="btn btn-primary " title="Save" aria-current="page"><i
+            <button type="submit" class="btn btn-primary gene" title="Save" aria-current="page"><i
                     class="fas fa-solid fa-download"></i> Generate Report </button>
         </div>
     </div>
@@ -19,7 +19,7 @@
 
                     <div class="col-md-6">
                         <div class="">
-                            <label for="" class="form-labe font-weight-bold">Start Date</label>
+                            <label for="" class="form-labe font-weight-bold  text-gray-800">Start Date</label>
                         </div>
                         <div class="">
                             <input type="date" class="form-control" id="startdate" name="startdate"
@@ -28,7 +28,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="">
-                            <label for="" class="form-label font-weight-bold">End Date</label>
+                            <label for="" class="form-label font-weight-bold  text-gray-800">End Date</label>
                         </div>
                         <div class="">
                             <input type="date" class="form-control" id="enddate" name="enddate"
@@ -118,7 +118,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Total Sales</div>
+                                    Total Transactions</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
                                     <%= salesTotal[0].total %>
                                 </div>
@@ -163,7 +163,7 @@
                     <!-- Card Body -->
                     <div class="card-body">
                         <div class="chart-pie pt-4">
-                            <canvas id="donatChart"></canvas>
+                            <canvas id="doughnutChart"></canvas>
                         </div>
 
                         <div class="text-center dime">
@@ -185,7 +185,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     <table id="dashboards-table" class="table table-bordered" width="100%" cellspacing="0">
-                        <thead>
+                        <thead class="text-gray-800">
                             <tr>
                                 <th>Monthly</th>
                                 <th>Expense</th>
@@ -229,88 +229,8 @@
         <!-- /.container-fluid -->
     </div>
     <!-- End of Main Content -->
-
-    <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; RUBICAMP 2022</span>
-            </div>
-        </div>
-    </footer>
-    <!-- End of Footer -->
-
-    </div>
-    <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Do you want to leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select Logout to end your session</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="/">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+   <!-- sources for Table -->
 
 
-
-
-    <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-
-
-    <!-- Page level plugins -->
-    <script src="/vendor/datatables/jquery.dataTables.js"></script>
-    <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.js"></script>
-    <script src="/js/sb-admin-2.min.js"></script>
-    <!-- <script src="/js/demo/chart-area-demo.js"></script> -->
-    <!-- <script src="/js/demo/chart.js"></script> -->
-    <!-- <script src="/js/demo/donat.js"></script> -->
-
-
-    <script src="/js/util.js"></script>
-    <script src="/js/moment.min.js"></script>
-    <!-- <script src="/js/reportcharts"></script> -->
-
-    <!-- sources for Table -->
-    <script src="/js/dataTables.js"></script>
-    <!-- <script src="/js/donatChart.js"></script> -->
-
-    <%- include('donatChart') %>
-        <%- include('lineChart') %>
-            <!-- Page level custom scripts -->
-            <!-- <script src="/tables/demo/datatables-demo.js"></script> -->
-            <!-- <script src="/tables/dashboardsTable.js"></script>
-    <script src="/tables/salesTable.js"></script>
-    <script src="/tables/purchasesTable.js"></script>
-    <script src="/tables/customersTable.js"></script>
-    <script src="/tables/goodsTable.js"></script>
-    <script src="/tables/usersTable.js"></script>
-    <script src="/tables/unitsTable.js"></script>
-    <script src="/tables/suppliersTable.js"></script> -->
-
-            </body>
-
-            </html>
+   <%- include('chart') %>
+   <%- include('../partials/footer') %>

@@ -28,7 +28,12 @@ module.exports = (db) => {
       delete user[password]
 
       req.session.user = user
-      res.redirect('/dashboards')
+      if (user.role = 'Operator'){
+        res.redirect('/sales')
+      }else { 
+        res.redirect('/dashboards')
+      }
+     
     } catch (err) {
       req.flash('error', err)
       return res.redirect('/')

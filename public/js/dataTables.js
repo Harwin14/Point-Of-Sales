@@ -311,6 +311,7 @@ $(document).ready(() => {
                                                         </div>
                                                     </div>
                                                 </div>
+        
                 `
             }
         }
