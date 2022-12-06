@@ -26,7 +26,7 @@ module.exports = (db) => {
     }
     if (req.query.search.value) {
       params.push(`email ilike '%${req.query.search.value}%'`) 
-    }
+    }  
 
 
     const limit = req.query.length
