@@ -213,10 +213,17 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td>Monthly</td>
-                                <td>Expense</td>
-                                <td>Revenue</td>
-                                <td>Earning</td>
+                                <td>Total</td>
+                                <td> 
+                                    <%=  new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].purchases) %>
+                                    
+                                </td>
+                                <td>
+                                    <%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR'}) %>
+                                </td>
+                                <td>
+                                    <%= currencyFormatter.format((report.rows[0].sales -  report.rows[0].purchases), {code: 'IDR'}) %>
+                                </td>
                             </tr>
                         </tfoot>
 

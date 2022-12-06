@@ -1,11 +1,11 @@
-const { isLoggedIn } = require('../helpers/util')
+const { isAdmin } = require('../helpers/util')
 const express = require('express');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const router = express.Router();
 
 module.exports = (db) => {
-  router.get('/', isLoggedIn, async (req, res, next) => {
+  router.get('/', isAdmin, async (req, res, next) => {
     try {
       res.render('users/list', {
         success: req.flash('success'),
@@ -45,13 +45,13 @@ module.exports = (db) => {
     res.json(response)
   })
 
-  router.get('/add', isLoggedIn, async (req, res, next) => {
+  router.get('/add', isAdmin, async (req, res, next) => {
     res.render('users/add', {
       currentPage: 'POS - Data Users',
       user: req.session.user,
     })
   });
-  router.post('/add', isLoggedIn, async (req, res) => {
+  router.post('/add', isAdmin, async (req, res) => {
     try {
       const { email, name, password, role } = req.body
 
@@ -71,7 +71,7 @@ module.exports = (db) => {
   })
 
 
-  router.get('/edit/:userid', isLoggedIn, async (req, res, next) => {
+  router.get('/edit/:userid', isAdmin, async (req, res, next) => {
     try {
       const { userid } = req.params
       const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
@@ -84,7 +84,7 @@ module.exports = (db) => {
       res.send(e);
     }
   });
-  router.post('/edit/:userid', isLoggedIn, async (req, res) => {
+  router.post('/edit/:userid', isAdmin, async (req, res) => {
     try {
       const { userid } = req.params
       const { email, name, role } = req.body
@@ -102,7 +102,7 @@ module.exports = (db) => {
     }
   })
 
-  router.get('/delete/:userid', isLoggedIn, async (req, res, next) => {
+  router.get('/delete/:userid', isAdmin, async (req, res, next) => {
     try {
       const { userid } = req.params
       await db.query('DELETE FROM users WHERE userid = $1', [userid])
@@ -113,7 +113,7 @@ module.exports = (db) => {
       return res.redirect('/users')
     }
   });
-  router.get('/profile', isLoggedIn, async (req, res, next) => {
+  router.get('/profile', isAdmin, async (req, res, next) => {
     try {
    
      
@@ -132,7 +132,7 @@ module.exports = (db) => {
       res.send(e);
     }
   });
-  router.post('/profile', isLoggedIn, async (req, res) => {
+  router.post('/profile', isAdmin, async (req, res) => {
     try {
 
       let user = req.session.user
@@ -152,7 +152,7 @@ module.exports = (db) => {
       return res.redirect('/users/profile')
     }
   })
-  // router.post('/profile', isLoggedIn, async (req, res) => {
+  // router.post('/profile', isAdmin, async (req, res) => {
   //   try {
   //     let user = req.session.user
   //     let userid = user.userid
@@ -172,7 +172,7 @@ module.exports = (db) => {
   //     return res.redirect('/users/profile')
   //   }
   // })
-  router.get('/changepassword', isLoggedIn, async (req, res, next) => {
+  router.get('/changepassword', isAdmin, async (req, res, next) => {
     try {
       res.render('users/changepassword', {
         success: req.flash('success'),
@@ -184,7 +184,7 @@ module.exports = (db) => {
       res.send(e);
     }
   });
-  router.post('/changepassword', isLoggedIn, async (req, res) => {
+  router.post('/changepassword', isAdmin, async (req, res) => {
     try {
       let user = req.session.user
       let userid = user.userid

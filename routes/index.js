@@ -28,10 +28,10 @@ module.exports = (db) => {
       delete user[password]
 
       req.session.user = user
-      if (user.role = 'Operator'){
-        res.redirect('/sales')
-      }else { 
+      if (user.role === 'Admin'){
         res.redirect('/dashboards')
+      }else { 
+        res.redirect('/sales')
       }
      
     } catch (err) {

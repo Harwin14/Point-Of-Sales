@@ -1,13 +1,13 @@
 const express = require('express');
 const path = require('path')
-const { isLoggedIn } = require('../helpers/util')
+const { isAdmin } = require('../helpers/util')
 // const { currencyFormatter } = require('../helpers/util')
 const router = express.Router();
 
 
 
 module.exports = (db) => {
-    router.get('/', isLoggedIn, async (req, res, next) => {
+    router.get('/', isAdmin, async (req, res, next) => {
         try {
             res.render('goods/list', {
                 success: req.flash('success'),
@@ -49,7 +49,7 @@ module.exports = (db) => {
         res.json(response)
     })
 
-    router.get('/add', isLoggedIn, async (req, res, next) => {
+    router.get('/add', isAdmin, async (req, res, next) => {
         try {
             const { rows: units } = await db.query('SELECT * FROM units') // untuk column units
             res.render('goods/add', {
@@ -63,7 +63,7 @@ module.exports = (db) => {
             res.send(e);
         }
     });
-  router.post('/add', isLoggedIn, async (req, res, next) => {
+  router.post('/add', isAdmin, async (req, res, next) => {
         try {
             let sampleFile;
             let uploadPath;
@@ -93,7 +93,7 @@ module.exports = (db) => {
             res.send(error)
         }
     })
-    router.get('/edit/:barcode', isLoggedIn, async (req, res, next) => {
+    router.get('/edit/:barcode', isAdmin, async (req, res, next) => {
         try {
             const { barcode } = req.params
             const { rows } = await db.query('SELECT * FROM goods WHERE barcode = $1', [barcode])
@@ -109,7 +109,7 @@ module.exports = (db) => {
         }
     });
 
-    router.post('/edit/:barcode', isLoggedIn, async (req, res, next) => {
+    router.post('/edit/:barcode', isAdmin, async (req, res, next) => {
         try {
             let sampleFile;
             let uploadPath;
@@ -139,7 +139,7 @@ module.exports = (db) => {
         }
     })
 
-    router.get('/delete/:barcode', isLoggedIn, async (req, res, next) => {
+    router.get('/delete/:barcode', isAdmin, async (req, res, next) => {
         try {
             const { barcode } = req.params
             await db.query('DELETE FROM goods WHERE barcode = $1', [barcode])

@@ -2,16 +2,16 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <span class="sidebar-brand d-flex align-items-center justify-content-center"  href="/dashboards">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"  href="/dashboards">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink "></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">POS</div>
-            </span>
+            </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-            <% if (user.role=='Admin') { %> 
+            <% if (user.role == 'Admin') { %> 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item <%= currentPage == 'POS - Data Reports' ? 'active' : '' %>">
                 <a class="nav-link" href="/dashboards">
@@ -30,7 +30,7 @@
            
 
             <!-- Nav Item - Utilities Collapse Menu -->
-           <% if (user.role=='Admin') { %> 
+           <% if ( user.role == 'Admin') { %> 
                 <li class="nav-item <%= currentPage == 'Goods Utilities' ? 'active' : ''  %>">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                         aria-expanded="true" aria-controls="collapseUtilities">

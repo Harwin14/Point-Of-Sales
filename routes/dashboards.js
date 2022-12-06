@@ -1,17 +1,18 @@
 const express = require('express');
-const { isLoggedIn } = require('../helpers/util')
+const { isAdmin } = require('../helpers/util')
 
 const router = express.Router();
-const currencyFormatter = require('currency-formatter');
+ const currencyFormatter = require('currency-formatter');//ini manggil functions curencyFormatter
 
 
 
 
 module.exports = (db) => {
-    router.get('/', isLoggedIn, async (req, res, next) => {
+    router.get('/', isAdmin, async (req, res, next) => {
         try {
             //card expense, revenue, earning and total transactions
             const report = await db.query(`SELECT (SELECT SUM(totalsum) FROM purchases) AS purchases,(SELECT SUM(totalsum) FROM sales) AS sales`)
+            console.log(report.rows[0].purchases)
             const { rows: salesTotal } = await db.query('SELECT COUNT(*) AS total FROM sales')        
             const { rows: totalpurchase } = await db.query("SELECT to_char(time, 'Mon YY') AS monthly, to_char(time, 'YYMM') AS forsort, sum(totalsum) AS totalpurchases FROM purchases GROUP BY monthly, forsort ORDER BY forsort")
             const { rows: totalsales } = await db.query("SELECT to_char(time, 'Mon YY') AS monthly, to_char(time, 'YYMM') AS forsort, sum(totalsum) AS totalsales FROM sales GROUP BY monthly, forsort ORDER BY forsort")
@@ -43,7 +44,7 @@ module.exports = (db) => {
                 currentPage: 'POS - Data Reports',
                 user: req.session.user,
                 report,
-                currencyFormatter,
+                 currencyFormatter,
                 salesTotal,
                 query: req.query,
                 data: income
@@ -53,7 +54,7 @@ module.exports = (db) => {
         }
     });   
    
-    router.get('/chart', isLoggedIn, async (req, res, next) => {
+    router.get('/chart', isAdmin, async (req, res, next) => {
         try {
             const { startdate, enddate } = req.query
 
