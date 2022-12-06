@@ -23,7 +23,7 @@ module.exports = (db) => {
 
     if (req.query.search.value) {
       params.push(`name ilike '%${req.query.search.value}%'`)
-    }
+    } 
     if (req.query.search.value) {
       params.push(`email ilike '%${req.query.search.value}%'`) 
     }   
