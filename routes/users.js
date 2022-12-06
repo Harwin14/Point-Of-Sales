@@ -28,7 +28,7 @@ module.exports = (db) => {
       params.push(`email ilike '%${req.query.search.value}%'`)  
     }   
 
-
+ 
     const limit = req.query.length 
     const offset = req.query.start
     const sortBy = req.query.columns[req.query.order[0].column].data
