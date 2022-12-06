@@ -22,8 +22,8 @@
                             <label for="" class="form-labe font-weight-bold  text-gray-800">Start Date</label>
                         </div>
                         <div class="">
-                            <input type="date" class="form-control" id="startdate" name="startdate"
-                                value="<%= query.startdate %>">
+                            <input type="date" class="form-control" id="starthate" name="starthate"
+                                value="<%= query.starthate %>">
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -196,34 +196,34 @@
                         <tbody>
                             <% data.forEach(item=> { %>
                                 <tr>
-                                    <td>
+                                    <th>
                                         <%= item.monthly %> 
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         <%= currencyFormatter.format(item.expense, { code: 'IDR' }) %> 
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         <%= currencyFormatter.format(item.revenue, { code: 'IDR' }) %>
-                                    </td>
-                                    <td>
+                                    </th>
+                                    <th>
                                         <%= currencyFormatter.format((item.revenue - item.expense), { code: 'IDR' }) %> 
-                                    </td>
+                                    </th>
                                 </tr>
                                 <% }) %>
                         </tbody>
-                        <tfoot>
+                        <tfoot class="text-gray-800">
                             <tr>
-                                <td>Total</td>
-                                <td> 
+                                <th>Total</th>
+                                <th> 
                                     <%=  new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].purchases) %>
                                     
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     <%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR'}) %>
-                                </td>
-                                <td>
+                                </th>
+                                <th>
                                     <%= currencyFormatter.format((report.rows[0].sales -  report.rows[0].purchases), {code: 'IDR'}) %>
-                                </td>
+                                </th>
                             </tr>
                         </tfoot>
 
