@@ -38,7 +38,7 @@ module.exports = (db) => {
       req.flash('error', err)
       return res.redirect('/')
     }
-  })
+  }) 
 
   router.get('/register',  (req, res, next) => {
     res.render('register', {
