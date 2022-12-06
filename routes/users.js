@@ -29,7 +29,7 @@ module.exports = (db) => {
     }    
 
  
-    const limit = req.query.length 
+    const limit = req.query.length  
     const offset = req.query.start
     const sortBy = req.query.columns[req.query.order[0].column].data
     const sortMode = req.query.order[0].dir
