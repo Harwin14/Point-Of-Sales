@@ -19,7 +19,7 @@ module.exports = (db) => {
                 stock,
                 counter 
             })
-        } catch (e) {
+        } catch (e) { 
             res.send(e);
         }   
     });  
