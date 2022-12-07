@@ -100,7 +100,7 @@ table.dataTable > thead .sorting_desc_disabled:after {
   display: block;
   opacity: 0.125;
   right: 10px;
-  line-height: 15px;
+  line-height: 12px;
   font-size: 0.8em;
 }
 table.dataTable > thead .sorting:before,
@@ -111,7 +111,8 @@ table.dataTable > thead .sorting_desc_disabled:before {
   right: 0.5em;
   content: "▲";
   bottom: 50%;
-  font-size: larger
+  font-size: medium;
+  color: #2563eb;
   
 }
 table.dataTable > thead .sorting:after,
@@ -122,8 +123,8 @@ table.dataTable > thead .sorting_desc_disabled:after {
   right: 0.5em;
   content: "▼";
   top: 50%;
-  font-size: larger
-
+  font-size: medium;
+  color: #2563eb;
 }
 table.dataTable > thead .sorting_asc:before,
 table.dataTable > thead .sorting_desc:after {

@@ -1,6 +1,7 @@
 
 .custom-file-input{
     cursor: pointer;
+    border-color: grey;
 }
 .di{
     color: #132feb;
