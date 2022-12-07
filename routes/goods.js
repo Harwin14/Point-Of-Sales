@@ -17,12 +17,12 @@ module.exports = (db) => {
                 currentPage: 'Goods Utilities',
                 user: req.session.user,
                 stock,
-                counter
+                counter 
             })
         } catch (e) {
             res.send(e);
         } 
-    });
+    }); 
 
 
     router.get('/datatable', async (req, res) => {
