@@ -16,7 +16,7 @@ module.exports = (db) => {
                 error: req.flash('error'),
                 currentPage: 'Goods Utilities',
                 user: req.session.user,
-                stock,
+                stock, 
                 counter 
             })
         } catch (e) { 
