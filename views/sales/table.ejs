@@ -1,7 +1,6 @@
 <script>
     $(document).ready(function () {
         let getidUser = '<%= user.userid %>'
-        console.log(getidUser)
         $('#sales-table').DataTable({
             "lengthMenu": [[3, 5, 10, 100], [3, 5, 10, 100]],
             "processing": true,
@@ -67,16 +66,10 @@
                 }
             ],
             "rowCallback": function (row, data, index) {
-                console.log(data.operator,'ini table wkwkwk')
                 if (data.operator != getidUser) {
                     $('td', row).eq(6).css({
-                        'background-color': '#eef2ff',
+                        'opacity': '0.5',                 
                         'pointer-events': 'none',
-                        'cursor': 'default',
-                        'color': 'white',
-                        'border-style': 'solid',
-                        'border-color': '#bdbdbd'
-
                     })
                 }
             },

@@ -8,16 +8,20 @@ const router = express.Router();
 
 module.exports = (db) => {
     router.get('/', isAdmin, async (req, res, next) => {
-        try {
+        try { 
+            const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
+        const {rows: counter } = await db.query('SELECT count(*) FROM goods where stock <20')
             res.render('goods/list', {
                 success: req.flash('success'),
                 error: req.flash('error'),
                 currentPage: 'Goods Utilities',
                 user: req.session.user,
+                stock,
+                counter
             })
         } catch (e) {
             res.send(e);
-        }
+        } 
     });
 
 

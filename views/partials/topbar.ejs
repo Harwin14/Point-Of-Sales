@@ -64,7 +64,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter"></span>
+                        <span class="badge badge-danger badge-counter"><%= counter[0].count %> </span>
                     </a>
                     <!-- Dropdown - Alerts -->
                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -72,40 +72,17 @@
                         <h6 class="dropdown-header">
                             Alerts Center
                         </h6>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-primary">
-                                    <i class="fas fa-file-alt text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">30 November 2022</div>
-                                <span class="font-weight-bold">Harwin,You have 4612 new emails!</span>
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-success">
-                                    <i class="fas fa-donate text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">25 November 2020</div>
-                                Rp 12.000.000,- has been remove from your account!
-                            </div>
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <div class="mr-3">
-                                <div class="icon-circle bg-warning">
-                                    <i class="fas fa-exclamation-triangle text-white"></i>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="small text-gray-500">26 November 2020</div>
-                                Spending Alert: We've noticed unusually high spending for your account.
-                            </div>
-                        </a>
-                        <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        <% stock.forEach(item => { %>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="fas fa-solid fa-biohazard bg-warning rounded-circle fa-2x px-3 py-3"></i>
+                                    <div class="col">
+                                        <div class="small text-gray-500">Barcode: <%= item.barcode %></div>
+                                        <span> Stock Alert: <%= item.name %></span>
+                                        <span>only have stock <%= item.stock %> </span>only have stock <%= item.stock %> 
+                                    </div>
+                            </a>
+                        <% }) %>       
+                       
                     </div>
                 </li>
 

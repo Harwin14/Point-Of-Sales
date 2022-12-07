@@ -10,6 +10,8 @@ const router = express.Router();
 module.exports = (db) => {
     router.get('/', isAdmin, async (req, res, next) => {
         try {
+            const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
+            const {rows: counter } = await db.query('SELECT count(*) FROM goods where stock <20')
             //card expense, revenue, earning and total transactions
             const report = await db.query(`SELECT (SELECT SUM(totalsum) FROM purchases) AS purchases,(SELECT SUM(totalsum) FROM sales) AS sales`)
             const { rows: salesTotal } = await db.query('SELECT COUNT(*) AS total FROM sales')        
@@ -44,7 +46,9 @@ module.exports = (db) => {
                  currencyFormatter,
                 salesTotal,
                 query: req.query,
-                data: income
+                data: income,
+                stock,
+                counter
             })
         } catch (e) {
             res.send(e);

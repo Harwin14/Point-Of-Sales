@@ -7,11 +7,13 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/', isAdmin, async (req, res, next) => {
     try {
+      const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
       res.render('users/list', {
         success: req.flash('success'),
         error: req.flash('error'),
         currentPage: 'POS - Data Users',
         user: req.session.user,
+        stock
       })
     } catch (e) {
       res.send(e);
