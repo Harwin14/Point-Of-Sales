@@ -64,7 +64,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-fw"></i>
                         <!-- Counter - Alerts -->
-                        <span class="badge badge-danger badge-counter"><%= counter[0].count %> </span>
+                        <div id="count"></div>
                     </a>
                     <!-- Dropdown - Alerts -->
                     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -72,16 +72,10 @@
                         <h6 class="dropdown-header">
                             Alerts Center
                         </h6>
-                        <% stock.forEach(item => { %>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <i class="fas fa-solid fa-biohazard bg-warning rounded-circle fa-2x px-3 py-3"></i>
-                                    <div class="col">
-                                        <div class="small text-gray-500">Barcode: <%= item.barcode %></div>
-                                        <span> Stock Alert: <%= item.name %></span>
-                                        <span>only have stock <%= item.stock %> </span>only have stock <%= item.stock %> 
-                                    </div>
-                            </a>
-                        <% }) %>       
+                        <div id="alert">
+                        </div>
+               
+                          
                        
                     </div>
                 </li>
@@ -119,3 +113,33 @@
 
         </nav>
 <!-- End of Topbar -->
+<script>
+    $.get({
+        url: '/notif/alert'
+    }).done((data)=> {
+        console.log(data)
+        let html = ''
+        data.forEach(item => {
+            html += `
+            <a href="/purchases" class="dropdown-item d-flex align-items-center" href="#">
+                    <i class="fas fa-solid fa-biohazard bg-warning rounded-circle fa-1x px-2 py-2"></i>
+                    <div class="col">
+                        <div class="small text-gray-500">Barcode: ${item.barcode}</div>
+                        <span>Stock Alert : </span><strong >${item.name}</strong>
+                        <br>
+                        <span>only have stock </span><strong > ${item.stock} pcs</strong>
+                    
+                    </div>
+            </a>            
+            `
+        })
+        $('#alert').html(html)
+    })
+    $.get({
+        url:'/notif/count'
+    }).done((data) => {
+        console.log(data)
+        let html = `<span class="badge badge-danger badge-counter">${data[0].count} </span>`
+    $('#count').html(html)
+    })
+</script>

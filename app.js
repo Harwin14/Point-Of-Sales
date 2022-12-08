@@ -28,6 +28,7 @@ const purchasesRouter = require('./routes/purchases')(pool);
 const customersRouter = require('./routes/customers')(pool);
 const salesRouter = require('./routes/sales')(pool);
 const dashboardsRouter = require('./routes/dashboards')(pool);
+const notifRouter = require('./routes/notif')(pool);
 
 const app = express();
 
@@ -59,6 +60,7 @@ app.use('/purchases', purchasesRouter);
 app.use('/customers', customersRouter);
 app.use('/sales', salesRouter);
 app.use('/dashboards', dashboardsRouter);
+app.use('/notif', notifRouter);
 
 
 

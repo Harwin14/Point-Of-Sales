@@ -6,13 +6,11 @@ const router = express.Router();
 module.exports = (db) => {
     router.get('/', isLoggedIn, async  (req, res, next) => {
         try {
-          const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
           res.render('suppliers/list', {
             success: req.flash('success'),
             error: req.flash('error'),
             currentPage: 'POS - Data Suppliers',
-            user: req.session.user,
-            stock
+            user: req.session.user
           })
         } catch (e) {
           res.send(e);

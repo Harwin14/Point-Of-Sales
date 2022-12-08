@@ -7,13 +7,11 @@ const router = express.Router();
 module.exports = (db) => {
   router.get('/', isAdmin, async (req, res, next) => {
     try {
-      const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
       res.render('users/list', {
         success: req.flash('success'),
         error: req.flash('error'),
         currentPage: 'POS - Data Users',
-        user: req.session.user,
-        stock
+        user: req.session.user
       })
     } catch (e) {
       res.send(e);
@@ -149,7 +147,6 @@ module.exports = (db) => {
       req.flash('success', 'Profile edited successfully')
       res.redirect('/users/profile')
     } catch (err) {
-      console.log(err)
       req.flash('error', 'Profile with that email already exist [please change email too]')
       return res.redirect('/users/profile')
     }
@@ -160,7 +157,6 @@ module.exports = (db) => {
   //     let userid = user.userid
   //     const { email, name } = req.body
   //     const { rows: users } = await db.query('SELECT * FROM users WHERE email = $1', [email])
-  //     console.log(users)
   //     if (users.length > 0) throw 'User already exist'
   //     //masalahnya kalo mau ganti namanya saja maka muncul 'error', 'Profile with that email already exist'
 
@@ -169,7 +165,6 @@ module.exports = (db) => {
   //     req.flash('success', 'Profile edited successfully')
   //     res.redirect('/users/profile')
   //   } catch (err) {
-  //     console.log(err)
   //     req.flash('error', 'Profile with that email already exist [please change email too]')
   //     return res.redirect('/users/profile')
   //   }
@@ -201,13 +196,11 @@ module.exports = (db) => {
      if (!bcrypt.compareSync(oldpassword, rows[0].password)) throw `Your Old password is wrong`
 
       const hash = bcrypt.hashSync(newpassword, saltRounds)
-      const { s } = await db.query('UPDATE users set password = $1 WHERE userid = $2', [hash, userid])
-      console.log('update',s)
+      await db.query('UPDATE users set password = $1 WHERE userid = $2', [hash, userid])
       req.flash('success', 'Your password has been updated')
       res.redirect('/users/changepassword')
     } catch (err) { 
       req.flash('error',err)
-      console.log('inierror', err)
       return res.redirect('/users/changepassword') 
     }
   })

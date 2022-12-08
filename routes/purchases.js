@@ -8,7 +8,6 @@ const moment = require('moment');
 module.exports = (db) => {
   router.get('/', isLoggedIn, async (req, res, next) => {
     try {
-      const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
      const { rows } =  await db.query(`SELECT p.operator, u.userid FROM purchases as p LEFT JOIN users as u ON p.operator = u.userid`)
  
       res.render('purchases/list', {
@@ -17,8 +16,7 @@ module.exports = (db) => {
         currentPage: 'POS - Purchases',
         user: req.session.user,
         currencyFormatter,
-        moment,
-        stock
+        moment
       })
     } catch (e) {
       res.send(e);

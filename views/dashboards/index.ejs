@@ -1,16 +1,16 @@
 <%- include('../partials/header') %>
 
     <div class="d-flex col mb-2">
-        <h1 class="h3  text-gray-800 px-2    ">Dashboard</h1>
+        <h1 class="h3  text-gray-800 px-2 ">Dashboard</h1>
         <div class=" d-flex justify-content-end col">
-            <button type="submit" class="btn btn-primary gene" title="Save" aria-current="page"><i
+            <button type="submit" onclick="exportTableToCSV('report.csv')" class="btn btn-primary gene" title="Save" aria-current="page"><i
                     class="fas fa-solid fa-download"></i> Generate Report </button>
         </div>
     </div>
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        <div class="card">
+        <div class="card"> 
             <div class="card-header font-weight-bold text-primary">
                 <h6 class="m-0 font-weight-bold text-primary">Date Settings</h6>
             </div>
@@ -60,7 +60,7 @@
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Purchases</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <%= currencyFormatter.format(report.rows[0].purchases, { code: 'IDR' }) %>
+                                    <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].purchases) %>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -80,7 +80,7 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                     Sales</div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR' }) %>
+                                    <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].sales) %>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -100,8 +100,7 @@
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                     Earnings </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                    <%= currencyFormatter.format(report.rows[0].sales - report.rows[0].purchases, {
-                                        code: 'IDR' }) %>
+                                    <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].sales - report.rows[0].purchases) %>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -200,13 +199,13 @@
                                         <%= item.monthly %> 
                                     </th>
                                     <th>
-                                        <%= currencyFormatter.format(item.expense, { code: 'IDR' }) %> 
+                                        <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(item.expense) %> 
                                     </th>
                                     <th>
-                                        <%= currencyFormatter.format(item.revenue, { code: 'IDR' }) %>
+                                        <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(item.revenue) %>
                                     </th>
                                     <th>
-                                        <%= currencyFormatter.format((item.revenue - item.expense), { code: 'IDR' }) %> 
+                                        <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format((item.revenue - item.expense)) %> 
                                     </th>
                                 </tr>
                                 <% }) %>
@@ -216,13 +215,13 @@
                                 <th>Total</th>
                                 <th> 
                                     <%=  new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].purchases) %>
-                                    
+                                 
                                 </th>
                                 <th>
-                                    <%= currencyFormatter.format(report.rows[0].sales, { code: 'IDR'}) %>
+                                    <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format(report.rows[0].sales) %>
                                 </th>
                                 <th>
-                                    <%= currencyFormatter.format((report.rows[0].sales -  report.rows[0].purchases), {code: 'IDR'}) %>
+                                    <%= new Intl.NumberFormat('id-ID' , { style: 'currency', currency: 'IDR'}).format((report.rows[0].sales -  report.rows[0].purchases) ) %>
                                 </th>
                             </tr>
                         </tfoot>
@@ -238,6 +237,6 @@
     <!-- End of Main Content -->
    <!-- sources for Table -->
 
-
+   <%- include('csv') %>
    <%- include('chart') %>
    <%- include('../partials/footer') %>

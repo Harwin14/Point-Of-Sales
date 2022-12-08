@@ -6,13 +6,11 @@ const moment = require('moment');
 module.exports = (db) => {
   router.get('/', isLoggedIn, async (req, res, next) => {
     try {
-      const {rows: stock } = await db.query('SELECT barcode, name, stock FROM goods where stock <20')
       res.render('sales/list', {
         success: req.flash('success'),
         error: req.flash('error'),
         currentPage: 'POS - Sales',
-        user: req.session.user,
-        stock
+        user: req.session.user
       })
     } catch (e) {
       res.send(e);
@@ -62,6 +60,8 @@ module.exports = (db) => {
       const { rows } = await db.query('SELECT * FROM customers ORDER BY customerid')
 
       res.render('sales/form', {
+        success: req.flash('success'),
+        error: req.flash('error'),
         currentPage: 'POS - Sales',
         user: req.session.user,
         sales: sales.rows[0],
