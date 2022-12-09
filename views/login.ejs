@@ -11,7 +11,7 @@
             <hr class="col-20">
             <h2 class="h3 mb-5 fw-normal">Welcome Back!</h2>
 
-            <div class=" form-floating mb-3">
+            <div class=" form-floating mb-4">
               <input type="email" class="form-control rounded-pill" id="email" name="email" placeholder="Enter Email Address....">
               <label for="email">Email</label>
             </div>
@@ -20,15 +20,16 @@
                 placeholder="Password">
               <label for="password">Password</label>
             </div>
-            <div class="checkbox mb-3 col-5 px-2 py-2 rmb">
-              <label class="mb-2 ck">
+            <div class="checkbox mb-1 col-5 px-2 py-2 rmb">
+              <label class="mb-1 ck">
                 <input type="checkbox" value="remember-me"> Remember me
               </label>
             </div>
             <%- include('./partials/alert') %>
             <button class="w-100 btn btn-lg btn-primary rounded-pill mb-4" type="submit">Log in</button>
-            <p class="mt-6 mb-3 text-muted">Doesn't have account? please <a href="/register">sign up</a></p>
+            <br>
             <hr>
+            <br>
             <p class="mt-6 mb-3 text-muted no-text-decoration"><a href="/forget">Forgot Password?</a></p>
           </div>
         </form>

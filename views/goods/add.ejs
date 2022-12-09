@@ -11,7 +11,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary">Form add</h6>
-                        
+
                 </div>
                 <div class="card-body">
 
@@ -53,7 +53,7 @@
                     <div class="row mb-3 form-switch">
                         <label for="unit" class="form-check-label col-sm-2 text-lg">Unit</label>
                         <div class="col-sm-10">
-                            <select class="form-control" name="unit" style="cursor: pointer;"required>
+                            <select class="form-control" name="unit" style="cursor: pointer;" required>
                                 <option disabled selected>Choose unit...</option>
                                 <% units.forEach((item)=> { %>
                                     <option value="<%= item.unit %>">
@@ -69,8 +69,10 @@
                         <label for="unit" class="form-check-label col-sm-2 text-lg">Picture</label>
                         <div class="col-sm-10">
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input form-control" id="imgInp" name="sampleFile" required>
-                                <label class="custom-file-label form-control" for="validatedCustomFile">Choose file...</label>
+                                <input type="file" class="custom-file-input form-control" id="imgInp" name="sampleFile"
+                                    required>
+                                <label class="custom-file-label form-control" for="validatedCustomFile">Choose
+                                    file...</label>
                             </div>
                             <img id="blah" src="#" alt="your image" class="img-thumbnail" width="400" height="auto" />
                         </div>
@@ -81,8 +83,8 @@
                             <span class="icon text-white-50"><i class="fas fa-solid fa-database"></i></span>
                             <span class="text">Save</span>
                         </button>
-                   
-                        
+
+
                         <div class="btn-group">
                             <a href="/goods" class="btn btn-warning active" aria-current="page"><i
                                     class="fas fa-fw fa-undo-alt"></i></a>
@@ -94,6 +96,10 @@
         </form>
     </div>
     </div>
+</div>
+    <!-- /.container-fluid -->
+
+    <!-- End of Main Content -->
     <script>
         imgInp.onchange = evt => {
             const [file] = imgInp.files
@@ -106,8 +112,4 @@
             $(this).next('.custom-file-label').addClass("selected").html(sampleFile);
         });
     </script>
-    <!-- /.container-fluid -->
-
-    <!-- End of Main Content -->
-
     <%- include('../partials/footer') %>

@@ -10298,14 +10298,15 @@
 		 *
 		 *  @name DataTable.defaults.columnDefs
 		 */
-		"aoColumnDefs": [
-			{
-				bSortable: false,
-				aTargets: [ -1 ]
-			}
-		],
+		// "aoColumnDefs": [
+		// 	{
+		// 		bSortable: false,
+		// 		aTargets: [ -1 ]
+		// 	}
+		// ],
 	
-	
+		"aoColumnDefs":null,
+		
 		/**
 		 * Basically the same as `search`, this parameter defines the individual column
 		 * filtering state at initialisation time. The array must be of the same size

@@ -1,9 +1,7 @@
 const express = require('express');
 const path = require('path')
 const { isAdmin } = require('../helpers/util')
-// const { currencyFormatter } = require('../helpers/util')
 const router = express.Router();
-
 
 
 module.exports = (db) => {
@@ -20,7 +18,6 @@ module.exports = (db) => {
         }    
     });  
 
-
     router.get('/datatable', async (req, res) => {
         let params = []
 
@@ -32,8 +29,7 @@ module.exports = (db) => {
         }
        
        
-        
-        const limit = req.query.length
+         const limit = req.query.length
         const offset = req.query.start
         const sortBy = req.query.columns[req.query.order[0].column].data
         const sortMode = req.query.order[0].dir
@@ -47,7 +43,7 @@ module.exports = (db) => {
             "data": data.rows
         }
         res.json(response)
-    })
+    });
 
     router.get('/add', isAdmin, async (req, res, next) => {
         try {
@@ -63,15 +59,14 @@ module.exports = (db) => {
             res.send(e);
         }
     });
+
   router.post('/add', isAdmin, async (req, res, next) => {
         try {
             let sampleFile;
             let uploadPath;
-
             if (!req.files || Object.keys(req.files).length === 0) {
                 return res.status(400).send('No files were uploaded.');
             }
-
             // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
             sampleFile = req.files.sampleFile;
             const imagesfiles = `${Date.now()}-${sampleFile.name}`
@@ -92,7 +87,8 @@ module.exports = (db) => {
         } catch (error) {
             res.send(error)
         }
-    })
+    });
+
     router.get('/edit/:barcode', isAdmin, async (req, res, next) => {
         try {
             const { barcode } = req.params
@@ -115,8 +111,7 @@ module.exports = (db) => {
             let uploadPath;
         
             const { barcode } = req.params
-            const { name, stock, purchaseprice, sellingprice, unit } = req.body
-            
+            const { name, stock, purchaseprice, sellingprice, unit } = req.body      
             if (!req.files || Object.keys(req.files).length === 0) {
                 await db.query('UPDATE goods SET name=$1, stock=$2, purchaseprice=$3, sellingprice=$4, unit=$5 WHERE barcode=$6',
                 [name, stock, purchaseprice, sellingprice, unit, barcode])
@@ -137,7 +132,7 @@ module.exports = (db) => {
         } catch (err) { 
             res.send(err) 
         }
-    })
+    });
 
     router.get('/delete/:barcode', isAdmin, async (req, res, next) => {
         try {
@@ -149,6 +144,7 @@ module.exports = (db) => {
             res.send(err)
         }
     });
+
     return router;
 
 }

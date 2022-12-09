@@ -1,4 +1,4 @@
-/*!
+/*!Authors
  * Start Bootstrap - SB Admin 2 v4.1.3 (https://startbootstrap.com/theme/sb-admin-2)
  * Copyright 2013-2021 Start Bootstrap
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin-2/blob/master/LICENSE)
@@ -71,7 +71,6 @@ body {
   margin: 0;
   font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
-  font-weight: 400;
   line-height: 1.5;
   color: #858796;
   text-align: left;
@@ -2132,11 +2131,9 @@ pre code {
   color: #6e707e;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #4b54a0;
+  border: 1px solid #d1d3e2;
   border-radius: 0.35rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  border-color: grey;
-  
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -8369,11 +8366,11 @@ button.bg-dark:focus {
 }
 
 .shadow-sm {
-  box-shadow: 0 0.125rem 0.25rem 0 rgba(58, 59, 69, 0.2) !important;
+  box-shadow: 0 0 10px 0 rgba(58, 59, 69, 0.2) !important;
 }
 
 .shadow {
-  box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+  box-shadow: 0.5px 2px 3px 0 rgba(58, 59, 69) !important;
 }
 
 .shadow-lg {
@@ -11437,7 +11434,7 @@ a:focus {
 }
 
 .topbar .dropdown-list .dropdown-header {
-  background-color: #4e73df;
+  background-image: linear-gradient(180deg, #132fab 40%, aqua 100%);
   border: 1px solid #4e73df;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
@@ -12640,9 +12637,7 @@ text-decoration-color: red;
 .se{
   background-image: linear-gradient(180deg, #132fab 40%, aqua 100%);
 }
-.card {
-  border-color: grey;
-}
+
 #content {
-  background-color: #eef2ff;
+  background-color: #f0fdff;
 }

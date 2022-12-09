@@ -31,7 +31,6 @@ module.exports = (db) => {
             params.push(`phone ilike '%${req.query.search.value}%'`)
         }
        
-
         const limit = req.query.length
         const offset = req.query.start
         const sortBy = req.query.columns[req.query.order[0].column].data
@@ -53,6 +52,7 @@ module.exports = (db) => {
         user: req.session.user,
       })
     });
+
     router.post('/add', isLoggedIn, async (req, res) => {
       try {
         const { name, address, phone } = req.body
@@ -69,7 +69,8 @@ module.exports = (db) => {
         req.flash('error', err)
         return res.redirect('/customers')
       }
-    })
+    });
+
     router.get('/edit/:customerid', isLoggedIn, async (req, res, next) => {
       try {
         const { customerid } = req.params
@@ -83,12 +84,11 @@ module.exports = (db) => {
         res.send(e);
       }
     });
+
     router.post('/edit/:customerid', isLoggedIn, async (req, res) => {
       try {
         const { customerid } = req.params
         const {name, address, phone } = req.body
-  
-  
         await db.query('UPDATE customers SET name = $1, address = $2 , phone = $3 WHERE customerid = $4', [ name, address, phone, customerid])
   
         req.flash('success', 'Customers successfully edited')
@@ -97,7 +97,8 @@ module.exports = (db) => {
         req.flash('error', 'Customers already exist')
         return res.redirect('/customers')
       }
-    })
+    });
+
     router.get('/delete/:customerid', isLoggedIn, async (req, res, next) => {
       try {
         const { customerid } = req.params
@@ -111,5 +112,4 @@ module.exports = (db) => {
     });
 
     return router;
-
 }

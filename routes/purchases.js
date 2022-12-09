@@ -1,15 +1,12 @@
+const moment = require('moment');
 const express = require('express');
 const { isLoggedIn } = require('../helpers/util')
 const { currencyFormatter } = require('../helpers/util')
-
 const router = express.Router();
-const moment = require('moment');
 
 module.exports = (db) => {
   router.get('/', isLoggedIn, async (req, res, next) => {
     try {
-     const { rows } =  await db.query(`SELECT p.operator, u.userid FROM purchases as p LEFT JOIN users as u ON p.operator = u.userid`)
- 
       res.render('purchases/list', {
         success: req.flash('success'),
         error: req.flash('error'),
@@ -22,6 +19,7 @@ module.exports = (db) => {
       res.send(e);
     }
   });
+  
   router.get('/datatable', async (req, res) => {
     let params = []
 
@@ -34,7 +32,6 @@ module.exports = (db) => {
     const sortMode = req.query.order[0].dir
 
     const total = await db.query(`select count(*) as total from purchases${params.length > 0 ? ` where ${params.join(' or ')}` : ''}`)
-    //const data = await db.query(`select * from purchases${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
     const data = await db.query(`SELECT p.*, s.* FROM purchases as p LEFT JOIN suppliers as s ON p.supplier = s.supplierid${params.length > 0 ? ` where ${params.join(' or ')}` : ''} order by ${sortBy} ${sortMode} limit ${limit} offset ${offset} `)
     const response = {
       "draw": Number(req.query.draw),
@@ -43,7 +40,7 @@ module.exports = (db) => {
       "data": data.rows
     }
     res.json(response)
-  })
+  });
 
 
   router.get('/create', isLoggedIn, async (req, res, next) => {
@@ -52,7 +49,6 @@ module.exports = (db) => {
       const { rows } = await db.query('INSERT INTO purchases(totalsum, operator) VALUES (0, $1) returning*', [userid])
 
       res.redirect(`/purchases/show/${rows[0].invoice}`)
-
     } catch (error) {
       res.send(e)
     }
@@ -94,7 +90,7 @@ module.exports = (db) => {
       req.flash('error', 'Transaction Fail!')
       return res.redirect('/purchases')
     }
-  })
+  });
 
 
   router.get('/goods/:barcode', isLoggedIn, async (req, res) => {
@@ -106,7 +102,7 @@ module.exports = (db) => {
     } catch (err) {
       res.send(err)
     }
-  })
+  });
 
   router.post('/additem', isLoggedIn, async (req, res) => {
     try {
@@ -118,7 +114,7 @@ module.exports = (db) => {
     } catch (err) {
       res.send(err)
     }
-  })
+  });
 
   router.get('/details/:invoice', isLoggedIn, async (req, res, next) => {
     try {
@@ -129,7 +125,6 @@ module.exports = (db) => {
     } catch (err) {
     }
   });
-
 
   router.get('/deleteitems/:id', isLoggedIn, async (req, res, next) => {
     try {
@@ -156,5 +151,6 @@ module.exports = (db) => {
       return res.redirect('/purchases')
     }
   });
+
   return router;
 }     

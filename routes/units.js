@@ -44,7 +44,7 @@ module.exports = (db) => {
         "data": data.rows
     }
     res.json(response)
-})
+});
 
   router.get('/add', isAdmin, async (req, res, next) => {
     res.render('units/add', {
@@ -68,7 +68,7 @@ module.exports = (db) => {
       req.flash('error', err)
       return res.redirect('/units')
     }
-  })
+  });
   
   router.get('/edit/:unit', isAdmin, async  (req, res, next) => {
     try {
@@ -83,6 +83,7 @@ module.exports = (db) => {
       res.send(e);
     }
   });
+
   router.post('/edit/:unit', isAdmin, async (req, res) => {
     try {
       const { unit } = req.params
@@ -96,7 +97,7 @@ module.exports = (db) => {
       req.flash('error', 'Unit already exist')
       return res.redirect('/units')
     }
-  })
+  });
 
   router.get('/delete/:unit', isAdmin, async (req, res, next) => {
     try {

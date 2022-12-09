@@ -1,8 +1,11 @@
+
 html,
 body {
     height: 100%;
 }
-
+*{
+  padding-bottom: 10px ;
+}
 body {
     display: flex;
     align-items: center;
@@ -112,6 +115,7 @@ body {
     top: 250px;
     right: 5px;
     width: 720px;
+    height: 300px;
 }
 .h1 {
     font-size: 50px;

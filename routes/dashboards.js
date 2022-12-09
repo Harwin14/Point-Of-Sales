@@ -3,9 +3,7 @@ const { isAdmin } = require('../helpers/util')
 
 const router = express.Router();
 const currencyFormatter = require('currency-formatter');//ini manggil functions curencyFormatter
-
 let data_exporter = require('json2csv').Parser;
-
 
 
 module.exports = (db) => {
@@ -66,6 +64,7 @@ module.exports = (db) => {
                 for (let i = 0; i < totalpurchase.length; i++) {
                     getMonth.push(totalpurchase[i].monthly)
                 }
+
                 let data = totalpurchase.concat(totalsales)
                 let newData = {}
                 let income = []
@@ -79,7 +78,6 @@ module.exports = (db) => {
                 for (const key in newData) {
                     income.push(Number(newData[key].revenue - newData[key].expense))
                 }
-
                 res.json({ direct, member, getMonth, income })
             } else if (startdate) {
                 const { startdate } = req.query
@@ -96,7 +94,6 @@ module.exports = (db) => {
                 let data = totalpurchase.concat(totalsales)
                 let newData = {}
                 let income = []
-
                 data.forEach(item => {
                     if (newData[item.forsort]) {
                         newData[item.forsort] = { monthly: item.monthly, expense: item.totalpurchases ? item.totalpurchases : newData[item.forsort].expense, revenue: item.totalsales ? item.totalsales : newData[item.forsort].revenue }
@@ -104,7 +101,6 @@ module.exports = (db) => {
                         newData[item.forsort] = { monthly: item.monthly, expense: item.totalpurchases ? item.totalpurchases : 0, revenue: item.totalsales ? item.totalsales : 0 }
                     }
                 });
-
                 for (const key in newData) {
                     income.push(Number(newData[key].revenue - newData[key].expense))
                 }
@@ -120,10 +116,10 @@ module.exports = (db) => {
                 for (let i = 0; i < totalpurchase.length; i++) {
                     getMonth.push(totalpurchase[i].monthly)
                 }
+
                 let data = totalpurchase.concat(totalsales)
                 let newData = {}
                 let income = []
-
                 data.forEach(item => {
                     if (newData[item.forsort]) {
                         newData[item.forsort] = { monthly: item.monthly, expense: item.totalpurchases ? item.totalpurchases : newData[item.forsort].expense, revenue: item.totalsales ? item.totalsales : newData[item.forsort].revenue }
@@ -131,7 +127,6 @@ module.exports = (db) => {
                         newData[item.forsort] = { monthly: item.monthly, expense: item.totalpurchases ? item.totalpurchases : 0, revenue: item.totalsales ? item.totalsales : 0 }
                     }
                 });
-
                 for (const key in newData) {
                     income.push(Number(newData[key].revenue - newData[key].expense))
                 }
@@ -160,15 +155,13 @@ module.exports = (db) => {
                         newData[item.forsort] = { monthly: item.monthly, expense: item.totalpurchases ? item.totalpurchases : 0, revenue: item.totalsales ? item.totalsales : 0 }
                     }
                 });
-
                 for (const key in newData) {
                     income.push(Number(newData[key].revenue - newData[key].expense))
                 }
                 res.json({ direct, member, getMonth, income })
             }
         } catch (error) {
-            // res(error, 'im sorry,, please tell the developer about this error')
-            res.send(error);
+             res.send(error, 'im sorry,, please tell the developer about this error')
         }
     });
     // router.get('/export', isAdmin, async (req, res, next) => {
@@ -219,7 +212,5 @@ module.exports = (db) => {
     //         res.send(error);
     //     }
     // });
-
     return router;
-
 }

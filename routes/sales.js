@@ -16,6 +16,7 @@ module.exports = (db) => {
       res.send(e);
     }
   });
+  
   router.get('/datatable', async (req, res) => {
     let params = []
 
@@ -36,7 +37,7 @@ module.exports = (db) => {
       "data": data.rows
     }
     res.json(response)
-  })
+  });
 
 
   router.get('/create', isLoggedIn, async (req, res, next) => {
@@ -45,7 +46,6 @@ module.exports = (db) => {
       const { rows } = await db.query('INSERT INTO sales(totalsum, customer, operator) VALUES (0, $1, $2) returning *', [customerid, userid])
 
       res.redirect(`/sales/show/${rows[0].invoice}`)
-
     } catch (error) {
       res.send(error)
     }
@@ -57,7 +57,7 @@ module.exports = (db) => {
       const sales = await db.query('SELECT s.*, c.* FROM sales as s LEFT JOIN customers as c ON s.customer = c.customerid where invoice = $1', [invoice])
       const users = await db.query('SELECT * FROM users ORDER BY userid')
       const { rows: goods } = await db.query('SELECT barcode, name FROM goods ORDER BY barcode')
-      const { rows } = await db.query('SELECT * FROM customers ORDER BY customerid')
+      const { rows: customer } = await db.query('SELECT * FROM customers ORDER BY customerid')
 
       res.render('sales/form', {
         success: req.flash('success'),
@@ -67,7 +67,7 @@ module.exports = (db) => {
         sales: sales.rows[0],
         goods,
         users,
-        customer: rows,
+        customer,
         moment,
       })
     } catch (e) {
@@ -86,7 +86,7 @@ module.exports = (db) => {
       req.flash('error', 'Transaction Fail!')
       return res.redirect('/sales')
     }
-  })
+  });
 
 
   router.get('/goods/:barcode', isLoggedIn, async (req, res) => {
@@ -98,7 +98,7 @@ module.exports = (db) => {
     } catch (err) {
       res.send(err)
     }
-  })
+  });
 
   router.post('/additem', isLoggedIn, async (req, res) => {
     try {
@@ -110,7 +110,7 @@ module.exports = (db) => {
     } catch (err) {
       res.send(err)
     }
-  })
+  });
 
   router.get('/details/:invoice', isLoggedIn, async (req, res, next) => {
     try {

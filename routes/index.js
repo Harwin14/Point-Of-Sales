@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -21,7 +20,6 @@ module.exports = (db) => {
       const { rows: emails } = await db.query('SELECT * FROM users WHERE email = $1', [email])
 
       if (emails.length == 0) throw `Email doesn't exist`
-
       if (!bcrypt.compareSync(password, emails[0].password)) throw `Password doesn't match`
 
       const user = emails[0]
@@ -38,7 +36,7 @@ module.exports = (db) => {
       req.flash('error', err)
       return res.redirect('/')
     }
-  }) 
+  });
 
   router.get('/register',  (req, res, next) => {
     res.render('register', {
@@ -47,6 +45,7 @@ module.exports = (db) => {
       error: req.flash('error')
     });
   });
+
   router.post('/register', async (req, res) => {
     try {
       const { email, name, password, role } = req.body
@@ -64,7 +63,8 @@ module.exports = (db) => {
       req.flash('error', err)
       return res.redirect('/register')
     }
-  })
+  });
+
   router.get('/logout', function (req, res, next) {
     req.session.destroy(function (err) {
       res.redirect('/')

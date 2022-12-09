@@ -1,4 +1,4 @@
-const { isAdmin } = require('../helpers/util')
+const { isAdmin, isLoggedIn } = require('../helpers/util')
 const express = require('express');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -23,13 +23,12 @@ module.exports = (db) => {
 
     if (req.query.search.value) {
       params.push(`name ilike '%${req.query.search.value}%'`)
-    } 
+    }
     if (req.query.search.value) {
-      params.push(`email ilike '%${req.query.search.value}%'`)  
-    }    
+      params.push(`email ilike '%${req.query.search.value}%'`)
+    }
 
- 
-    const limit = req.query.length  
+    const limit = req.query.length
     const offset = req.query.start
     const sortBy = req.query.columns[req.query.order[0].column].data
     const sortMode = req.query.order[0].dir
@@ -54,7 +53,6 @@ module.exports = (db) => {
   router.post('/add', isAdmin, async (req, res) => {
     try {
       const { email, name, password, role } = req.body
-
       const { rows: emails } = await db.query('SELECT * FROM users WHERE email = $1', [email])
       if (emails.length > 0) {
         throw 'User already exist'
@@ -62,14 +60,13 @@ module.exports = (db) => {
 
       const hash = bcrypt.hashSync(password, saltRounds)
       await db.query('INSERT INTO users (email, name, password, role) VALUES ($1, $2, $3, $4)', [email, name, hash, role])
-      req.flash('success', 'Account created successfully')
+      req.flash('success', 'User created successfully')
       res.redirect('/users')
     } catch (err) {
       req.flash('error', err)
       return res.redirect('/users')
     }
   })
-
 
   router.get('/edit/:userid', isAdmin, async (req, res, next) => {
     try {
@@ -94,7 +91,7 @@ module.exports = (db) => {
       // }
 
       await db.query('UPDATE users SET email = $1, name = $2, role = $3 WHERE userid = $4', [email, name, role, userid])
-      req.flash('success', 'Account edited successfully')
+      req.flash('success', 'User edited successfully')
       res.redirect('/users')
     } catch (err) {
       req.flash('error', 'User already exist')
@@ -106,17 +103,15 @@ module.exports = (db) => {
     try {
       const { userid } = req.params
       await db.query('DELETE FROM users WHERE userid = $1', [userid])
-      req.flash('success', 'Account deleted successfully')
+      req.flash('success', 'User deleted successfully')
       res.redirect('/users')
     } catch (e) {
       req.flash('error', err)
       return res.redirect('/users')
     }
   });
-  router.get('/profile', isAdmin, async (req, res, next) => {
+  router.get('/profile', isLoggedIn, async (req, res, next) => {
     try {
-   
-     
       let user = req.session.user
       let userid = user.userid
 
@@ -132,14 +127,13 @@ module.exports = (db) => {
       res.send(e);
     }
   });
-  router.post('/profile', isAdmin, async (req, res) => {
+  router.post('/profile', isLoggedIn, async (req, res) => {
     try {
-
       let user = req.session.user
       let userid = user.userid
       const { email, name } = req.body
       await db.query('UPDATE users SET email = $1, name = $2 WHERE userid = $3 returning *', [email, name, userid])
-     
+
       const { rows: emails } = await db.query('SELECT * FROM users WHERE email = $1', [email])
       const data = emails[0]
       req.session.user = data
@@ -169,7 +163,7 @@ module.exports = (db) => {
   //     return res.redirect('/users/profile')
   //   }
   // })
-  router.get('/changepassword', isAdmin, async (req, res, next) => {
+  router.get('/changepassword', isLoggedIn, async (req, res, next) => {
     try {
       res.render('users/changepassword', {
         success: req.flash('success'),
@@ -181,27 +175,23 @@ module.exports = (db) => {
       res.send(e);
     }
   });
-  router.post('/changepassword', isAdmin, async (req, res) => {
+  router.post('/changepassword', isLoggedIn, async (req, res) => {
     try {
       let user = req.session.user
       let userid = user.userid
       const { oldpassword, newpassword, repassword } = req.body
       const { rows } = await db.query('SELECT * FROM users WHERE userid = $1', [userid])
-    
 
-      if (newpassword != repassword)  throw "Retype Password, New password doesn't match"
-      
-     // if (rows[0].password !== oldpassword) throw 'password wrong'
-      
-     if (!bcrypt.compareSync(oldpassword, rows[0].password)) throw `Your Old password is wrong`
+      if (newpassword != repassword) throw "Retype Password, New password doesn't match"
+      if (!bcrypt.compareSync(oldpassword, rows[0].password)) throw `Your Old password is wrong`
 
       const hash = bcrypt.hashSync(newpassword, saltRounds)
       await db.query('UPDATE users set password = $1 WHERE userid = $2', [hash, userid])
       req.flash('success', 'Your password has been updated')
       res.redirect('/users/changepassword')
-    } catch (err) { 
-      req.flash('error',err)
-      return res.redirect('/users/changepassword') 
+    } catch (err) {
+      req.flash('error', err)
+      return res.redirect('/users/changepassword')
     }
   })
   return router

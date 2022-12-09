@@ -17,8 +17,6 @@ const pool = new Pool({
 })
 
 
-
-
 const indexRouter = require('./routes/index')(pool);
 const usersRouter = require('./routes/users')(pool);
 const unitsRouter = require('./routes/units')(pool);
@@ -61,8 +59,6 @@ app.use('/customers', customersRouter);
 app.use('/sales', salesRouter);
 app.use('/dashboards', dashboardsRouter);
 app.use('/notif', notifRouter);
-
-
 
 
 // catch 404 and forward to error handler

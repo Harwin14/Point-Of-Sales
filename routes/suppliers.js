@@ -45,13 +45,15 @@ module.exports = (db) => {
             "data": data.rows
         }
         res.json(response)
-    })
+    });
+
     router.get('/add', isLoggedIn, async (req, res, next) => {
       res.render('suppliers/add', {
         currentPage: 'POS - Data Suppliers',
         user: req.session.user,
       })
     });
+
     router.post('/add', isLoggedIn, async (req, res) => {
       try {
         const { name, address, phone } = req.body
@@ -60,7 +62,6 @@ module.exports = (db) => {
           throw 'Supplier already exist'
         }
   
-  
         await db.query('INSERT INTO suppliers (name, address, phone) VALUES ($1, $2, $3)', [name, address, phone])
         req.flash('success', 'Unit created successfully')
         res.redirect('/suppliers')
@@ -68,11 +69,13 @@ module.exports = (db) => {
         req.flash('error', err)
         return res.redirect('/suppliers')
       }
-    })
+    });
+
     router.get('/edit/:supplierid', isLoggedIn, async (req, res, next) => {
       try {
         const { supplierid } = req.params
         const { rows } = await db.query('SELECT * FROM suppliers WHERE supplierid = $1', [supplierid])
+
         res.render('suppliers/edit', {
           currentPage: 'POS - Data Suppliers',
           user: req.session.user,
@@ -82,12 +85,11 @@ module.exports = (db) => {
         res.send(e);
       }
     });
+
     router.post('/edit/:supplierid', isLoggedIn, async (req, res) => {
       try {
         const { supplierid } = req.params
         const {name, address, phone } = req.body
-  
-  
         await db.query('UPDATE suppliers SET name = $1, address = $2 , phone = $3 WHERE supplierid = $4', [ name, address, phone, supplierid])
   
         req.flash('success', 'Supplier successfully edited')
@@ -96,11 +98,13 @@ module.exports = (db) => {
         req.flash('error', 'Supplier already exist')
         return res.redirect('/suppliers')
       }
-    })
+    });
+
     router.get('/delete/:supplierid', isLoggedIn, async (req, res, next) => {
       try {
         const { supplierid } = req.params
         await db.query('DELETE FROM suppliers WHERE supplierid = $1', [supplierid])
+
         req.flash('success', 'Supllier deleted successfully')
         res.redirect('/suppliers')
       } catch (err) {
