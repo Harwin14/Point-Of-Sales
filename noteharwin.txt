@@ -1,9 +1,0 @@
-"aoColumnDefs": [
-			{
-				bSortable: false,
-				aTargets: [ 1 ]
-			}
-		],
-	
-===// all collumn sorting active \\==-
- "aoColumnDefs":null,
