@@ -12113,6 +12113,8 @@ a:focus {
     background-size: cover;
     background-size: 450px;
     background-repeat: no-repeat;
+    height: 650px;
+
   }
 
 .fa
@@ -12121,7 +12123,7 @@ a:focus {
   top: 192px;
   right: 1px;
   width: 450px;
-  height: 240px;
+  height: 440px;
 }
 
 .bg-register-image {
@@ -12640,4 +12642,12 @@ text-decoration-color: red;
 
 #content {
   background-color: #f0fdff;
+}
+
+.c2{
+  margin: 60px;
+}
+.aa{
+  padding-right: 0px;
+  padding-left: 0px;
 }
