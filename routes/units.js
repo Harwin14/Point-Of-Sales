@@ -8,7 +8,7 @@ module.exports = (db) => {
       res.render('units/list', {
         success: req.flash('success'),
         error: req.flash('error'),
-        currentPage: 'Goods Utilities',
+        currentPage: 'Goods Utilities - Units',
         user: req.session.user
       })
     } catch (e) {

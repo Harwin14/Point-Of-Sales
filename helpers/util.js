@@ -1,9 +1,9 @@
 module.exports = {  
     isLoggedIn : (req, res, next) => {
     if(req.session.user){
-      next()
+      next() // Lanjutkan ke rute yang diakses
     }else{
-      res.redirect('/sales')
+      res.redirect('/login')
     }
   },
   

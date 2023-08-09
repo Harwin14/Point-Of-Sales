@@ -6,7 +6,14 @@ const router = express.Router();
 
 
 module.exports = (db) => {
-  router.get('/', (req, res, next) => {
+    router.get('/', (req, res, next) => {
+    res.render('login', {
+      currentPage: 'POS - Sign in',
+      success: req.flash('success'),
+      error: req.flash('error')
+    });
+  });
+  router.get('/login', (req, res, next) => {
     res.render('login', {
       currentPage: 'POS - Sign in',
       success: req.flash('success'),

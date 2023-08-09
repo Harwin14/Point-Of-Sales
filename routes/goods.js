@@ -10,7 +10,7 @@ module.exports = (db) => {
             res.render('goods/list', {
                 success: req.flash('success'),
                 error: req.flash('error'),
-                currentPage: 'Goods Utilities',
+                currentPage: 'Goods Utilities - Goods',
                 user: req.session.user
             })
         } catch (e) { 

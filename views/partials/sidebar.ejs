@@ -37,12 +37,12 @@
                         <i class="fas fa-fw fa-wrench"></i>
                         <span>Goods Utilities</span>
                     </a>
-                    <div id="collapseUtilities" class="collapse <%= currentPage == 'Goods Utilities' ? 'show' : ''  %>" aria-labelledby="headingUtilities"
+                    <div id="collapseUtilities"class="collapse <%= currentPage === 'Goods Utilities - Goods' || currentPage === 'Goods Utilities - Units' ? 'show' : ''  %>" aria-labelledby="headingUtilities"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Goods Utilities:</h6>
-                            <a class="collapse-item <%= currentPage == 'Goods Utilities' ? 'active' : '' %>" href="/goods">Goods</a>
-                            <a class="collapse-item <%= currentPage == 'Goods Utilities' ? 'active' : '' %>" href="/units">Units</a>
+                            <a class="collapse-item <%= currentPage == 'Goods Utilities - Goods' ? 'active' : '' %>" href="/goods">Goods</a>
+                            <a class="collapse-item <%= currentPage == 'Goods Utilities - Units' ? 'active' : '' %>" href="/units">Units</a>
                         </div>
                     </div>
                 </li>
